@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const NavStyles = styled.ul`
+export const StyledNav = styled.ul`
   margin: 0;
   padding: 0;
   display: flex;
@@ -63,5 +63,3 @@ const NavStyles = styled.ul`
     font-size: 1.5rem;
   }
 `;
-
-export default NavStyles;
