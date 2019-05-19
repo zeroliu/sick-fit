@@ -77,6 +77,18 @@
               "ssr": true,
               "displayName": true
             }
+          ],
+          [
+            "module-resolver",
+            {
+              "root": [
+                "./"
+              ],
+              "alias": {
+                "@components": "./components",
+                "@lib": "./lib"
+              }
+            }
           ]
         ]
       },
