@@ -14,7 +14,7 @@ server.start(
       origin: process.env.FRONTEND_URL,
     },
   },
-  deets => {
+  (deets: any) => {
     console.log(`Server is now running on http://localhost:${deets.port}`);
   },
 );

@@ -10,7 +10,7 @@ export function createServer() {
     resolvers: {
       Mutation,
       Query,
-    },
+    } as any,
     resolverValidationOptions: {
       requireResolversForResolveType: false,
     },
