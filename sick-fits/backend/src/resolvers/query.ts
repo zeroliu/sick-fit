@@ -1,7 +1,7 @@
 import { QueryResolvers } from 'src/generated/graphqlgen';
 
 export const Query: QueryResolvers.Type = {
-  items({}, {}, ctx) {
+  items(_parent, _args, ctx) {
     return ctx.db.items();
   },
 };

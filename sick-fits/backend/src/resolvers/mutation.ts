@@ -1,7 +1,7 @@
 import { MutationResolvers } from 'src/generated/graphqlgen';
 
 export const Mutation: MutationResolvers.Type = {
-  createItem({}, args, ctx) {
+  createItem(_parent, args, ctx) {
     return ctx.db.createItem({
       title: args.title,
       description: args.description,
