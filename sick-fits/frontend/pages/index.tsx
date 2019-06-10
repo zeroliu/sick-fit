@@ -1,6 +1,7 @@
+import { Items } from 'components/items';
 const Home = () => (
   <div>
-    <p>Hey!</p>
+    <Items />
   </div>
 );
 export default Home;
