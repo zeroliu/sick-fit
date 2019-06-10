@@ -3,6 +3,7 @@ import { allItemsQuery } from './query';
 import { ALL_ITEMS_QUERY } from './types/ALL_ITEMS_QUERY';
 import { Query } from 'react-apollo';
 import { Center, ItemsList } from './style';
+import { Item } from 'components/item';
 
 export class Items extends Component {
   render() {
@@ -17,7 +18,7 @@ export class Items extends Component {
             return (
               <ItemsList>
                 {data.items.map(item => (
-                  <p>{item.title}</p>
+                  <Item item={item} key={item.id} />
                 ))}
               </ItemsList>
             );
