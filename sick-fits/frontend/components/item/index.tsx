@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ALL_ITEMS_QUERY_items } from 'components/items/types/ALL_ITEMS_QUERY';
 import { ItemStyled, Title, PriceTag } from './styles';
 import Link from 'next/link';
-import { formatMoney } from 'lib/formatMoney';
+import { formatMoney } from 'lib/format_money';
 
 interface Props {
   item: ALL_ITEMS_QUERY_items;

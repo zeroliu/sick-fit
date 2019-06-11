@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import Form from 'components/styles/form';
 import { ALL_ITEMS_QUERY_items } from 'components/items/types/ALL_ITEMS_QUERY';
 import { Omit } from 'types/utils';
+import { Mutation } from 'react-apollo';
+import { createItemMutation } from './gql';
+import { ErrorMessage } from 'components/error_message';
+import Router from 'next/router';
+import {
+  CREATE_ITEM_MUTATIONVariables,
+  CREATE_ITEM_MUTATION,
+} from './types/CREATE_ITEM_MUTATION';
 
 type State = Omit<ALL_ITEMS_QUERY_items, 'id' | '__typename'>;
 
@@ -24,45 +32,67 @@ export class CreateItem extends Component<{}, State> {
   };
   render() {
     return (
-      <Form>
-        <fieldset>
-          <label htmlFor='title'>
-            Title
-            <input
-              type='text'
-              id='title'
-              name='title'
-              placeholder='Title'
-              required
-              onChange={this.handleChange}
-              value={this.state.title}
-            />
-          </label>
-          <label htmlFor='price'>
-            Price
-            <input
-              type='number'
-              id='price'
-              name='price'
-              placeholder='Price'
-              required
-              onChange={this.handleChange}
-              value={this.state.price}
-            />
-          </label>
-          <label htmlFor='description'>
-            Description
-            <textarea
-              id='description'
-              name='description'
-              placeholder='Description'
-              required
-              onChange={this.handleChange}
-              value={this.state.description}
-            />
-          </label>
-        </fieldset>
-      </Form>
+      <Mutation<CREATE_ITEM_MUTATION, CREATE_ITEM_MUTATIONVariables>
+        mutation={createItemMutation}
+        variables={this.state}
+      >
+        {(createItem, { loading, error }) => (
+          <Form
+            onSubmit={async (e: React.FormEvent) => {
+              e.preventDefault();
+              const res = await createItem();
+              if (res && res.data) {
+                Router.push({
+                  pathname: '/item',
+                  query: { id: res.data.createItem.id },
+                });
+              } else {
+                throw new Error('No item response is returned.');
+              }
+            }}
+          >
+            <ErrorMessage error={error} />
+            <fieldset disabled={loading} aria-busy={loading}>
+              <label htmlFor='title'>
+                Title
+                <input
+                  type='text'
+                  id='title'
+                  name='title'
+                  placeholder='Title'
+                  required
+                  onChange={this.handleChange}
+                  value={this.state.title}
+                />
+              </label>
+              <label htmlFor='price'>
+                Price
+                <input
+                  type='number'
+                  id='price'
+                  name='price'
+                  placeholder='Price'
+                  required
+                  onChange={this.handleChange}
+                  value={this.state.price}
+                />
+              </label>
+              <label htmlFor='description'>
+                Description
+                <textarea
+                  id='description'
+                  name='description'
+                  placeholder='Description'
+                  required
+                  onChange={this.handleChange}
+                  value={this.state.description}
+                />
+              </label>
+              <button type='submit'>Submit</button>
+            </fieldset>
+          </Form>
+        )}
+      </Mutation>
     );
   }
 }
