@@ -1,3 +1,4 @@
+import { uploadImage } from 'services/image_service';
 import React, { Component } from 'react';
 import Form from 'components/styles/form';
 import { ALL_ITEMS_QUERY_items } from 'components/items/types/ALL_ITEMS_QUERY';
@@ -30,6 +31,20 @@ export class CreateItem extends Component<{}, State> {
       [name]: val,
     } as State);
   };
+  uploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) {
+      return;
+    }
+    const response = await uploadImage(files[0]);
+    if (!response) {
+      return;
+    }
+    this.setState({
+      image: response.image,
+      largeImage: response.largeImage,
+    });
+  };
   render() {
     return (
       <Mutation<CREATE_ITEM_MUTATION, CREATE_ITEM_MUTATIONVariables>
@@ -53,6 +68,20 @@ export class CreateItem extends Component<{}, State> {
           >
             <ErrorMessage error={error} />
             <fieldset disabled={loading} aria-busy={loading}>
+              <label htmlFor='file'>
+                Image
+                <input
+                  type='file'
+                  id='file'
+                  name='file'
+                  placeholder='Upload an image'
+                  required
+                  onChange={this.uploadImage}
+                />
+              </label>
+              {this.state.image && (
+                <img src={this.state.image} alt='upload preview' />
+              )}
               <label htmlFor='title'>
                 Title
                 <input
