@@ -379,19 +379,36 @@ export namespace ItemResolvers {
 export namespace MutationResolvers {
   export const defaultResolvers = {};
 
-  export interface ArgsCreateItem {
+  export interface ItemCreateInput {
+    id?: string | null;
     title: string;
     description: string;
-    price: number;
     image?: string | null;
     largeImage?: string | null;
+    price: number;
+  }
+  export interface ItemUpdateInput {
+    title?: string | null;
+    description?: string | null;
+    image?: string | null;
+    largeImage?: string | null;
+    price?: number | null;
+  }
+  export interface ItemWhereUniqueInput {
+    id?: string | null;
+  }
+
+  export interface ArgsCreateItem {
+    data: ItemCreateInput;
   }
 
   export interface ArgsUpdateItem {
-    id: string;
-    title?: string | null;
-    description?: string | null;
-    price?: number | null;
+    data: ItemUpdateInput;
+    where: ItemWhereUniqueInput;
+  }
+
+  export interface ArgsDeleteItem {
+    where: ItemWhereUniqueInput;
   }
 
   export type CreateItemResolver =
@@ -417,7 +434,7 @@ export namespace MutationResolvers {
         args: ArgsUpdateItem,
         ctx: Context,
         info: GraphQLResolveInfo
-      ) => Item | Promise<Item>)
+      ) => Item | null | Promise<Item | null>)
     | {
         fragment: string;
         resolve: (
@@ -425,7 +442,24 @@ export namespace MutationResolvers {
           args: ArgsUpdateItem,
           ctx: Context,
           info: GraphQLResolveInfo
-        ) => Item | Promise<Item>;
+        ) => Item | null | Promise<Item | null>;
+      };
+
+  export type DeleteItemResolver =
+    | ((
+        parent: undefined,
+        args: ArgsDeleteItem,
+        ctx: Context,
+        info: GraphQLResolveInfo
+      ) => Item | null | Promise<Item | null>)
+    | {
+        fragment: string;
+        resolve: (
+          parent: undefined,
+          args: ArgsDeleteItem,
+          ctx: Context,
+          info: GraphQLResolveInfo
+        ) => Item | null | Promise<Item | null>;
       };
 
   export interface Type {
@@ -452,7 +486,7 @@ export namespace MutationResolvers {
           args: ArgsUpdateItem,
           ctx: Context,
           info: GraphQLResolveInfo
-        ) => Item | Promise<Item>)
+        ) => Item | null | Promise<Item | null>)
       | {
           fragment: string;
           resolve: (
@@ -460,7 +494,24 @@ export namespace MutationResolvers {
             args: ArgsUpdateItem,
             ctx: Context,
             info: GraphQLResolveInfo
-          ) => Item | Promise<Item>;
+          ) => Item | null | Promise<Item | null>;
+        };
+
+    deleteItem:
+      | ((
+          parent: undefined,
+          args: ArgsDeleteItem,
+          ctx: Context,
+          info: GraphQLResolveInfo
+        ) => Item | null | Promise<Item | null>)
+      | {
+          fragment: string;
+          resolve: (
+            parent: undefined,
+            args: ArgsDeleteItem,
+            ctx: Context,
+            info: GraphQLResolveInfo
+          ) => Item | null | Promise<Item | null>;
         };
   }
 }

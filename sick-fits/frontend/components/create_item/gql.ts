@@ -9,11 +9,13 @@ export const createItemMutation = gql`
     $largeImage: String
   ) {
     createItem(
-      title: $title
-      price: $price
-      description: $description
-      image: $image
-      largeImage: $largeImage
+      data: {
+        title: $title
+        price: $price
+        description: $description
+        image: $image
+        largeImage: $largeImage
+      }
     ) {
       id
     }

@@ -8,10 +8,8 @@ export const updateItemMutation = gql`
     $description: String
   ) {
     updateItem(
-      id: $id
-      title: $title
-      price: $price
-      description: $description
+      where: { id: $id }
+      data: { title: $title, price: $price, description: $description }
     ) {
       id
     }
