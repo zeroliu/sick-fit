@@ -6,7 +6,7 @@ import { updateItemMutation, singleItemQuery } from './gql';
 import { ErrorMessage } from 'components/error_message';
 import {
   UPDATE_ITEM_MUTATIONVariables,
-  UPDATE_ITEM_MUTATION_updateItem,
+  UPDATE_ITEM_MUTATION,
 } from './types/UPDATE_ITEM_MUTATION';
 import {
   SINGLE_ITEM_QUERY,
@@ -47,10 +47,7 @@ export class UpdateItem extends Component<Props, State> {
             return <p>Item does not exist for ID: {this.props.id}</p>;
           }
           return (
-            <Mutation<
-              UPDATE_ITEM_MUTATION_updateItem,
-              UPDATE_ITEM_MUTATIONVariables
-            >
+            <Mutation<UPDATE_ITEM_MUTATION, UPDATE_ITEM_MUTATIONVariables>
               mutation={updateItemMutation}
               variables={this.state}
             >
