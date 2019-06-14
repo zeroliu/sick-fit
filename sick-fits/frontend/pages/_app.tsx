@@ -3,13 +3,14 @@ import { Page } from 'components/page';
 import { ApolloProvider } from 'react-apollo';
 import { withData } from 'lib/withData';
 import { ApolloClient } from 'apollo-boost';
+import { DefaultQuery } from 'next/router';
 
 interface Props {
   apollo: ApolloClient<{}>;
 }
 
 interface PageProps {
-  query?: any;
+  query?: DefaultQuery;
 }
 
 class MyApp extends App<Props> {

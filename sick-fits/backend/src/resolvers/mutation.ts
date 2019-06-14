@@ -10,4 +10,11 @@ export const Mutation: MutationResolvers.Type = {
       largeImage: args.largeImage || undefined,
     });
   },
+  updateItem(_parent, args, ctx) {
+    const { id, ...data } = args;
+    return ctx.db.updateItem({
+      where: { id },
+      data,
+    });
+  },
 };

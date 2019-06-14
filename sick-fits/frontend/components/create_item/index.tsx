@@ -117,7 +117,7 @@ export class CreateItem extends Component<{}, State> {
                   value={this.state.description}
                 />
               </label>
-              <button type='submit'>Submit</button>
+              <button type='submit'>Save Changes</button>
             </fieldset>
           </Form>
         )}

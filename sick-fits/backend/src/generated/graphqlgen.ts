@@ -7,6 +7,14 @@ import { Context } from "../types";
 export namespace QueryResolvers {
   export const defaultResolvers = {};
 
+  export interface ItemWhereUniqueInput {
+    id?: string | null;
+  }
+
+  export interface ArgsItem {
+    where: ItemWhereUniqueInput;
+  }
+
   export type ItemsResolver =
     | ((
         parent: undefined,
@@ -22,6 +30,23 @@ export namespace QueryResolvers {
           ctx: Context,
           info: GraphQLResolveInfo
         ) => Item[] | Promise<Item[]>;
+      };
+
+  export type ItemResolver =
+    | ((
+        parent: undefined,
+        args: ArgsItem,
+        ctx: Context,
+        info: GraphQLResolveInfo
+      ) => Item | null | Promise<Item | null>)
+    | {
+        fragment: string;
+        resolve: (
+          parent: undefined,
+          args: ArgsItem,
+          ctx: Context,
+          info: GraphQLResolveInfo
+        ) => Item | null | Promise<Item | null>;
       };
 
   export interface Type {
@@ -40,6 +65,23 @@ export namespace QueryResolvers {
             ctx: Context,
             info: GraphQLResolveInfo
           ) => Item[] | Promise<Item[]>;
+        };
+
+    item:
+      | ((
+          parent: undefined,
+          args: ArgsItem,
+          ctx: Context,
+          info: GraphQLResolveInfo
+        ) => Item | null | Promise<Item | null>)
+      | {
+          fragment: string;
+          resolve: (
+            parent: undefined,
+            args: ArgsItem,
+            ctx: Context,
+            info: GraphQLResolveInfo
+          ) => Item | null | Promise<Item | null>;
         };
   }
 }
@@ -345,6 +387,13 @@ export namespace MutationResolvers {
     largeImage?: string | null;
   }
 
+  export interface ArgsUpdateItem {
+    id: string;
+    title?: string | null;
+    description?: string | null;
+    price?: number | null;
+  }
+
   export type CreateItemResolver =
     | ((
         parent: undefined,
@@ -357,6 +406,23 @@ export namespace MutationResolvers {
         resolve: (
           parent: undefined,
           args: ArgsCreateItem,
+          ctx: Context,
+          info: GraphQLResolveInfo
+        ) => Item | Promise<Item>;
+      };
+
+  export type UpdateItemResolver =
+    | ((
+        parent: undefined,
+        args: ArgsUpdateItem,
+        ctx: Context,
+        info: GraphQLResolveInfo
+      ) => Item | Promise<Item>)
+    | {
+        fragment: string;
+        resolve: (
+          parent: undefined,
+          args: ArgsUpdateItem,
           ctx: Context,
           info: GraphQLResolveInfo
         ) => Item | Promise<Item>;
@@ -375,6 +441,23 @@ export namespace MutationResolvers {
           resolve: (
             parent: undefined,
             args: ArgsCreateItem,
+            ctx: Context,
+            info: GraphQLResolveInfo
+          ) => Item | Promise<Item>;
+        };
+
+    updateItem:
+      | ((
+          parent: undefined,
+          args: ArgsUpdateItem,
+          ctx: Context,
+          info: GraphQLResolveInfo
+        ) => Item | Promise<Item>)
+      | {
+          fragment: string;
+          resolve: (
+            parent: undefined,
+            args: ArgsUpdateItem,
             ctx: Context,
             info: GraphQLResolveInfo
           ) => Item | Promise<Item>;
