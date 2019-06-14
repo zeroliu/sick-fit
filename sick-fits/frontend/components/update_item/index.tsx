@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Form from 'components/styles/form';
-import { Omit } from 'types/utils';
+import { Recodify } from 'types/utils';
 import { Mutation, Query } from 'react-apollo';
 import { updateItemMutation, singleItemQuery } from './gql';
 import { ErrorMessage } from 'components/error_message';
@@ -14,12 +14,12 @@ import {
 } from './types/SINGLE_ITEM_QUERY';
 
 interface Props {
-  id?: string;
+  id: string;
 }
-type State = Omit<UPDATE_ITEM_MUTATIONVariables, 'id'>;
+type State = Recodify<UPDATE_ITEM_MUTATIONVariables>;
 
 export class UpdateItem extends Component<Props, State> {
-  state: State = {};
+  state: State = { id: this.props.id };
   handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -44,7 +44,7 @@ export class UpdateItem extends Component<Props, State> {
             return <p>loading...</p>;
           }
           if (!data || !data.item) {
-            return <p>Item not exists for ID: {this.props.id}</p>;
+            return <p>Item does not exist for ID: {this.props.id}</p>;
           }
           return (
             <Mutation<
@@ -52,10 +52,7 @@ export class UpdateItem extends Component<Props, State> {
               UPDATE_ITEM_MUTATIONVariables
             >
               mutation={updateItemMutation}
-              variables={{
-                ...this.state,
-                id: this.props.id!,
-              }}
+              variables={this.state}
             >
               {(updateItem, { loading, error }) => (
                 <Form
@@ -104,7 +101,7 @@ export class UpdateItem extends Component<Props, State> {
                         defaultValue={data!.item!.description}
                       />
                     </label>
-                    <button type='submit'>Submit</button>
+                    <button type='submit'>Save Changes</button>
                   </fieldset>
                 </Form>
               )}

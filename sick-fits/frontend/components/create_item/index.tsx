@@ -1,8 +1,7 @@
 import { uploadImage } from 'services/image_service';
 import React, { Component } from 'react';
 import Form from 'components/styles/form';
-import { ALL_ITEMS_QUERY_items } from 'components/items/types/ALL_ITEMS_QUERY';
-import { Omit } from 'types/utils';
+import { Recodify } from 'types/utils';
 import { Mutation } from 'react-apollo';
 import { createItemMutation } from './gql';
 import { ErrorMessage } from 'components/error_message';
@@ -12,7 +11,9 @@ import {
   CREATE_ITEM_MUTATION,
 } from './types/CREATE_ITEM_MUTATION';
 
-type State = Omit<ALL_ITEMS_QUERY_items, 'id' | '__typename'>;
+// Turns CREATE_ITEM_MUTATIONVariables into a Record so we can cast it to a key
+// value pair.
+type State = Recodify<CREATE_ITEM_MUTATIONVariables>;
 
 export class CreateItem extends Component<{}, State> {
   state = {
@@ -117,7 +118,7 @@ export class CreateItem extends Component<{}, State> {
                   value={this.state.description}
                 />
               </label>
-              <button type='submit'>Save Changes</button>
+              <button type='submit'>Submit</button>
             </fieldset>
           </Form>
         )}
