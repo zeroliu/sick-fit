@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const NavStyles = styled.ul`
+export const NavStyles = styled.ul`
   margin: 0;
   padding: 0;
   display: flex;
@@ -25,7 +25,7 @@ const NavStyles = styled.ul`
     &:before {
       content: '';
       width: 2px;
-      background: ${props => props.theme.lightgrey};
+      background: ${(props) => props.theme.lightGrey};
       height: 100%;
       left: 0;
       position: absolute;
@@ -51,17 +51,15 @@ const NavStyles = styled.ul`
       &:after {
         width: calc(100% - 60px);
       }
-    @media (max-width: 700px) {
+      @media (max-width: 700px) {
         width: calc(100% - 10px);
-    }
+      }
     }
   }
   @media (max-width: 1300px) {
-    border-top: 1px solid ${props => props.theme.lightgrey};
+    border-top: 1px solid ${(props) => props.theme.lightGrey};
     width: 100%;
     justify-content: center;
     font-size: 1.5rem;
   }
 `;
-
-export default NavStyles;
