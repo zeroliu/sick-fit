@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
 import Form from 'src/components/styles/Form';
+import { useMutation } from '@apollo/react-hooks';
+import {
+  CREATE_ITEM,
+  CreateItemVariable,
+  CreateItemData,
+} from 'src/queries/item';
+import { ErrorMessage } from '../error_message/ErrorMessage';
+import { useRouter } from 'next/router';
 
 export const CreateItem: React.FC = () => {
+  const router = useRouter();
+  const [createItem, { loading, error }] = useMutation<
+    CreateItemData,
+    CreateItemVariable
+  >(CREATE_ITEM);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -17,14 +30,25 @@ export const CreateItem: React.FC = () => {
       [name]: actualValue,
     });
   };
-  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    const { data } = await createItem({ variables: { input: formData } });
+    if (!data) {
+      console.error('Mutation returns no data');
+      return;
+    }
+    router.push({
+      pathname: '/item',
+      query: {
+        id: data.createItem.id,
+      },
+    });
   };
 
   return (
     <Form onSubmit={submitForm}>
-      <fieldset>
+      <ErrorMessage error={error}></ErrorMessage>
+      <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor='title'>
           Title
           <input

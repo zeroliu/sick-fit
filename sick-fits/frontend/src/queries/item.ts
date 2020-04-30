@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { CreateItemInput } from 'src/generated/graphql';
 
 export interface Item {
   id: string;
@@ -32,6 +33,9 @@ export const CREATE_ITEM = gql`
     }
   }
 `;
+export interface CreateItemData {
+  createItem: { id: string };
+}
 export interface CreateItemVariable {
-  input: {};
+  input: CreateItemInput;
 }
