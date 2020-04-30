@@ -1,12 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { NavStyles } from './NavStyles';
+import { NavStyles } from './nav_styles';
 
 export const Nav: React.FC = () => {
   return (
     <NavStyles>
       <Link href='/items'>
-        <a>Items</a>
+        <a>Shop</a>
       </Link>
       <Link href='/sell'>
         <a>Sell</a>

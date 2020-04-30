@@ -1,7 +1,9 @@
+import { CreateItem } from 'components/create_item/CreateItem';
+
 export default function Sell() {
   return (
     <div>
-      <p>Sell!</p>
+      <CreateItem></CreateItem>
     </div>
   );
 }
