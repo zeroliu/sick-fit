@@ -21,7 +21,17 @@ export const ALL_ITEMS = gql`
     }
   }
 `;
-
 export interface AllItemsData {
   items: Item[];
+}
+
+export const CREATE_ITEM = gql`
+  mutation CREATE_ITEM($input: CreateItemInput!) {
+    createItem(data: $input) {
+      id
+    }
+  }
+`;
+export interface CreateItemVariable {
+  input: {};
 }

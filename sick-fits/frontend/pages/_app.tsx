@@ -1,8 +1,8 @@
 import NextApp from 'next/app';
-import { Page } from 'components/page/Page';
+import { Page } from 'src/components/page/Page';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
-import withData from 'lib/withData';
+import withData from 'src/lib/withData';
 
 class App extends NextApp<{ apollo: ApolloClient<any> }> {
   static async getInitialProps({ Component, ctx }: any) {

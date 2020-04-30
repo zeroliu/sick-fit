@@ -1,6 +1,6 @@
 import React from 'react';
-import { Header } from 'components/header/Header';
-import { Meta } from 'components/Meta';
+import { Header } from 'src/components/header/Header';
+import { Meta } from 'src/components/Meta';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import Nprogress from 'nprogress';
 import Router from 'next/router';

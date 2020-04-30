@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { ItemsList } from './items_styles';
-import { ALL_ITEMS, AllItemsData } from 'queries/item';
-import { Item } from 'components/item/Item';
+import { ALL_ITEMS, AllItemsData } from 'src/queries/item';
+import { Item } from 'src/components/item/Item';
 
 export const Items: React.FC = () => {
   const { loading, error, data } = useQuery<AllItemsData>(ALL_ITEMS);

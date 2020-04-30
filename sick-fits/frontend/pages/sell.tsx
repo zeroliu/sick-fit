@@ -1,4 +1,4 @@
-import { CreateItem } from 'components/create_item/CreateItem';
+import { CreateItem } from 'src/components/create_item/CreateItem';
 
 export default function Sell() {
   return (

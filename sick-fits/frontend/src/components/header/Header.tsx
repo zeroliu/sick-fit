@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav } from 'components/nav/Nav';
+import { Nav } from 'src/components/nav/Nav';
 import Link from 'next/link';
 import styled from 'styled-components';
 

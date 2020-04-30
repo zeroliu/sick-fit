@@ -8,7 +8,8 @@
     "build": "next build",
     "test": "NODE_ENV=test jest --watch",
     "test-win": "SET NODE_ENV=test&& jest --watch",
-    "heroku-postbuild": "next build"
+    "heroku-postbuild": "next build",
+    "gen": "graphql-codegen --config codegen.yml"
   },
   "author": "",
   "license": "ISC",
@@ -40,6 +41,11 @@
     "waait": "^1.0.2"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.13.3",
+    "@graphql-codegen/introspection": "1.13.3",
+    "@graphql-codegen/typescript": "^1.13.3",
+    "@graphql-codegen/typescript-operations": "1.13.3",
+    "@graphql-codegen/typescript-react-apollo": "1.13.3",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^16.9.34",
     "@types/styled-components": "^5.0.1",
