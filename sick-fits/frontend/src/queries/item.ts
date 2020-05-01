@@ -1,5 +1,4 @@
 import gql from 'graphql-tag';
-import { CreateItemInput } from 'src/generated/graphql';
 
 export interface Item {
   id: string;
@@ -10,8 +9,8 @@ export interface Item {
   largeImage?: string;
 }
 
-export const ALL_ITEMS = gql`
-  query ALL_ITEMS {
+export const ALL_ITEMS_QUERY = gql`
+  query ALL_ITEMS_QUERY {
     items {
       id
       title
@@ -22,20 +21,42 @@ export const ALL_ITEMS = gql`
     }
   }
 `;
-export interface AllItemsData {
+export interface AllItemsQueryData {
   items: Item[];
 }
 
-export const CREATE_ITEM = gql`
-  mutation CREATE_ITEM($input: CreateItemInput!) {
-    createItem(data: $input) {
+export const ITEM_QUERY = gql`
+  query ITEM_QUERY($id: ID!) {
+    item(id: $id) {
+      id
+      title
+      price
+      description
+      image
+      largeImage
+    }
+  }
+`;
+export interface ItemQueryData {
+  item: Item;
+}
+
+export const CREATE_ITEM_MUTATION = gql`
+  mutation CREATE_ITEM_MUTATION($data: CreateItemInput!) {
+    createItem(data: $data) {
       id
     }
   }
 `;
-export interface CreateItemData {
-  createItem: { id: string };
+export interface CreateItemMutationData {
+  createItem: { id: number };
 }
-export interface CreateItemVariable {
-  input: CreateItemInput;
+
+export const UPDATE_ITEM_MUTATION = gql`
+  mutation UPDATE_ITEM_MUTATION($id: ID!, $data: UpdateItemInput!) {
+    updateItem(id: $id, data: $data)
+  }
+`;
+export interface UpdateItemMutationData {
+  updateItem: boolean;
 }

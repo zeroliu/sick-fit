@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import Form from 'src/components/styles/Form';
+import { Form } from 'src/components/styles/Form';
 import { useMutation } from '@apollo/react-hooks';
-import {
-  CREATE_ITEM,
-  CreateItemVariable,
-  CreateItemData,
-} from 'src/queries/item';
+import { CREATE_ITEM_MUTATION, CreateItemMutationData } from 'src/queries/item';
 import { ErrorMessage } from '../error_message/ErrorMessage';
 import { useRouter } from 'next/router';
+import { MutationCreateItemArgs } from 'src/generated/graphql';
 
 export const CreateItem: React.FC = () => {
   const router = useRouter();
   const [createItem, { loading, error }] = useMutation<
-    CreateItemData,
-    CreateItemVariable
-  >(CREATE_ITEM);
+    CreateItemMutationData,
+    MutationCreateItemArgs
+  >(CREATE_ITEM_MUTATION);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -55,9 +52,10 @@ export const CreateItem: React.FC = () => {
       largeImage: file.eager[0].secure_url,
     });
   };
+
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { data } = await createItem({ variables: { input: formData } });
+    const { data } = await createItem({ variables: { data: formData } });
     if (!data) {
       console.error('Mutation returns no data');
       return;

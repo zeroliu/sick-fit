@@ -1,9 +1,9 @@
 import React from 'react';
 import { Item as ItemType } from 'src/queries/item';
 import { Item as StyledItem } from './item_styles';
-import Title from 'src/components/styles/Title';
+import { Title } from 'src/components/styles/Title';
 import Link from 'next/link';
-import PriceTag from 'src/components/styles/PriceTag';
+import { PriceTag } from 'src/components/styles/PriceTag';
 import { formatMoney } from 'src/lib/format_money';
 
 interface Props {

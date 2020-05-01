@@ -31,12 +31,19 @@ export type Item = {
 export type Mutation = {
    __typename?: 'Mutation';
   createItem: Item;
+  updateItem: Scalars['Boolean'];
   register: User;
 };
 
 
 export type MutationCreateItemArgs = {
   data: CreateItemInput;
+};
+
+
+export type MutationUpdateItemArgs = {
+  data: UpdateItemInput;
+  id: Scalars['ID'];
 };
 
 
@@ -47,12 +54,24 @@ export type MutationRegisterArgs = {
 export type Query = {
    __typename?: 'Query';
   items: Array<Item>;
+  item: Item;
   hello: Scalars['String'];
+};
+
+
+export type QueryItemArgs = {
+  id: Scalars['ID'];
 };
 
 export type RegisterInput = {
   name: Scalars['String'];
   email: Scalars['String'];
+};
+
+export type UpdateItemInput = {
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Float']>;
 };
 
 export type User = {
