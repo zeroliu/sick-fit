@@ -30,6 +30,31 @@ export const CreateItem: React.FC = () => {
       [name]: actualValue,
     });
   };
+
+  const uploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    if (!files) {
+      return;
+    }
+
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'sickfits');
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/zeroliu/image/upload',
+      {
+        method: 'POST',
+        body: data,
+      },
+    );
+    const file = await res.json();
+    console.log(file);
+    setFormData({
+      ...formData,
+      image: file.secure_url,
+      largeImage: file.eager[0].secure_url,
+    });
+  };
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { data } = await createItem({ variables: { input: formData } });
@@ -49,6 +74,18 @@ export const CreateItem: React.FC = () => {
     <Form onSubmit={submitForm}>
       <ErrorMessage error={error}></ErrorMessage>
       <fieldset disabled={loading} aria-busy={loading}>
+        <label htmlFor='title'>
+          Image
+          <input
+            type='file'
+            name='file'
+            placeholder='file'
+            required
+            onChange={uploadFile}></input>
+          {formData.image && (
+            <img width='200px' src={formData.image} alt='Upload preview'></img>
+          )}
+        </label>
         <label htmlFor='title'>
           Title
           <input
