@@ -56,24 +56,24 @@ export class ItemResolver {
     return await Item.create(data).save();
   }
 
-  @Mutation(() => Boolean)
+  @Mutation(() => ID, { nullable: true })
   async updateItem(
     @Arg('id', () => ID) id: number,
     @Arg('data') data: UpdateItemInput,
-  ): Promise<boolean> {
+  ): Promise<number | null> {
     const result = await Item.update(id, data);
-    if (result.affected && result.affected > 0) {
-      return true;
+    if (!result.affected || result.affected <= 0) {
+      return null;
     }
-    return false;
+    return id;
   }
 
-  @Mutation(() => Boolean)
-  async deleteItem(@Arg('id', () => ID) id: number): Promise<boolean> {
+  @Mutation(() => ID, { nullable: true })
+  async deleteItem(@Arg('id', () => ID) id: number): Promise<number | null> {
     const result = await Item.delete(id);
-    if (result.affected && result.affected > 0) {
-      return true;
+    if (!result.affected || result.affected <= 0) {
+      return null;
     }
-    return false;
+    return id;
   }
 }
