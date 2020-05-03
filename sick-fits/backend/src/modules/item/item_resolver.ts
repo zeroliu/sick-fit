@@ -46,7 +46,7 @@ export class ItemResolver {
     return Item.find();
   }
 
-  @Query(() => Item)
+  @Query(() => Item, { nullable: true })
   async item(@Arg('id', () => ID) id: number): Promise<Item | undefined> {
     return await Item.findOne(id);
   }
