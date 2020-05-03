@@ -5,6 +5,7 @@ import { Title } from 'src/components/styles/Title';
 import Link from 'next/link';
 import { PriceTag } from 'src/components/styles/PriceTag';
 import { formatMoney } from 'src/lib/format_money';
+import { DeleteItem } from '../delete_item/DeleteItem';
 
 interface Props {
   data: ItemType;
@@ -34,7 +35,7 @@ export const Item: React.FC<Props> = ({ data }) => {
           <a>Edit ✏️</a>
         </Link>
         <button>Add to Cart</button>
-        <button>Delete</button>
+        <DeleteItem id={data.id}>Delete</DeleteItem>
       </div>
     </StyledItem>
   );

@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { Mutation } from 'src/generated/graphql';
 
 export interface Item {
   id: string;
@@ -58,5 +59,14 @@ export const UPDATE_ITEM_MUTATION = gql`
   }
 `;
 export interface UpdateItemMutationData {
-  updateItem: boolean;
+  updateItem: Mutation['updateItem'];
+}
+
+export const DELETE_ITEM_MUTATION = gql`
+  mutation DELETE_ITEM_MUTATION($id: ID!) {
+    deleteItem(id: $id)
+  }
+`;
+export interface DeleteItemMutationData {
+  deleteItem: Mutation['deleteItem'];
 }

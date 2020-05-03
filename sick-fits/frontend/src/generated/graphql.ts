@@ -31,7 +31,8 @@ export type Item = {
 export type Mutation = {
    __typename?: 'Mutation';
   createItem: Item;
-  updateItem: Scalars['Boolean'];
+  updateItem?: Maybe<Scalars['ID']>;
+  deleteItem?: Maybe<Scalars['ID']>;
   register: User;
 };
 
@@ -43,6 +44,11 @@ export type MutationCreateItemArgs = {
 
 export type MutationUpdateItemArgs = {
   data: UpdateItemInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteItemArgs = {
   id: Scalars['ID'];
 };
 
