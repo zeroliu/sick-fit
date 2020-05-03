@@ -60,8 +60,20 @@ export class ItemResolver {
   async updateItem(
     @Arg('id', () => ID) id: number,
     @Arg('data') data: UpdateItemInput,
-  ): Promise<any> {
-    await Item.update(id, data);
-    return true;
+  ): Promise<boolean> {
+    const result = await Item.update(id, data);
+    if (result.affected && result.affected > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  @Mutation(() => Boolean)
+  async deleteItem(@Arg('id', () => ID) id: number): Promise<boolean> {
+    const result = await Item.delete(id);
+    if (result.affected && result.affected > 0) {
+      return true;
+    }
+    return false;
   }
 }
