@@ -39,7 +39,7 @@ export const ITEM_QUERY = gql`
   }
 `;
 export interface ItemQueryData {
-  item: Item;
+  item?: Item;
 }
 
 export const CREATE_ITEM_MUTATION = gql`

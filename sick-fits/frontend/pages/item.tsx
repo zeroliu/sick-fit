@@ -1,11 +1,11 @@
-import { UpdateItem } from 'src/components/update_item/UpdateItem';
-import { useRouter } from 'next/router';
+import { SingleItem } from 'src/components/single_item/SingleItem';
 import { useQuery } from '@apollo/react-hooks';
-import { ITEM_QUERY, ItemQueryData } from 'src/queries/item';
+import { ItemQueryData, ITEM_QUERY } from 'src/queries/item';
 import { QueryItemArgs } from 'src/generated/graphql';
+import { useRouter } from 'next/router';
 import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
 
-export default function Update() {
+export default function Item() {
   const router = useRouter();
   const { loading, error, data } = useQuery<ItemQueryData, QueryItemArgs>(
     ITEM_QUERY,
@@ -19,9 +19,8 @@ export default function Update() {
   if (error) {
     return <ErrorMessage error={error}></ErrorMessage>;
   }
-  if (!data) {
-    return <p>Error: data not found</p>;
+  if (!data?.item) {
+    return <p>Item not found for id {router.query.id}</p>;
   }
-
-  return <UpdateItem data={data.item}></UpdateItem>;
+  return <SingleItem data={data.item}></SingleItem>;
 }

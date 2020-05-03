@@ -60,7 +60,7 @@ export type MutationRegisterArgs = {
 export type Query = {
    __typename?: 'Query';
   items: Array<Item>;
-  item: Item;
+  item?: Maybe<Item>;
   hello: Scalars['String'];
 };
 
