@@ -6,8 +6,6 @@ import {
   Field,
   Arg,
   ID,
-  ArgsType,
-  Args,
 } from 'type-graphql';
 import { Item } from 'src/entity/item';
 
