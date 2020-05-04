@@ -6,6 +6,9 @@ import {
   Field,
   Arg,
   ID,
+  ArgsType,
+  Args,
+  ObjectType,
 } from 'type-graphql';
 import { Item } from 'src/entity/item';
 
@@ -39,16 +42,37 @@ export class UpdateItemInput {
   price?: number;
 }
 
+@ObjectType()
+class Connection {
+  @Field()
+  totalCount!: number;
+}
+
+@ArgsType()
+export class PaginationInput {
+  @Field({ nullable: true })
+  take?: number;
+
+  @Field({ nullable: true })
+  skip?: number;
+}
+
 @Resolver()
 export class ItemResolver {
   @Query(() => [Item])
-  async items(): Promise<Item[]> {
-    return Item.find();
+  async items(@Args() { take, skip }: PaginationInput): Promise<Item[]> {
+    return Item.find({ take, skip });
   }
 
   @Query(() => Item, { nullable: true })
   async item(@Arg('id', () => ID) id: number): Promise<Item | undefined> {
     return await Item.findOne(id);
+  }
+
+  @Query(() => Connection)
+  async itemsConnection(): Promise<Connection> {
+    const items = await Item.find();
+    return { totalCount: items.length };
   }
 
   @Mutation(() => Item)
