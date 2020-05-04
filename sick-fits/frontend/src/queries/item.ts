@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { Mutation } from 'src/generated/graphql';
+import { Mutation, Query } from 'src/generated/graphql';
 
 export interface Item {
   id: string;
@@ -11,8 +11,8 @@ export interface Item {
 }
 
 export const ALL_ITEMS_QUERY = gql`
-  query ALL_ITEMS_QUERY {
-    items {
+  query ALL_ITEMS_QUERY($skip: Int, $take: Int) {
+    items(skip: $skip, take: $take) {
       id
       title
       price
@@ -40,6 +40,17 @@ export const ITEM_QUERY = gql`
 `;
 export interface ItemQueryData {
   item?: Item;
+}
+
+export const ITEMS_CONNECTION_QUERY = gql`
+  query ITEMS_CONNECTION_QUERY {
+    itemsConnection {
+      totalCount
+    }
+  }
+`;
+export interface ItemsConnectionQueryData {
+  itemsConnection: Query['itemsConnection'];
 }
 
 export const CREATE_ITEM_MUTATION = gql`

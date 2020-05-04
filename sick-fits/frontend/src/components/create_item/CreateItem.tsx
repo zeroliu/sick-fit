@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form } from 'src/components/styles/Form';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import { CREATE_ITEM_MUTATION, CreateItemMutationData } from 'src/queries/item';
 import { ErrorMessage } from '../error_message/ErrorMessage';
 import { useRouter } from 'next/router';
@@ -8,10 +8,15 @@ import { MutationCreateItemArgs } from 'src/generated/graphql';
 
 export const CreateItem: React.FC = () => {
   const router = useRouter();
+  const client = useApolloClient();
   const [createItem, { loading, error }] = useMutation<
     CreateItemMutationData,
     MutationCreateItemArgs
-  >(CREATE_ITEM_MUTATION);
+  >(CREATE_ITEM_MUTATION, {
+    update: () => {
+      client.resetStore();
+    },
+  });
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -78,7 +83,6 @@ export const CreateItem: React.FC = () => {
             type='file'
             name='file'
             placeholder='file'
-            required
             onChange={uploadFile}></input>
           {formData.image && (
             <img width='200px' src={formData.image} alt='Upload preview'></img>

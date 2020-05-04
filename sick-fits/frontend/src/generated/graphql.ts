@@ -8,6 +8,11 @@ export type Scalars = {
   Float: number;
 };
 
+export type Connection = {
+   __typename?: 'Connection';
+  totalCount: Scalars['Int'];
+};
+
 export type CreateItemInput = {
   title: Scalars['String'];
   description: Scalars['String'];
@@ -61,7 +66,14 @@ export type Query = {
    __typename?: 'Query';
   items: Array<Item>;
   item?: Maybe<Item>;
+  itemsConnection: Connection;
   hello: Scalars['String'];
+};
+
+
+export type QueryItemsArgs = {
+  take?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
 };
 
 

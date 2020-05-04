@@ -1,11 +1,6 @@
 import React from 'react';
-import { useMutation } from '@apollo/react-hooks';
-import {
-  DELETE_ITEM_MUTATION,
-  DeleteItemMutationData,
-  ALL_ITEMS_QUERY,
-  AllItemsQueryData,
-} from 'src/queries/item';
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { DELETE_ITEM_MUTATION, DeleteItemMutationData } from 'src/queries/item';
 import { MutationDeleteItemArgs } from 'src/generated/graphql';
 
 interface Props {
@@ -14,26 +9,14 @@ interface Props {
 }
 
 export const DeleteItem: React.FC<Props> = ({ children, id }) => {
+  const client = useApolloClient();
   const [deleteItem, { error }] = useMutation<
     DeleteItemMutationData,
     MutationDeleteItemArgs
   >(DELETE_ITEM_MUTATION, {
     variables: { id },
-    update: (cache, payload) => {
-      const data = cache.readQuery<AllItemsQueryData>({
-        query: ALL_ITEMS_QUERY,
-      });
-      if (!data || payload.data?.deleteItem === null) {
-        return;
-      }
-      const filteredItems = data.items.filter(
-        (item) => item.id !== payload.data?.deleteItem,
-      );
-      const newData: typeof data = {
-        ...data,
-        items: filteredItems,
-      };
-      cache.writeQuery({ query: ALL_ITEMS_QUERY, data: newData });
+    update: () => {
+      client.resetStore();
     },
   });
 
