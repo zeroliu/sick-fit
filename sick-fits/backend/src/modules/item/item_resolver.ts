@@ -9,6 +9,7 @@ import {
   ArgsType,
   Args,
   ObjectType,
+  Int,
 } from 'type-graphql';
 import { Item } from 'src/entity/item';
 
@@ -44,16 +45,16 @@ export class UpdateItemInput {
 
 @ObjectType()
 class Connection {
-  @Field()
+  @Field(() => Int)
   totalCount!: number;
 }
 
 @ArgsType()
 export class PaginationInput {
-  @Field({ nullable: true })
+  @Field(() => Int, { nullable: true })
   take?: number;
 
-  @Field({ nullable: true })
+  @Field(() => Int, { nullable: true })
   skip?: number;
 }
 
