@@ -3,8 +3,12 @@ import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { buildSchema } from 'type-graphql';
 import { ItemResolver } from './modules/item/item_resolver';
-import { RegisterResolver } from './modules/user/register_resolver';
+import { RegisterResolver } from './modules/user/user_resolver';
 import { createConnection } from 'typeorm';
+import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 async function main() {
   await createConnection();
@@ -12,8 +16,15 @@ async function main() {
     resolvers: [ItemResolver, RegisterResolver],
   });
 
-  const apolloServer = new ApolloServer({ schema });
+  const apolloServer = new ApolloServer({
+    schema,
+    context: ({ req, res }) => ({
+      req,
+      res,
+    }),
+  });
   const app = express();
+  app.use(cookieParser());
   apolloServer.applyMiddleware({
     app,
     cors: {
@@ -21,7 +32,7 @@ async function main() {
       credentials: true,
     },
   });
-  app.listen(4000, () => {
+  app.listen(process.env.PORT || 4000, () => {
     console.log('server started on http://localhost:4000/graphql');
   });
 }

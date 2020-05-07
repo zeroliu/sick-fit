@@ -34,6 +34,9 @@
   },
   "devDependencies": {
     "@prisma/cli": "^2.0.0-beta.3",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/jsonwebtoken": "^8.3.9",
     "@types/node": "^13.13.4",
     "ts-node": "^8.9.1",
     "ts-node-dev": "^1.0.0-pre.44",

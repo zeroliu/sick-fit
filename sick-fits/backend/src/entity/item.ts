@@ -23,11 +23,11 @@ export class Item extends BaseEntity {
   @Column()
   description!: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Column({ nullable: true })
   image?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Column({ nullable: true })
   largeImage?: string;
 
