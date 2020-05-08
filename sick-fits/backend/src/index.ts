@@ -1,12 +1,13 @@
 import 'reflect-metadata';
-import { ApolloServer } from 'apollo-server-express';
-import express from 'express';
-import { buildSchema } from 'type-graphql';
-import { ItemResolver } from './modules/item/item_resolver';
-import { RegisterResolver } from './modules/user/user_resolver';
-import { createConnection } from 'typeorm';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import { ItemResolver } from './modules/item/item_resolver';
+import { RegisterResolver } from './modules/user/user_resolver';
+import { buildSchema } from 'type-graphql';
+import { createConnection } from 'typeorm';
+import { jwtDecoder } from './middlewares/jwt_decoder';
 
 dotenv.config();
 
@@ -25,6 +26,8 @@ async function main() {
   });
   const app = express();
   app.use(cookieParser());
+  app.use(jwtDecoder);
+
   apolloServer.applyMiddleware({
     app,
     cors: {

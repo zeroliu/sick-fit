@@ -7,10 +7,10 @@ import {
   Field,
   Ctx,
 } from 'type-graphql';
-import { User, UserPermission } from 'src/entity/user';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { Context } from 'src/types';
+import { User, UserPermission } from 'src/entity/user';
 
 @InputType()
 export class RegisterInput {
@@ -30,8 +30,11 @@ export class RegisterInput {
 @Resolver()
 export class RegisterResolver {
   @Query(() => User, { nullable: true })
-  async user(@Arg('email') email: string): Promise<User | undefined> {
-    return await User.findOne({ email });
+  async me(@Ctx() ctx: Context): Promise<User | undefined> {
+    if (!ctx.req.userId) {
+      return;
+    }
+    return await User.findOne({ id: ctx.req.userId });
   }
 
   @Mutation(() => User)
