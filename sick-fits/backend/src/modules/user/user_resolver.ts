@@ -11,6 +11,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { Context } from 'src/types';
 import { User, UserPermission } from 'src/entity/user';
+import { signToken, addTokenToCookie } from 'src/libs/jwt';
 
 @InputType()
 export class RegisterInput {
@@ -25,6 +26,15 @@ export class RegisterInput {
 
   @Field(() => [UserPermission], { nullable: true })
   permissions?: UserPermission[];
+}
+
+@InputType()
+export class SignInInput {
+  @Field()
+  email!: string;
+
+  @Field()
+  password!: string;
 }
 
 @Resolver()
@@ -42,17 +52,30 @@ export class RegisterResolver {
     @Arg('data') data: RegisterInput,
     @Ctx() ctx: Context,
   ): Promise<User> {
-    if (!process.env.APP_SECRET) {
-      throw new Error('App secret not set');
-    }
     data.email = data.email.toLowerCase();
     data.password = await bcrypt.hash(data.password, 10);
     const user = await User.create(data).save();
-    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
-    ctx.res.cookie('token', token, {
-      httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
-    });
+    const token = signToken(user.id);
+    addTokenToCookie(token, ctx.res);
+    return user;
+  }
+
+  @Mutation(() => User, { nullable: true })
+  async signIn(
+    @Arg('data') data: SignInInput,
+    @Ctx() ctx: Context,
+  ): Promise<User | undefined> {
+    const { email, password } = data;
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw new Error(`${email} does not exist.`);
+    }
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      throw new Error('Incorrect password.');
+    }
+    const token = signToken(user.id);
+    addTokenToCookie(token, ctx.res);
     return user;
   }
 }
