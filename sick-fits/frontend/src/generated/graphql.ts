@@ -39,6 +39,7 @@ export type Mutation = {
   updateItem?: Maybe<Scalars['ID']>;
   deleteItem?: Maybe<Scalars['ID']>;
   register: User;
+  signIn?: Maybe<User>;
 };
 
 
@@ -60,6 +61,11 @@ export type MutationDeleteItemArgs = {
 
 export type MutationRegisterArgs = {
   data: RegisterInput;
+};
+
+
+export type MutationSignInArgs = {
+  data: SignInInput;
 };
 
 export type Query = {
@@ -86,6 +92,11 @@ export type RegisterInput = {
   email: Scalars['String'];
   password: Scalars['String'];
   permissions?: Maybe<Array<UserPermission>>;
+};
+
+export type SignInInput = {
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type UpdateItemInput = {

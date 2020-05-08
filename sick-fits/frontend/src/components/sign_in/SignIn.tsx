@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { Form } from '../styles/Form';
-import { ErrorMessage } from '../error_message/ErrorMessage';
-import { useRegisterMutation } from 'src/queries/user';
+import { Form } from 'src/components/styles/Form';
+import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
+import { useSignInMutation, ME_QUERY } from 'src/queries/user';
 
 const defaultFormData = {
   email: '',
-  name: '',
   password: '',
 };
 
-export const SignUp: React.FC = () => {
+export const SignIn: React.FC = () => {
   const [formData, setFormData] = useState(defaultFormData);
-  const [register, { loading, error }] = useRegisterMutation({
+  const [signIn, { loading, error }] = useSignInMutation({
     variables: { data: formData },
+    refetchQueries: [{ query: ME_QUERY }],
   });
   const updateForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,7 +23,7 @@ export const SignUp: React.FC = () => {
   };
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await register();
+    await signIn();
     setFormData(defaultFormData);
   };
 
@@ -31,6 +31,7 @@ export const SignUp: React.FC = () => {
     <Form method='post' onSubmit={submitForm}>
       {error && <ErrorMessage error={error}></ErrorMessage>}
       <fieldset disabled={loading} aria-busy={loading}>
+        <h2>Sign Into Your Account</h2>
         <label htmlFor='email'>
           Email
           <input
@@ -38,15 +39,6 @@ export const SignUp: React.FC = () => {
             name='email'
             placeholder='email'
             value={formData.email}
-            onChange={updateForm}></input>
-        </label>
-        <label htmlFor='name'>
-          Name
-          <input
-            type='text'
-            name='name'
-            placeholder='name'
-            value={formData.name}
             onChange={updateForm}></input>
         </label>
         <label htmlFor='password'>
@@ -58,7 +50,7 @@ export const SignUp: React.FC = () => {
             value={formData.password}
             onChange={updateForm}></input>
         </label>
-        <button type='submit'>Sign Up</button>
+        <button type='submit'>Sign In</button>
       </fieldset>
     </Form>
   );

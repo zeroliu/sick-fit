@@ -4,7 +4,10 @@ import {
   useMutation,
   MutationHookOptions,
 } from '@apollo/react-hooks';
-import { MutationRegisterArgs } from 'src/generated/graphql';
+import {
+  MutationRegisterArgs,
+  MutationSignInArgs,
+} from 'src/generated/graphql';
 
 export interface User {
   email: string;
@@ -28,7 +31,24 @@ export function useRegisterMutation(
   return useMutation(REGISTER_MUTATION, options);
 }
 
-const ME_QUERY = gql`
+const SIGN_IN_MUTATION = gql`
+  mutation($data: SignInInput!) {
+    signIn(data: $data) {
+      name
+      email
+    }
+  }
+`;
+interface SignInMutationData {
+  signIn: User;
+}
+export function useSignInMutation(
+  options?: MutationHookOptions<SignInMutationData, MutationSignInArgs>,
+) {
+  return useMutation(SIGN_IN_MUTATION, options);
+}
+
+export const ME_QUERY = gql`
   query {
     me {
       name
