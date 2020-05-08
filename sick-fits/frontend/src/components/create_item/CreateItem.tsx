@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
-import { Form } from 'src/components/styles/Form';
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
-import { CREATE_ITEM_MUTATION, CreateItemMutationData } from 'src/queries/item';
-import { ErrorMessage } from '../error_message/ErrorMessage';
+import { useApolloClient } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
-import { MutationCreateItemArgs } from 'src/generated/graphql';
+import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
+import { Form } from 'src/components/styles/Form';
+import { useCreateItemMutation } from 'src/queries/item';
 
 export const CreateItem: React.FC = () => {
   const router = useRouter();
   const client = useApolloClient();
-  const [createItem, { loading, error }] = useMutation<
-    CreateItemMutationData,
-    MutationCreateItemArgs
-  >(CREATE_ITEM_MUTATION, {
+  const [createItem, { loading, error }] = useCreateItemMutation({
     update: () => {
       client.resetStore();
     },

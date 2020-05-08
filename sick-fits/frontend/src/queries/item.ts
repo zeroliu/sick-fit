@@ -1,5 +1,19 @@
 import gql from 'graphql-tag';
-import { Mutation, Query } from 'src/generated/graphql';
+import {
+  Mutation,
+  Query,
+  QueryItemsArgs,
+  QueryItemArgs,
+  MutationCreateItemArgs,
+  MutationUpdateItemArgs,
+  MutationDeleteItemArgs,
+} from 'src/generated/graphql';
+import {
+  useQuery,
+  QueryHookOptions,
+  MutationHookOptions,
+  useMutation,
+} from '@apollo/react-hooks';
 
 export interface Item {
   id: string;
@@ -10,7 +24,7 @@ export interface Item {
   largeImage?: string;
 }
 
-export const ALL_ITEMS_QUERY = gql`
+const ALL_ITEMS_QUERY = gql`
   query($skip: Int, $take: Int) {
     items(skip: $skip, take: $take) {
       id
@@ -22,11 +36,16 @@ export const ALL_ITEMS_QUERY = gql`
     }
   }
 `;
-export interface AllItemsQueryData {
+interface AllItemsQueryData {
   items: Item[];
 }
+export function useAllItemsQuery(
+  options?: QueryHookOptions<AllItemsQueryData, QueryItemsArgs>,
+) {
+  return useQuery(ALL_ITEMS_QUERY, options);
+}
 
-export const ITEM_QUERY = gql`
+const ITEM_QUERY = gql`
   query($id: ID!) {
     item(id: $id) {
       id
@@ -38,46 +57,69 @@ export const ITEM_QUERY = gql`
     }
   }
 `;
-export interface ItemQueryData {
+interface ItemQueryData {
   item?: Item;
 }
+export function useItemQuery(
+  options?: QueryHookOptions<ItemQueryData, QueryItemArgs>,
+) {
+  return useQuery(ITEM_QUERY, options);
+}
 
-export const ITEMS_CONNECTION_QUERY = gql`
+const ITEMS_CONNECTION_QUERY = gql`
   query {
     itemsConnection {
       totalCount
     }
   }
 `;
-export interface ItemsConnectionQueryData {
+interface ItemsConnectionQueryData {
   itemsConnection: Query['itemsConnection'];
 }
+export function useItemsConnectionQuery() {
+  return useQuery<ItemsConnectionQueryData>(ITEMS_CONNECTION_QUERY);
+}
 
-export const CREATE_ITEM_MUTATION = gql`
+const CREATE_ITEM_MUTATION = gql`
   mutation($data: CreateItemInput!) {
     createItem(data: $data) {
       id
     }
   }
 `;
-export interface CreateItemMutationData {
+interface CreateItemMutationData {
   createItem: { id: number };
 }
+export function useCreateItemMutation(
+  options?: MutationHookOptions<CreateItemMutationData, MutationCreateItemArgs>,
+) {
+  return useMutation(CREATE_ITEM_MUTATION, options);
+}
 
-export const UPDATE_ITEM_MUTATION = gql`
+const UPDATE_ITEM_MUTATION = gql`
   mutation($id: ID!, $data: UpdateItemInput!) {
     updateItem(id: $id, data: $data)
   }
 `;
-export interface UpdateItemMutationData {
+interface UpdateItemMutationData {
   updateItem: Mutation['updateItem'];
 }
+export function useUpdateItemMutation(
+  options?: MutationHookOptions<UpdateItemMutationData, MutationUpdateItemArgs>,
+) {
+  return useMutation(UPDATE_ITEM_MUTATION, options);
+}
 
-export const DELETE_ITEM_MUTATION = gql`
+const DELETE_ITEM_MUTATION = gql`
   mutation($id: ID!) {
     deleteItem(id: $id)
   }
 `;
-export interface DeleteItemMutationData {
+interface DeleteItemMutationData {
   deleteItem: Mutation['deleteItem'];
+}
+export function useDeleteItemMutation(
+  options?: MutationHookOptions<DeleteItemMutationData, MutationDeleteItemArgs>,
+) {
+  return useMutation(DELETE_ITEM_MUTATION, options);
 }

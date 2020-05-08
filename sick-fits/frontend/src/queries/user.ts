@@ -1,11 +1,17 @@
 import gql from 'graphql-tag';
+import {
+  useQuery,
+  useMutation,
+  MutationHookOptions,
+} from '@apollo/react-hooks';
+import { MutationRegisterArgs } from 'src/generated/graphql';
 
 export interface User {
   email: string;
   name: string;
 }
 
-export const REGISTER_MUTATION = gql`
+const REGISTER_MUTATION = gql`
   mutation($data: RegisterInput!) {
     register(data: $data) {
       name
@@ -13,11 +19,16 @@ export const REGISTER_MUTATION = gql`
     }
   }
 `;
-export interface RegisterMutationData {
+interface RegisterMutationData {
   register: User;
 }
+export function useRegisterMutation(
+  options?: MutationHookOptions<RegisterMutationData, MutationRegisterArgs>,
+) {
+  return useMutation(REGISTER_MUTATION, options);
+}
 
-export const ME_QUERY = gql`
+const ME_QUERY = gql`
   query {
     me {
       name
@@ -25,6 +36,9 @@ export const ME_QUERY = gql`
     }
   }
 `;
-export interface MeQueryData {
+interface MeQueryData {
   me: User;
+}
+export function useMeQuery() {
+  return useQuery<MeQueryData>(ME_QUERY);
 }

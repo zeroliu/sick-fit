@@ -1,23 +1,17 @@
-import React from 'react';
-import { StyledItemsPagination } from './items_pagination_styles';
-import { useQuery } from '@apollo/react-hooks';
-import {
-  ItemsConnectionQueryData,
-  ITEMS_CONNECTION_QUERY,
-} from 'src/queries/item';
-import { ErrorMessage } from '../error_message/ErrorMessage';
 import Head from 'next/head';
-import { perPage } from 'src/config';
 import Link from 'next/link';
+import React from 'react';
+import { ErrorMessage } from '../error_message/ErrorMessage';
+import { StyledItemsPagination } from './items_pagination_styles';
+import { perPage } from 'src/config';
+import { useItemsConnectionQuery } from 'src/queries/item';
 
 interface Props {
   currentPage: number;
 }
 
 export const ItemsPagination: React.FC<Props> = ({ currentPage }) => {
-  const { data, loading, error } = useQuery<ItemsConnectionQueryData>(
-    ITEMS_CONNECTION_QUERY,
-  );
+  const { data, loading, error } = useItemsConnectionQuery();
   if (loading) {
     return <p>loading...</p>;
   }

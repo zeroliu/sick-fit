@@ -1,28 +1,25 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
-import {
-  Item,
-  UpdateItemMutationData,
-  UPDATE_ITEM_MUTATION,
-} from 'src/queries/item';
+import { useApolloClient } from '@apollo/react-hooks';
+import { Item, useUpdateItemMutation } from 'src/queries/item';
 import { Form } from 'src/components/styles/Form';
 import { ErrorMessage } from '../error_message/ErrorMessage';
-import { MutationUpdateItemArgs } from 'src/generated/graphql';
 
 interface Props {
   data: Item;
 }
 
 export const UpdateItem: React.FC<Props> = ({ data }) => {
+  const client = useApolloClient();
   const [formData, setFormData] = useState({
     title: data.title,
     description: data.description,
     price: data.price,
   });
-  const [updateItem, { loading, error }] = useMutation<
-    UpdateItemMutationData,
-    MutationUpdateItemArgs
-  >(UPDATE_ITEM_MUTATION);
+  const [updateItem, { loading, error }] = useUpdateItemMutation({
+    update: () => {
+      client.resetStore();
+    },
+  });
 
   const updateForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { type, name, value } = e.target;

@@ -1,7 +1,6 @@
 import React from 'react';
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
-import { DELETE_ITEM_MUTATION, DeleteItemMutationData } from 'src/queries/item';
-import { MutationDeleteItemArgs } from 'src/generated/graphql';
+import { useApolloClient } from '@apollo/react-hooks';
+import { useDeleteItemMutation } from 'src/queries/item';
 
 interface Props {
   id: string;
@@ -10,10 +9,7 @@ interface Props {
 
 export const DeleteItem: React.FC<Props> = ({ children, id }) => {
   const client = useApolloClient();
-  const [deleteItem, { error }] = useMutation<
-    DeleteItemMutationData,
-    MutationDeleteItemArgs
-  >(DELETE_ITEM_MUTATION, {
+  const [deleteItem, { error }] = useDeleteItemMutation({
     variables: { id },
     update: () => {
       client.resetStore();

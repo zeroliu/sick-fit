@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { StyledNav } from './nav_styles';
-import { useMeQuery } from 'src/hooks/use_me_query';
+import { useMeQuery } from 'src/queries/user';
 
 export const Nav: React.FC = () => {
   const { data } = useMeQuery();

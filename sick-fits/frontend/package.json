@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "next -p 7777",
+    "type": "tsc --watch",
     "build": "next build",
     "test": "NODE_ENV=test jest --watch",
     "test-win": "SET NODE_ENV=test&& jest --watch",

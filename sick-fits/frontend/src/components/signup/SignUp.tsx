@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Form } from '../styles/Form';
-import { useMutation } from '@apollo/react-hooks';
-import { REGISTER_MUTATION, RegisterMutationData } from 'src/queries/user';
-import { MutationRegisterArgs } from 'src/generated/graphql';
 import { ErrorMessage } from '../error_message/ErrorMessage';
+import { useRegisterMutation } from 'src/queries/user';
 
 const defaultFormData = {
   email: '',
@@ -13,10 +11,7 @@ const defaultFormData = {
 
 export const SignUp: React.FC = () => {
   const [formData, setFormData] = useState(defaultFormData);
-  const [register, { loading, error }] = useMutation<
-    RegisterMutationData,
-    MutationRegisterArgs
-  >(REGISTER_MUTATION, {
+  const [register, { loading, error }] = useRegisterMutation({
     variables: { data: formData },
   });
   const updateForm = (e: React.ChangeEvent<HTMLInputElement>) => {
