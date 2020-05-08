@@ -16,3 +16,15 @@ export const REGISTER_MUTATION = gql`
 export interface RegisterMutationData {
   register: User;
 }
+
+export const ME_QUERY = gql`
+  query {
+    me {
+      name
+      email
+    }
+  }
+`;
+export interface MeQueryData {
+  me: User;
+}

@@ -67,7 +67,7 @@ export type Query = {
   items: Array<Item>;
   item?: Maybe<Item>;
   itemsConnection: Connection;
-  user?: Maybe<User>;
+  me?: Maybe<User>;
 };
 
 
@@ -79,11 +79,6 @@ export type QueryItemsArgs = {
 
 export type QueryItemArgs = {
   id: Scalars['ID'];
-};
-
-
-export type QueryUserArgs = {
-  email: Scalars['String'];
 };
 
 export type RegisterInput = {

@@ -1,10 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { NavStyles } from './nav_styles';
+import { StyledNav } from './nav_styles';
+import { useMeQuery } from 'src/hooks/use_me_query';
 
 export const Nav: React.FC = () => {
+  const { data } = useMeQuery();
   return (
-    <NavStyles>
+    <StyledNav>
+      {data?.me && <p>{data.me.name}</p>}
       <Link href='/items'>
         <a>Shop</a>
       </Link>
@@ -20,6 +23,6 @@ export const Nav: React.FC = () => {
       <Link href='/me'>
         <a>Account</a>
       </Link>
-    </NavStyles>
+    </StyledNav>
   );
 };
