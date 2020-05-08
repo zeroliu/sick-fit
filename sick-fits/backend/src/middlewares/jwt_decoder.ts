@@ -11,6 +11,7 @@ export const jwtDecoder: RequestHandler = (req, _, next) => {
   }
   const { token } = req.cookies;
   if (token) {
+    // Verify whether the token has been contaminated.
     const { userId } = jwt.verify(token, process.env.APP_SECRET) as AccessToken;
     (req as Request & AccessToken).userId = userId;
   }
