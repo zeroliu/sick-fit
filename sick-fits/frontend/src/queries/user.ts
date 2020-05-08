@@ -6,7 +6,7 @@ export interface User {
 }
 
 export const REGISTER_MUTATION = gql`
-  mutation REGISTER_MUTATION($data: RegisterInput!) {
+  mutation($data: RegisterInput!) {
     register(data: $data) {
       name
       email

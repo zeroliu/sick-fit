@@ -11,7 +11,7 @@ export interface Item {
 }
 
 export const ALL_ITEMS_QUERY = gql`
-  query ALL_ITEMS_QUERY($skip: Int, $take: Int) {
+  query($skip: Int, $take: Int) {
     items(skip: $skip, take: $take) {
       id
       title
@@ -27,7 +27,7 @@ export interface AllItemsQueryData {
 }
 
 export const ITEM_QUERY = gql`
-  query ITEM_QUERY($id: ID!) {
+  query($id: ID!) {
     item(id: $id) {
       id
       title
@@ -43,7 +43,7 @@ export interface ItemQueryData {
 }
 
 export const ITEMS_CONNECTION_QUERY = gql`
-  query ITEMS_CONNECTION_QUERY {
+  query {
     itemsConnection {
       totalCount
     }
@@ -54,7 +54,7 @@ export interface ItemsConnectionQueryData {
 }
 
 export const CREATE_ITEM_MUTATION = gql`
-  mutation CREATE_ITEM_MUTATION($data: CreateItemInput!) {
+  mutation($data: CreateItemInput!) {
     createItem(data: $data) {
       id
     }
@@ -65,7 +65,7 @@ export interface CreateItemMutationData {
 }
 
 export const UPDATE_ITEM_MUTATION = gql`
-  mutation UPDATE_ITEM_MUTATION($id: ID!, $data: UpdateItemInput!) {
+  mutation($id: ID!, $data: UpdateItemInput!) {
     updateItem(id: $id, data: $data)
   }
 `;
@@ -74,7 +74,7 @@ export interface UpdateItemMutationData {
 }
 
 export const DELETE_ITEM_MUTATION = gql`
-  mutation DELETE_ITEM_MUTATION($id: ID!) {
+  mutation($id: ID!) {
     deleteItem(id: $id)
   }
 `;
