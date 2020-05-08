@@ -26,8 +26,8 @@ export type Item = {
   id: Scalars['ID'];
   title: Scalars['String'];
   description: Scalars['String'];
-  image: Scalars['String'];
-  largeImage: Scalars['String'];
+  image?: Maybe<Scalars['String']>;
+  largeImage?: Maybe<Scalars['String']>;
   price: Scalars['Float'];
   createdAt: Scalars['String'];
   updatedAt: Scalars['String'];
@@ -67,7 +67,7 @@ export type Query = {
   items: Array<Item>;
   item?: Maybe<Item>;
   itemsConnection: Connection;
-  hello: Scalars['String'];
+  user?: Maybe<User>;
 };
 
 
@@ -81,9 +81,16 @@ export type QueryItemArgs = {
   id: Scalars['ID'];
 };
 
+
+export type QueryUserArgs = {
+  email: Scalars['String'];
+};
+
 export type RegisterInput = {
   name: Scalars['String'];
   email: Scalars['String'];
+  password: Scalars['String'];
+  permissions?: Maybe<Array<UserPermission>>;
 };
 
 export type UpdateItemInput = {
@@ -97,4 +104,17 @@ export type User = {
   id: Scalars['ID'];
   name: Scalars['String'];
   email: Scalars['String'];
+  password: Scalars['String'];
+  resetToken?: Maybe<Scalars['String']>;
+  resetTokenExpiry?: Maybe<Scalars['String']>;
+  permissions: Array<UserPermission>;
 };
+
+export enum UserPermission {
+  Admin = 'ADMIN',
+  User = 'USER',
+  ItemCreate = 'ITEM_CREATE',
+  ItemUpdate = 'ITEM_UPDATE',
+  ItemDelete = 'ITEM_DELETE',
+  PermissionUpdate = 'PERMISSION_UPDATE'
+}

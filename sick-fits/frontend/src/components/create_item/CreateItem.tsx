@@ -50,7 +50,6 @@ export const CreateItem: React.FC = () => {
       },
     );
     const file = await res.json();
-    console.log(file);
     setFormData({
       ...formData,
       image: file.secure_url,
