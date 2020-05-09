@@ -8,7 +8,6 @@ import {
   Ctx,
 } from 'type-graphql';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import { Context } from 'src/types';
 import { User, UserPermission } from 'src/entity/user';
 import { signToken, addTokenToCookie, clearCookie } from 'src/libs/jwt';
