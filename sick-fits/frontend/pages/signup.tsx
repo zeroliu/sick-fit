@@ -1,6 +1,7 @@
 import { SignUp } from 'src/components/sign_up/SignUp';
 import styled from 'styled-components';
 import { SignIn } from 'src/components/sign_in/SignIn';
+import { RequestReset } from 'src/components/request_reset/RequestReset';
 
 const Columns = styled.div`
   display: grid;
@@ -12,6 +13,7 @@ export default function SignUpPage() {
     <Columns>
       <SignUp></SignUp>
       <SignIn></SignIn>
+      <RequestReset></RequestReset>
     </Columns>
   );
 }

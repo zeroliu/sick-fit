@@ -40,6 +40,9 @@ export type Mutation = {
   deleteItem?: Maybe<Scalars['ID']>;
   register: User;
   signIn?: Maybe<User>;
+  signOut: Scalars['Boolean'];
+  requestReset: Scalars['Boolean'];
+  resetPassword: User;
 };
 
 
@@ -68,6 +71,16 @@ export type MutationSignInArgs = {
   data: SignInInput;
 };
 
+
+export type MutationRequestResetArgs = {
+  data: RequestResetInput;
+};
+
+
+export type MutationResetPasswordArgs = {
+  data: ResetPasswordInput;
+};
+
 export type Query = {
    __typename?: 'Query';
   items: Array<Item>;
@@ -94,6 +107,16 @@ export type RegisterInput = {
   permissions?: Maybe<Array<UserPermission>>;
 };
 
+export type RequestResetInput = {
+  email: Scalars['String'];
+};
+
+export type ResetPasswordInput = {
+  resetToken: Scalars['String'];
+  password: Scalars['String'];
+  confirmPassword: Scalars['String'];
+};
+
 export type SignInInput = {
   email: Scalars['String'];
   password: Scalars['String'];
@@ -110,9 +133,6 @@ export type User = {
   id: Scalars['ID'];
   name: Scalars['String'];
   email: Scalars['String'];
-  password: Scalars['String'];
-  resetToken?: Maybe<Scalars['String']>;
-  resetTokenExpiry?: Maybe<Scalars['String']>;
   permissions: Array<UserPermission>;
 };
 
