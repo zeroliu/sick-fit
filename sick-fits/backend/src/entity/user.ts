@@ -32,11 +32,11 @@ export class User extends BaseEntity {
   @Column()
   password!: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, unique: true })
   resetToken?: string;
 
-  @Column({ nullable: true })
-  resetTokenExpiry?: string;
+  @Column('timestamp', { nullable: true })
+  resetTokenExpiry?: Date;
 
   @Field(() => [UserPermission])
   @Column({

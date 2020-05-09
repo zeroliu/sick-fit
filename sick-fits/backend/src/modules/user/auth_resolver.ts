@@ -37,7 +37,7 @@ export class SignInInput {
 }
 
 @Resolver()
-export class RegisterResolver {
+export class AuthResolver {
   @Query(() => User, { nullable: true })
   async me(@Ctx() ctx: Context): Promise<User | undefined> {
     if (!ctx.req.userId) {
@@ -67,7 +67,7 @@ export class RegisterResolver {
     const { email, password } = data;
     const user = await User.findOne({ email });
     if (!user) {
-      throw new Error(`${email} does not exist.`);
+      throw new Error(`User with ${email} does not exist.`);
     }
     const match = await bcrypt.compare(password, user.password);
     if (!match) {

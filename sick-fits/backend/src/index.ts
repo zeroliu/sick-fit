@@ -4,17 +4,18 @@ import dotenv from 'dotenv';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { ItemResolver } from './modules/item/item_resolver';
-import { RegisterResolver } from './modules/user/user_resolver';
+import { AuthResolver } from './modules/user/auth_resolver';
 import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
 import { jwtDecoder } from './middlewares/jwt_decoder';
+import { PasswordResolver } from './modules/user/password_resolver';
 
 dotenv.config();
 
 async function main() {
   await createConnection();
   const schema = await buildSchema({
-    resolvers: [ItemResolver, RegisterResolver],
+    resolvers: [ItemResolver, AuthResolver, PasswordResolver],
   });
 
   const apolloServer = new ApolloServer({
