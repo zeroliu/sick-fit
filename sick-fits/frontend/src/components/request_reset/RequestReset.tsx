@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Form } from 'src/components/styles/Form';
 import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
-import { ME_QUERY } from 'src/queries/user';
 import { useRequestResetMutation } from 'src/queries/password';
 
 const defaultFormData = {
@@ -12,7 +11,6 @@ export const RequestReset: React.FC = () => {
   const [formData, setFormData] = useState(defaultFormData);
   const [requestReset, { loading, error, called }] = useRequestResetMutation({
     variables: { data: formData },
-    refetchQueries: [{ query: ME_QUERY }],
   });
   const updateForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -42,7 +40,7 @@ export const RequestReset: React.FC = () => {
             value={formData.email}
             onChange={updateForm}></input>
         </label>
-        <button type='submit'>Sign In</button>
+        <button type='submit'>Submit</button>
       </fieldset>
     </Form>
   );
