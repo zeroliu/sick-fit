@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { StyledNav } from './nav_styles';
 import { useMeQuery } from 'src/queries/user';
+import { SignOut } from '../sign_out/SignOut';
 
 export const Nav: React.FC = () => {
   const { data } = useMeQuery();
@@ -21,6 +22,7 @@ export const Nav: React.FC = () => {
           <Link href='/me'>
             <a>Account</a>
           </Link>
+          <SignOut></SignOut>
         </>
       ) : (
         <Link href='/signup'>

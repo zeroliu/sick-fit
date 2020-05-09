@@ -48,6 +48,20 @@ export function useSignInMutation(
   return useMutation(SIGN_IN_MUTATION, options);
 }
 
+const SIGN_OUT_MUTATION = gql`
+  mutation {
+    signOut
+  }
+`;
+interface SignOutMutationData {
+  signOut: boolean;
+}
+export function useSignOutMutation(
+  options?: MutationHookOptions<SignOutMutationData>,
+) {
+  return useMutation(SIGN_OUT_MUTATION, options);
+}
+
 export const ME_QUERY = gql`
   query {
     me {
