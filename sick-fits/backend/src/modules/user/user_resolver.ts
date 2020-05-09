@@ -11,7 +11,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { Context } from 'src/types';
 import { User, UserPermission } from 'src/entity/user';
-import { signToken, addTokenToCookie } from 'src/libs/jwt';
+import { signToken, addTokenToCookie, clearCookie } from 'src/libs/jwt';
 
 @InputType()
 export class RegisterInput {
@@ -77,5 +77,11 @@ export class RegisterResolver {
     const token = signToken(user.id);
     addTokenToCookie(token, ctx.res);
     return user;
+  }
+
+  @Mutation(() => Boolean)
+  signOut(@Ctx() ctx: Context): Boolean {
+    clearCookie(ctx.res);
+    return true;
   }
 }
