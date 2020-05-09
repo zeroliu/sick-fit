@@ -29,15 +29,12 @@ export class User extends BaseEntity {
   @Column('text', { unique: true })
   email!: string;
 
-  @Field()
   @Column()
   password!: string;
 
-  @Field({ nullable: true })
   @Column({ nullable: true })
   resetToken?: string;
 
-  @Field({ nullable: true })
   @Column({ nullable: true })
   resetTokenExpiry?: string;
 
