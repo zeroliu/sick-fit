@@ -10,8 +10,11 @@ import {
   Args,
   ObjectType,
   Int,
+  Ctx,
 } from 'type-graphql';
 import { Item } from 'src/entity/item';
+import { Context } from 'src/types';
+import { User } from 'src/entity/user';
 
 @InputType()
 export class CreateItemInput {
@@ -77,8 +80,18 @@ export class ItemResolver {
   }
 
   @Mutation(() => Item)
-  async createItem(@Arg('data') data: CreateItemInput): Promise<Item> {
-    return await Item.create(data).save();
+  async createItem(
+    @Arg('data') data: CreateItemInput,
+    @Ctx() ctx: Context,
+  ): Promise<Item> {
+    if (!ctx.req.userId) {
+      throw new Error('You must be logged in to do that.');
+    }
+    const user = await User.findOne({ id: ctx.req.userId });
+    return await Item.create({
+      ...data,
+      user,
+    }).save();
   }
 
   @Mutation(() => ID, { nullable: true })

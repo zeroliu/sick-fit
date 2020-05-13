@@ -5,8 +5,10 @@ import {
   BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
+import { User } from './user';
 
 @ObjectType()
 @Entity()
@@ -42,4 +44,8 @@ export class Item extends BaseEntity {
   @Field()
   @UpdateDateColumn()
   updatedAt!: string;
+
+  @Field(() => User)
+  @ManyToOne(() => User, (user) => user.items)
+  user!: User;
 }

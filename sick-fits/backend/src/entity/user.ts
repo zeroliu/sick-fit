@@ -1,5 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BaseEntity,
+  OneToMany,
+} from 'typeorm';
 import { ObjectType, Field, ID, registerEnumType } from 'type-graphql';
+import { Item } from './item';
 
 export enum UserPermission {
   ADMIN,
@@ -46,4 +53,7 @@ export class User extends BaseEntity {
     default: [UserPermission.USER],
   })
   permissions!: UserPermission[];
+
+  @OneToMany(() => Item, (item) => item.user)
+  items!: Item[];
 }
