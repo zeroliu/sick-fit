@@ -5,6 +5,7 @@ import { User } from 'src/entity/user';
 import { randomBytes } from 'crypto';
 import { signToken, addTokenToCookie } from 'src/libs/jwt';
 import { Context } from 'src/types';
+import { sendEmail, decorateEmail } from 'src/libs/email';
 
 // Token last for 1 hour.
 const RESET_TOKEN_DURATION = 1000 * 60 * 60;
@@ -37,11 +38,21 @@ export class PasswordResolver {
       throw new Error(`User with ${email} does not exist.`);
     }
     const resetToken = randomBytes(20).toString('hex');
-    // 1 hour from now.
     const resetTokenExpiry = new Date(Date.now() + RESET_TOKEN_DURATION);
     await User.update({ email }, { resetToken, resetTokenExpiry });
 
     // TODO: Email user the resetToken
+    sendEmail({
+      from: 'zero@gmail.com',
+      to: email,
+      subject: 'Your Password Reset Link',
+      html: decorateEmail(`
+      Your password reset link is here!
+
+
+      <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">Click here to reset your password</a>
+      `),
+    });
     return true;
   }
 
