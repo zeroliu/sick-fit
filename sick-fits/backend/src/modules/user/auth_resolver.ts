@@ -1,12 +1,4 @@
-import {
-  Resolver,
-  Query,
-  Mutation,
-  Arg,
-  InputType,
-  Field,
-  Ctx,
-} from 'type-graphql';
+import { Resolver, Mutation, Arg, InputType, Field, Ctx } from 'type-graphql';
 import bcrypt from 'bcryptjs';
 import { Context } from 'src/types';
 import { User, UserPermission } from 'src/entity/user';
@@ -38,14 +30,6 @@ export class SignInInput {
 
 @Resolver()
 export class AuthResolver {
-  @Query(() => User, { nullable: true })
-  async me(@Ctx() ctx: Context): Promise<User | undefined> {
-    if (!ctx.req.userId) {
-      return;
-    }
-    return await User.findOne({ id: ctx.req.userId });
-  }
-
   @Mutation(() => User)
   async register(
     @Arg('data') data: RegisterInput,

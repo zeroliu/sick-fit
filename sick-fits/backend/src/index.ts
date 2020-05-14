@@ -9,13 +9,14 @@ import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
 import { jwtDecoder } from './middlewares/jwt_decoder';
 import { PasswordResolver } from './modules/user/password_resolver';
+import { UserResolver } from './modules/user/user_resolver';
 
 dotenv.config();
 
 async function main() {
   await createConnection();
   const schema = await buildSchema({
-    resolvers: [ItemResolver, AuthResolver, PasswordResolver],
+    resolvers: [ItemResolver, AuthResolver, PasswordResolver, UserResolver],
   });
 
   const apolloServer = new ApolloServer({
