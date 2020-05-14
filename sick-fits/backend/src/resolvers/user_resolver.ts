@@ -55,7 +55,11 @@ export class UserResolver {
     if (!(await canUpdatePermission(ctx.req.userId))) {
       throw new Error('You do not have sufficient permissions.');
     }
-    return await User.find();
+    return await User.find({
+      order: {
+        name: 'ASC',
+      },
+    });
   }
 
   @Mutation(() => Boolean)

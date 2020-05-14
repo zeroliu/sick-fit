@@ -65,7 +65,7 @@ export class PaginationInput {
 export class ItemResolver {
   @Query(() => [Item])
   async items(@Args() { take, skip }: PaginationInput): Promise<Item[]> {
-    return Item.find({ take, skip });
+    return Item.find({ take, skip, order: { title: 'ASC' } });
   }
 
   @Query(() => Item, { nullable: true })
