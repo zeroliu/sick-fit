@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { useUsersQuery, UserWithPermissions } from 'src/queries/user';
 import { ErrorMessage } from '../error_message/ErrorMessage';
 import { Table } from '../styles/Table';
 import { UserPermission } from 'src/generated/graphql';
 import { SickButton } from '../styles/SickButton';
 
-const User: React.FC<{ user: UserWithPermissions }> = ({ user }) => {
+const UserPermissions: React.FC<{ user: UserWithPermissions }> = ({ user }) => {
+  const [permissions, setPermissions] = useState(user.permissions);
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { checked, value } = e.target;
+    if (checked) {
+      setPermissions([...permissions, value] as UserPermission[]);
+    } else {
+      setPermissions(permissions.filter((permission) => permission !== value));
+    }
+  };
   return (
     <tr>
       <td>{user.name}</td>
@@ -13,7 +22,11 @@ const User: React.FC<{ user: UserWithPermissions }> = ({ user }) => {
       {Object.values(UserPermission).map((permission) => (
         <td key={permission}>
           <label htmlFor={`${user.id}-permission-${permission}}`}>
-            <input type='checkbox'></input>
+            <input
+              type='checkbox'
+              checked={permissions.includes(permission)}
+              value={permission}
+              onChange={handleCheckboxChange}></input>
           </label>
         </td>
       ))}
@@ -51,7 +64,7 @@ export const Permissions: React.FC = () => {
         </thead>
         <tbody>
           {data.users.map((user) => (
-            <User key={user.id} user={user} />
+            <UserPermissions key={user.id} user={user} />
           ))}
         </tbody>
       </Table>
