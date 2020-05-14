@@ -8,6 +8,8 @@ import {
   MutationRegisterArgs,
   MutationSignInArgs,
   UserPermission,
+  Mutation,
+  MutationUpdatePermissionsArgs,
 } from 'src/generated/graphql';
 
 export interface User {
@@ -86,7 +88,7 @@ export function useMeQuery() {
   return useQuery<MeQueryData>(ME_QUERY);
 }
 
-export const USERS_QUERY = gql`
+const USERS_QUERY = gql`
   query {
     users {
       id
@@ -101,4 +103,21 @@ interface UsersQueryData {
 }
 export function useUsersQuery() {
   return useQuery<UsersQueryData>(USERS_QUERY);
+}
+
+const UPDATE_PERMISSIONS_MUTATION = gql`
+  mutation($data: UpdatePermissionsInput!) {
+    updatePermissions(data: $data)
+  }
+`;
+interface UpdatePermissionsMutationData {
+  updatePermissions: Mutation['updatePermissions'];
+}
+export function useUpdatePermissionsMutation(
+  options: MutationHookOptions<
+    UpdatePermissionsMutationData,
+    MutationUpdatePermissionsArgs
+  >,
+) {
+  return useMutation(UPDATE_PERMISSIONS_MUTATION, options);
 }

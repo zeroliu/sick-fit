@@ -44,6 +44,7 @@ export type Mutation = {
   signOut: Scalars['Boolean'];
   requestReset: Scalars['Boolean'];
   resetPassword: User;
+  updatePermissions: Scalars['Boolean'];
 };
 
 
@@ -80,6 +81,11 @@ export type MutationRequestResetArgs = {
 
 export type MutationResetPasswordArgs = {
   data: ResetPasswordInput;
+};
+
+
+export type MutationUpdatePermissionsArgs = {
+  data: UpdatePermissionsInput;
 };
 
 export type Query = {
@@ -128,6 +134,11 @@ export type UpdateItemInput = {
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   price?: Maybe<Scalars['Float']>;
+};
+
+export type UpdatePermissionsInput = {
+  userId: Scalars['ID'];
+  permissions: Array<UserPermission>;
 };
 
 export type User = {

@@ -1,5 +1,9 @@
 import React, { useState, ChangeEvent } from 'react';
-import { useUsersQuery, UserWithPermissions } from 'src/queries/user';
+import {
+  useUsersQuery,
+  UserWithPermissions,
+  useUpdatePermissionsMutation,
+} from 'src/queries/user';
 import { ErrorMessage } from '../error_message/ErrorMessage';
 import { Table } from '../styles/Table';
 import { UserPermission } from 'src/generated/graphql';
@@ -7,6 +11,14 @@ import { SickButton } from '../styles/SickButton';
 
 const UserPermissions: React.FC<{ user: UserWithPermissions }> = ({ user }) => {
   const [permissions, setPermissions] = useState(user.permissions);
+  const [updatePermissions, { loading, error }] = useUpdatePermissionsMutation({
+    variables: {
+      data: {
+        userId: user.id,
+        permissions,
+      },
+    },
+  });
   const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = e.target;
     if (checked) {
@@ -15,6 +27,10 @@ const UserPermissions: React.FC<{ user: UserWithPermissions }> = ({ user }) => {
       setPermissions(permissions.filter((permission) => permission !== value));
     }
   };
+
+  if (error) {
+    return <ErrorMessage error={error}></ErrorMessage>;
+  }
   return (
     <tr>
       <td>{user.name}</td>
@@ -32,7 +48,9 @@ const UserPermissions: React.FC<{ user: UserWithPermissions }> = ({ user }) => {
         </td>
       ))}
       <td>
-        <SickButton>Update</SickButton>
+        <SickButton onClick={() => updatePermissions()} disabled={loading}>
+          Updat{loading ? 'ing' : 'e'}
+        </SickButton>
       </td>
     </tr>
   );
