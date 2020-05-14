@@ -31,6 +31,7 @@ export type Item = {
   price: Scalars['Float'];
   createdAt: Scalars['String'];
   updatedAt: Scalars['String'];
+  user: User;
 };
 
 export type Mutation = {
@@ -87,6 +88,7 @@ export type Query = {
   item?: Maybe<Item>;
   itemsConnection: Connection;
   me?: Maybe<User>;
+  users: Array<User>;
 };
 
 
