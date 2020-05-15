@@ -23,7 +23,7 @@ export const DeleteItem: React.FC<Props> = ({ children, id }) => {
   };
 
   if (error) {
-    console.error(error.message);
+    alert(error.message);
   }
 
   return <button onClick={handleClick}>{children}</button>;
