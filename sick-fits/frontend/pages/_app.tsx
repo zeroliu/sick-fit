@@ -1,15 +1,16 @@
-import NextApp from 'next/app';
+import NextApp, { AppContext } from 'next/app';
 import { Page } from 'src/components/page/Page';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
 import withData from 'src/lib/withData';
+import { wrapper } from 'src/model/store';
 
 class App extends NextApp<{ apollo: ApolloClient<any> }> {
-  static async getInitialProps({ Component, ctx }: any) {
+  static async getInitialProps({ Component, ctx }: AppContext) {
     let pageProps: any = {};
     if (Component.getInitialProps) {
       try {
-        pageProps = await Component.getInitialProps();
+        pageProps = await Component.getInitialProps(ctx);
       } catch (e) {
         console.error(e);
       }
@@ -29,4 +30,4 @@ class App extends NextApp<{ apollo: ApolloClient<any> }> {
   }
 }
 
-export default withData(App);
+export default wrapper.withRedux(withData(App));

@@ -3,9 +3,12 @@ import Link from 'next/link';
 import { StyledNav } from './nav_styles';
 import { useMeQuery } from 'src/queries/user';
 import { SignOut } from '../sign_out/SignOut';
+import { useDispatch } from 'react-redux';
+import { cartOpened } from 'src/model/cart';
 
 export const Nav: React.FC = () => {
   const { data } = useMeQuery();
+  const dispatch = useDispatch();
   return (
     <StyledNav>
       <Link href='/items'>
@@ -23,6 +26,7 @@ export const Nav: React.FC = () => {
             <a>Account</a>
           </Link>
           <SignOut></SignOut>
+          <button onClick={() => dispatch(cartOpened())}>My Cart</button>
         </>
       ) : (
         <Link href='/signup'>
