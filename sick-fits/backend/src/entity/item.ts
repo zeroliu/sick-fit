@@ -47,5 +47,5 @@ export class Item extends BaseEntity {
 
   @Field(() => User)
   @ManyToOne(() => User, (user) => user.items)
-  user!: User;
+  user?: User;
 }

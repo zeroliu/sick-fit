@@ -14,7 +14,8 @@ import {
 } from 'type-graphql';
 import { Item } from 'src/entity/item';
 import { Context } from 'src/types';
-import { User } from 'src/entity/user';
+import { User, UserPermission } from 'src/entity/user';
+import { hasPermission, getUserById } from 'src/utils';
 
 @InputType()
 export class CreateItemInput {
@@ -107,7 +108,23 @@ export class ItemResolver {
   }
 
   @Mutation(() => ID, { nullable: true })
-  async deleteItem(@Arg('id', () => ID) id: number): Promise<number | null> {
+  async deleteItem(
+    @Arg('id', () => ID) id: number,
+    @Ctx() ctx: Context,
+  ): Promise<number | null> {
+    const user = await getUserById(ctx.req.userId);
+    const item = await Item.findOne({ id }, { relations: ['user'] });
+    const ownsItem = item?.user?.id === ctx.req.userId;
+    if (
+      !ctx.req.userId ||
+      (!hasPermission(user, [
+        UserPermission.ADMIN,
+        UserPermission.ITEM_DELETE,
+      ]) &&
+        !ownsItem)
+    ) {
+      throw new Error('You do not have sufficient permissions.');
+    }
     const result = await Item.delete(id);
     if (!result.affected || result.affected <= 0) {
       return null;
