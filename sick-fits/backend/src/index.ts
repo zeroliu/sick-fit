@@ -10,13 +10,20 @@ import { createConnection } from 'typeorm';
 import { jwtDecoder } from './middlewares/jwt_decoder';
 import { PasswordResolver } from './resolvers/password_resolver';
 import { UserResolver } from './resolvers/user_resolver';
+import { CartResolver } from './resolvers/cart_resolver';
 
 dotenv.config();
 
 async function main() {
   await createConnection();
   const schema = await buildSchema({
-    resolvers: [ItemResolver, AuthResolver, PasswordResolver, UserResolver],
+    resolvers: [
+      ItemResolver,
+      AuthResolver,
+      PasswordResolver,
+      UserResolver,
+      CartResolver,
+    ],
   });
 
   const apolloServer = new ApolloServer({

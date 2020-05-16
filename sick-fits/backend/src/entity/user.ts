@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID, registerEnumType } from 'type-graphql';
 import { Item } from './item';
+import { CartItem } from './cart_item';
 
 export enum UserPermission {
   ADMIN,
@@ -56,4 +57,8 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Item, (item) => item.user)
   items!: Item[];
+
+  @Field(() => [CartItem])
+  @OneToMany(() => CartItem, (cartItem) => cartItem.user)
+  cartItems!: CartItem[];
 }
