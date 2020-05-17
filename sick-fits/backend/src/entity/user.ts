@@ -6,7 +6,6 @@ import {
   OneToMany,
 } from 'typeorm';
 import { ObjectType, Field, ID, registerEnumType } from 'type-graphql';
-import { Item } from './item';
 import { CartItem } from './cart_item';
 
 export enum UserPermission {
@@ -54,10 +53,6 @@ export class User extends BaseEntity {
     default: [UserPermission.USER],
   })
   permissions!: UserPermission[];
-
-  @Field(() => [Item])
-  @OneToMany(() => Item, (item) => item.user)
-  items!: Item[];
 
   @Field(() => [CartItem])
   @OneToMany(() => CartItem, (cartItem) => cartItem.user)

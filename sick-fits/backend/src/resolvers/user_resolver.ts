@@ -28,7 +28,10 @@ export class UserResolver {
     if (!ctx.req.userId) {
       return;
     }
-    return await User.findOne({ id: ctx.req.userId });
+    return await User.findOne(
+      { id: ctx.req.userId },
+      { relations: ['cartItems'] },
+    );
   }
 
   @Query(() => [User])
@@ -46,7 +49,7 @@ export class UserResolver {
       order: {
         name: 'ASC',
       },
-      relations: ['items', 'cartItems'],
+      relations: ['cartItems'],
     });
   }
 
