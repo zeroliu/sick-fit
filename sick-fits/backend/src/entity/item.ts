@@ -46,6 +46,6 @@ export class Item extends BaseEntity {
   updatedAt!: string;
 
   @Field(() => User)
-  @ManyToOne(() => User, (user) => user.items)
-  user!: User;
+  @ManyToOne(() => User, (user) => user.items, { eager: true })
+  user?: User;
 }

@@ -23,11 +23,11 @@ export class CartItem extends BaseEntity {
   quantity!: number;
 
   @Field(() => Item)
-  @OneToOne(() => Item)
+  @OneToOne(() => Item, { eager: true })
   @JoinColumn()
   item!: Item;
 
   @Field(() => User)
-  @ManyToOne(() => User, (user) => user.cartItems)
+  @ManyToOne(() => User, (user) => user.cartItems, { eager: true })
   user!: User;
 }

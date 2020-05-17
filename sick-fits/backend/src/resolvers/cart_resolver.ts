@@ -28,9 +28,7 @@ export class CartResolver {
       where: {
         user,
       },
-      relations: ['item', 'user'],
     });
-    console.log(cartItems);
     return cartItems;
   }
 

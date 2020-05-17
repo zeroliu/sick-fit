@@ -55,6 +55,7 @@ export class User extends BaseEntity {
   })
   permissions!: UserPermission[];
 
+  @Field(() => [Item])
   @OneToMany(() => Item, (item) => item.user)
   items!: Item[];
 

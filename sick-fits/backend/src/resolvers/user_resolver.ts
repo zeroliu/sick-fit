@@ -46,6 +46,7 @@ export class UserResolver {
       order: {
         name: 'ASC',
       },
+      relations: ['items', 'cartItems'],
     });
   }
 

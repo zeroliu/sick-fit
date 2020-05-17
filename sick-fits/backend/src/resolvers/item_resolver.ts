@@ -113,7 +113,7 @@ export class ItemResolver {
     @Ctx() ctx: Context,
   ): Promise<number | null> {
     const user = await getUserById(ctx.req.userId);
-    const item = await Item.findOne({ id }, { relations: ['user'] });
+    const item = await Item.findOne({ id });
     const ownsItem = item?.user?.id === ctx.req.userId;
     if (
       !ctx.req.userId ||
