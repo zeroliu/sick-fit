@@ -8,6 +8,18 @@ export type Scalars = {
   Float: number;
 };
 
+export type AddToCartInput = {
+  itemId: Scalars['ID'];
+};
+
+export type CartItem = {
+   __typename?: 'CartItem';
+  id: Scalars['ID'];
+  quantity: Scalars['Int'];
+  item: Item;
+  user: User;
+};
+
 export type Connection = {
    __typename?: 'Connection';
   totalCount: Scalars['Int'];
@@ -45,6 +57,7 @@ export type Mutation = {
   requestReset: Scalars['Boolean'];
   resetPassword: User;
   updatePermissions: Scalars['Boolean'];
+  addToCart: Scalars['Boolean'];
 };
 
 
@@ -88,6 +101,11 @@ export type MutationUpdatePermissionsArgs = {
   data: UpdatePermissionsInput;
 };
 
+
+export type MutationAddToCartArgs = {
+  data: AddToCartInput;
+};
+
 export type Query = {
    __typename?: 'Query';
   items: Array<Item>;
@@ -95,6 +113,7 @@ export type Query = {
   itemsConnection: Connection;
   me?: Maybe<User>;
   users: Array<User>;
+  cartItems: Array<CartItem>;
 };
 
 
@@ -147,6 +166,7 @@ export type User = {
   name: Scalars['String'];
   email: Scalars['String'];
   permissions: Array<UserPermission>;
+  cartItems: Array<CartItem>;
 };
 
 export enum UserPermission {
