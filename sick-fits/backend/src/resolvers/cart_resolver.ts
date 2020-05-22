@@ -19,6 +19,12 @@ export class AddToCartInput {
   itemId!: number;
 }
 
+@InputType()
+export class RemoveFromCartInput {
+  @Field(() => ID)
+  cartItemId!: number;
+}
+
 @Resolver()
 export class CartResolver {
   @Query(() => [CartItem])
@@ -58,5 +64,24 @@ export class CartResolver {
       await CartItem.update(cartItem.id, { quantity: cartItem.quantity + 1 });
     }
     return true;
+  }
+
+  @Mutation(() => CartItem, { nullable: true })
+  async removeFromCart(
+    @Arg('data') data: RemoveFromCartInput,
+    @Ctx() ctx: Context,
+  ): Promise<CartItem | undefined> {
+    const user = await getUserById(ctx.req.userId);
+    const cartItem = await CartItem.findOne({
+      where: {
+        id: data.cartItemId,
+        user,
+      },
+    });
+    if (!cartItem) {
+      return;
+    }
+    await CartItem.remove(cartItem);
+    return cartItem;
   }
 }
