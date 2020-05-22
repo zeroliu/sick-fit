@@ -66,11 +66,11 @@ export class CartResolver {
     return true;
   }
 
-  @Mutation(() => CartItem, { nullable: true })
+  @Mutation(() => Boolean)
   async removeFromCart(
     @Arg('data') data: RemoveFromCartInput,
     @Ctx() ctx: Context,
-  ): Promise<CartItem | undefined> {
+  ): Promise<boolean> {
     const user = await getUserById(ctx.req.userId);
     const cartItem = await CartItem.findOne({
       where: {
@@ -79,9 +79,9 @@ export class CartResolver {
       },
     });
     if (!cartItem) {
-      return;
+      return false;
     }
     await CartItem.remove(cartItem);
-    return cartItem;
+    return true;
   }
 }
