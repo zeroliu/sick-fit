@@ -3,8 +3,8 @@ import { MutationHookOptions, useMutation } from '@apollo/react-hooks';
 import {
   MutationResetPasswordArgs,
   MutationRequestResetArgs,
+  User,
 } from 'src/generated/graphql';
-import { User } from './user';
 
 const REQUEST_RESET_MUTATION = gql`
   mutation($data: RequestResetInput!) {
@@ -26,13 +26,12 @@ export function useRequestResetMutation(
 const RESET_PASSWORD_MUTATION = gql`
   mutation($data: ResetPasswordInput!) {
     resetPassword(data: $data) {
-      name
-      email
+      id
     }
   }
 `;
 interface ResetPasswordMutationData {
-  resetPassword: User;
+  resetPassword: Pick<User, 'id'>;
 }
 export function useResetPasswordMutation(
   options?: MutationHookOptions<

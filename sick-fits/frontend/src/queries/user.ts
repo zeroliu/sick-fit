@@ -7,32 +7,22 @@ import {
 import {
   MutationRegisterArgs,
   MutationSignInArgs,
-  UserPermission,
   Mutation,
   MutationUpdatePermissionsArgs,
+  User,
+  CartItem,
+  Item,
 } from 'src/generated/graphql';
-
-export interface User {
-  id: string;
-  email: string;
-  name: string;
-}
-
-export interface UserWithPermissions extends User {
-  permissions: UserPermission[];
-}
 
 const REGISTER_MUTATION = gql`
   mutation($data: RegisterInput!) {
     register(data: $data) {
       id
-      name
-      email
     }
   }
 `;
 interface RegisterMutationData {
-  register: User;
+  register: Pick<User, 'id'>;
 }
 export function useRegisterMutation(
   options?: MutationHookOptions<RegisterMutationData, MutationRegisterArgs>,
@@ -44,13 +34,11 @@ const SIGN_IN_MUTATION = gql`
   mutation($data: SignInInput!) {
     signIn(data: $data) {
       id
-      name
-      email
     }
   }
 `;
 interface SignInMutationData {
-  signIn: User;
+  signIn: Pick<User, 'id'>;
 }
 export function useSignInMutation(
   options?: MutationHookOptions<SignInMutationData, MutationSignInArgs>,
@@ -78,11 +66,26 @@ export const ME_QUERY = gql`
       id
       name
       email
+      cartItems {
+        id
+        quantity
+        item {
+          id
+          title
+          image
+        }
+      }
     }
   }
 `;
 interface MeQueryData {
-  me: User;
+  me:
+    | Pick<User, 'id' | 'name' | 'email'>
+    | {
+        cartItems:
+          | Pick<CartItem, 'id' | 'quantity'>
+          | { item: Pick<Item, 'id' | 'price' | 'image'> };
+      };
 }
 export function useMeQuery() {
   return useQuery<MeQueryData>(ME_QUERY);
@@ -98,6 +101,10 @@ const USERS_QUERY = gql`
     }
   }
 `;
+export type UserWithPermissions = Pick<
+  User,
+  'id' | 'name' | 'email' | 'permissions'
+>;
 interface UsersQueryData {
   users: UserWithPermissions[];
 }
