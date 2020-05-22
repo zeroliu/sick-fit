@@ -4,7 +4,6 @@ import {
   BaseEntity,
   PrimaryGeneratedColumn,
   Column,
-  OneToOne,
   JoinColumn,
   ManyToOne,
 } from 'typeorm';
@@ -23,7 +22,7 @@ export class CartItem extends BaseEntity {
   quantity!: number;
 
   @Field(() => Item)
-  @OneToOne(() => Item, { eager: true })
+  @ManyToOne(() => Item, { eager: true })
   @JoinColumn()
   item!: Item;
 
