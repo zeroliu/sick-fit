@@ -10,7 +10,7 @@ import {
   Mutation,
   MutationUpdatePermissionsArgs,
   User,
-  CartItem,
+  CartItem as GeneratedCartItem,
   Item,
 } from 'src/generated/graphql';
 
@@ -73,19 +73,19 @@ export const ME_QUERY = gql`
           id
           title
           image
+          price
         }
       }
     }
   }
 `;
+export type CartItem = Pick<GeneratedCartItem, 'id' | 'quantity'> & {
+  item: Pick<Item, 'id' | 'price' | 'image' | 'title'>;
+};
 interface MeQueryData {
-  me:
-    | Pick<User, 'id' | 'name' | 'email'>
-    | {
-        cartItems:
-          | Pick<CartItem, 'id' | 'quantity'>
-          | { item: Pick<Item, 'id' | 'price' | 'image'> };
-      };
+  me: Pick<User, 'id' | 'name' | 'email'> & {
+    cartItems: CartItem[];
+  };
 }
 export function useMeQuery() {
   return useQuery<MeQueryData>(ME_QUERY);
