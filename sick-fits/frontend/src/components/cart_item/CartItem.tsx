@@ -2,6 +2,7 @@ import React from 'react';
 import { CartItem as CartItemType } from 'src/queries/user';
 import { StyledCartItem } from './cart_item_style';
 import { formatMoney } from 'src/lib/format_money';
+import { RemoveFromCart } from '../remove_from_cart/RemoveFromCart';
 
 interface Props {
   data: CartItemType;
@@ -22,6 +23,7 @@ export const CartItem: React.FC<Props> = ({ data }) => {
           </em>
         </p>
       </div>
+      <RemoveFromCart id={data.id}></RemoveFromCart>
     </StyledCartItem>
   );
 };

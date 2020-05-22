@@ -82,7 +82,7 @@ export const ME_QUERY = gql`
 export type CartItem = Pick<GeneratedCartItem, 'id' | 'quantity'> & {
   item: Pick<Item, 'id' | 'price' | 'image' | 'title'>;
 };
-interface MeQueryData {
+export interface MeQueryData {
   me: Pick<User, 'id' | 'name' | 'email'> & {
     cartItems: CartItem[];
   };

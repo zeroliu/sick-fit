@@ -58,6 +58,7 @@ export type Mutation = {
   resetPassword: User;
   updatePermissions: Scalars['Boolean'];
   addToCart: Scalars['Boolean'];
+  removeFromCart: Scalars['Boolean'];
 };
 
 
@@ -106,6 +107,11 @@ export type MutationAddToCartArgs = {
   data: AddToCartInput;
 };
 
+
+export type MutationRemoveFromCartArgs = {
+  data: RemoveFromCartInput;
+};
+
 export type Query = {
    __typename?: 'Query';
   items: Array<Item>;
@@ -132,6 +138,10 @@ export type RegisterInput = {
   email: Scalars['String'];
   password: Scalars['String'];
   permissions?: Maybe<Array<UserPermission>>;
+};
+
+export type RemoveFromCartInput = {
+  cartItemId: Scalars['ID'];
 };
 
 export type RequestResetInput = {
