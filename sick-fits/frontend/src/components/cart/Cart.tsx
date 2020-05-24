@@ -8,13 +8,13 @@ import { cartOpenSelector, cartClosed } from 'src/model/cart';
 import { useMeQuery } from 'src/queries/user';
 import { CartItem } from 'src/components/cart_item/CartItem';
 import { formatMoney } from 'src/lib/format_money';
-import { calcTotalPrice } from 'src/lib/calc_total_price';
+import { calcTotalPrice } from 'src/lib/cart';
 
 export const Cart: React.FC = () => {
   const cartOpen = useSelector(cartOpenSelector);
   const dispatch = useDispatch();
   const { data } = useMeQuery();
-  if (!data) {
+  if (!data?.me) {
     return null;
   }
   const { me } = data;

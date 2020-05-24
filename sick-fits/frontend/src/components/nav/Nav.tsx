@@ -2,9 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import { StyledNav } from './nav_styles';
 import { useMeQuery } from 'src/queries/user';
-import { SignOut } from '../sign_out/SignOut';
+import { SignOut } from 'src/components/sign_out/SignOut';
 import { useDispatch } from 'react-redux';
 import { cartOpened } from 'src/model/cart';
+import { CartCount } from 'src/components/cart_count/CartCount';
+import { countItems } from 'src/lib/cart';
 
 export const Nav: React.FC = () => {
   const { data } = useMeQuery();
@@ -26,7 +28,10 @@ export const Nav: React.FC = () => {
             <a>Account</a>
           </Link>
           <SignOut></SignOut>
-          <button onClick={() => dispatch(cartOpened())}>My Cart</button>
+          <button onClick={() => dispatch(cartOpened())}>
+            My Cart
+            <CartCount count={countItems(data.me.cartItems)}></CartCount>
+          </button>
         </>
       ) : (
         <Link href='/signup'>
