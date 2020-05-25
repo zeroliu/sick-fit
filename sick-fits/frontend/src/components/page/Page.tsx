@@ -1,7 +1,11 @@
 import React from 'react';
 import { Header } from 'src/components/header/Header';
 import { Meta } from 'src/components/Meta';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import styled, {
+  ThemeProvider,
+  createGlobalStyle,
+  DefaultTheme,
+} from 'styled-components';
 import Nprogress from 'nprogress';
 import Router from 'next/router';
 
@@ -17,7 +21,7 @@ Router.events.on('routeChangeError', () => {
   Nprogress.done();
 });
 
-const theme = {
+const theme: DefaultTheme = {
   red: '#FF0000',
   black: '#393939',
   grey: '#3A3A3A',

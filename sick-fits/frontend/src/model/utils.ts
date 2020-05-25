@@ -15,6 +15,7 @@ export function createAction<T extends string, P>(action: {
 }
 
 export type InferActionType<T> = T extends {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: (...args: any[]) => infer R;
 }
   ? R

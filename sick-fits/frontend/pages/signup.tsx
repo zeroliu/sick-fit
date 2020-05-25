@@ -1,3 +1,4 @@
+import React from 'react';
 import { SignUp } from 'src/components/sign_up/SignUp';
 import styled from 'styled-components';
 import { SignIn } from 'src/components/sign_in/SignIn';

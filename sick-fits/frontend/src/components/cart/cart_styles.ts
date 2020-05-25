@@ -21,7 +21,7 @@ export const StyledCart = styled.div<Props>`
   z-index: 5;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  ${(props) => props.open && `transform: translateX(0);`};
+  ${(props) => props.open && 'transform: translateX(0);'};
   header {
     border-bottom: 5px solid ${(props) => props.theme.black};
     margin-bottom: 2rem;

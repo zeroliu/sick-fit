@@ -23,7 +23,7 @@ export const Items: React.FC<Props> = ({ currentPage }) => {
     <Center>
       <ItemsPagination currentPage={currentPage}></ItemsPagination>
       <ItemsList>
-        {data.items.map((item: any) => (
+        {data.items.map((item) => (
           <Item key={item.id} data={item}></Item>
         ))}
       </ItemsList>

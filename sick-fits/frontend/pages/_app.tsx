@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React from 'react';
 import NextApp, { AppContext } from 'next/app';
 import { Page } from 'src/components/page/Page';
 import { ApolloProvider } from '@apollo/react-hooks';

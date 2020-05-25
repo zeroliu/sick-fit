@@ -24,7 +24,7 @@ export const Cart: React.FC = () => {
         <CloseButton title='close' onClick={() => dispatch(cartClosed())}>
           &times;
         </CloseButton>
-        <Supreme>{me.name}'s Cart</Supreme>
+        <Supreme>{me.name}&apos;s Cart</Supreme>
         <p>You have {me.cartItems.length} items in your cart.</p>
       </header>
       <ul>

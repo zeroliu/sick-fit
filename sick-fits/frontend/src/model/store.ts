@@ -7,7 +7,7 @@ function createRootReducer() {
   const reducer = combineReducers({
     cart: cartReducer,
   });
-  const initState = reducer(undefined, { type: '@@INIT' } as any);
+  const initState = reducer(undefined, { type: '@@INIT' } as AnyAction);
 
   const nextWrapperReducer = (state = initState, action: AnyAction) => {
     if (action.type === HYDRATE) {

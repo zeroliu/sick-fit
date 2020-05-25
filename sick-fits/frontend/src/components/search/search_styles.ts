@@ -7,9 +7,12 @@ export const DropDown = styled.div`
   border: 1px solid ${(props) => props.theme.lightGrey};
 `;
 
-export const DropDownItem = styled.div`
+interface DropDownItemProps {
+  highlighted?: boolean;
+}
+export const DropDownItem = styled.div<DropDownItemProps>`
   border-bottom: 1px solid ${(props) => props.theme.lightGrey};
-  background: ${(props: any) => (props.highlighted ? '#f7f7f7' : 'white')};
+  background: ${(props) => (props.highlighted ? '#f7f7f7' : 'white')};
   padding: 1rem;
   transition: all 0.2s;
   ${(props) => (props.highlighted ? 'padding-left: 2rem;' : null)};

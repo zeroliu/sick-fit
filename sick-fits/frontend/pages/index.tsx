@@ -1,3 +1,4 @@
+import React from 'react';
 import { Items } from 'src/components/items/Items';
 import { useRouter } from 'next/router';
 

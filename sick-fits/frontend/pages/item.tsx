@@ -1,3 +1,4 @@
+import React from 'react';
 import { SingleItem } from 'src/components/single_item/SingleItem';
 import { useItemQuery } from 'src/queries/item';
 import { useRouter } from 'next/router';
