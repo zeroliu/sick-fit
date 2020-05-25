@@ -6,13 +6,13 @@
   "scripts": {
     "start": "next -p 7777",
     "type": "tsc --watch",
-    "lint": "eslint --ext .tsx,.ts .",
+    "lint": "esw -w --ext .tsx,.ts .",
     "build": "next build",
     "test": "NODE_ENV=test jest --watch",
     "test-win": "SET NODE_ENV=test&& jest --watch",
     "heroku-postbuild": "next build",
     "gen": "graphql-codegen --config codegen.yml",
-    "all": "npm-run-all --parallel start type"
+    "all": "npm-run-all --parallel start type lint"
   },
   "author": "",
   "license": "ISC",
@@ -68,6 +68,7 @@
     "eslint": "^7.1.0",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.2",
+    "eslint-watch": "^6.0.1",
     "graphql-tools": "^4.0.0",
     "jest": "^25.5.4",
     "jest-transform-graphql": "^2.1.0",
