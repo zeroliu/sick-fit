@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { QueryOptions, ApolloQueryResult } from 'apollo-boost';
 import { useApolloClient } from '@apollo/react-hooks';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import { Item } from 'src/generated/graphql';
 
@@ -32,8 +32,8 @@ export function useSearchItemsQueryBuilder(
 ] {
   const client = useApolloClient();
   const [loading, setLoading] = useState(false);
-  return [
-    async (overriddenOptions) => {
+  const triggerQuery = useCallback(
+    async (overriddenOptions?: Partial<SearchItemsQueryOptions>) => {
       setLoading(true);
       const result = await client.query<
         SearchItemsQueryData,
@@ -42,6 +42,7 @@ export function useSearchItemsQueryBuilder(
       setLoading(false);
       return result;
     },
-    { loading },
-  ];
+    [client, options],
+  );
+  return [triggerQuery, { loading }];
 }
