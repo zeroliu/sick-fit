@@ -3,6 +3,7 @@ import { Nav } from 'src/components/nav/Nav';
 import Link from 'next/link';
 import { StyledHeader, Logo } from './header_styles';
 import { Cart } from 'src/components/cart/Cart';
+import { Search } from '../search/Search';
 
 export const Header: React.FC = () => {
   return (
@@ -16,7 +17,7 @@ export const Header: React.FC = () => {
         <Nav></Nav>
       </div>
       <div className='sub-bar'>
-        <p>Search</p>
+        <Search></Search>
       </div>
       <Cart></Cart>
     </StyledHeader>

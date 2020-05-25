@@ -32,7 +32,7 @@ const glow = keyframes`
   }
 `;
 
-export const SearchStyles = styled.div`
+export const StyledSearch = styled.div`
   position: relative;
   input {
     width: 100%;
