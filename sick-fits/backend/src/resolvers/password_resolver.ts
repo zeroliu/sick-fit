@@ -50,7 +50,9 @@ export class PasswordResolver {
       Your password reset link is here!
 
 
-      <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">Click here to reset your password</a>
+      <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">
+        Click here to reset your password
+      </a>
       `),
     });
     return true;

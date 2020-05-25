@@ -63,7 +63,7 @@ export class AuthResolver {
   }
 
   @Mutation(() => Boolean)
-  signOut(@Ctx() ctx: Context): Boolean {
+  signOut(@Ctx() ctx: Context): boolean {
     clearCookie(ctx.res);
     return true;
   }
