@@ -12,7 +12,7 @@
     "test-win": "SET NODE_ENV=test&& jest --watch",
     "heroku-postbuild": "next build",
     "gen": "graphql-codegen --config codegen.yml",
-    "all": "npm-run-all --parallel start type lint"
+    "style": "npm-run-all --parallel type lint"
   },
   "author": "",
   "license": "ISC",

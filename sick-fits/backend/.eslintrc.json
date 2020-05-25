@@ -34,8 +34,7 @@
         ],
         "newlines-between": "always"
       }
-    ],
-    "import/no-relative-parent-imports": 2
+    ]
   },
   "settings": {
     "import/resolver": {
