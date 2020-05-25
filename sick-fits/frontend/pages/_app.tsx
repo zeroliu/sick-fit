@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import NextApp, { AppContext } from 'next/app';
-import { Page } from 'src/components/page/Page';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
+
+import { Page } from 'src/components/page/Page';
 import withData from 'src/lib/withData';
 import { wrapper } from 'src/model/store';
 

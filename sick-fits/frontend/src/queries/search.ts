@@ -1,8 +1,9 @@
 import gql from 'graphql-tag';
-import { Item } from 'src/generated/graphql';
 import { QueryOptions, ApolloQueryResult } from 'apollo-boost';
 import { useApolloClient } from '@apollo/react-hooks';
 import { useState } from 'react';
+
+import { Item } from 'src/generated/graphql';
 
 const SEARCH_ITEMS_QUERY = gql`
   query($searchTerm: String!) {

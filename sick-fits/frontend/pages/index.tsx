@@ -1,6 +1,7 @@
 import React from 'react';
-import { Items } from 'src/components/items/Items';
 import { useRouter } from 'next/router';
+
+import { Items } from 'src/components/items/Items';
 
 export default function Home() {
   const router = useRouter();

@@ -1,5 +1,6 @@
 import React from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+
 import {
   Dot,
   ANIMATION_DURATION_MS,

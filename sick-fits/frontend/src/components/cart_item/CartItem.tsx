@@ -1,8 +1,10 @@
 import React from 'react';
+
+import { StyledCartItem } from './cart_item_style';
 import { CartItem as CartItemType } from 'src/queries/user';
 import { formatMoney } from 'src/lib/format_money';
 import { RemoveFromCart } from 'src/components/remove_from_cart/RemoveFromCart';
-import { StyledCartItem } from './cart_item_style';
+
 
 interface Props {
   data: CartItemType;

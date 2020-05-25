@@ -1,6 +1,4 @@
 import React from 'react';
-import { Header } from 'src/components/header/Header';
-import { Meta } from 'src/components/Meta';
 import styled, {
   ThemeProvider,
   createGlobalStyle,
@@ -8,6 +6,9 @@ import styled, {
 } from 'styled-components';
 import Nprogress from 'nprogress';
 import Router from 'next/router';
+
+import { Meta } from 'src/components/Meta';
+import { Header } from 'src/components/header/Header';
 
 Router.events.on('routeChangeStart', () => {
   Nprogress.start();

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ApolloError } from 'apollo-boost';
+
 import { StyledError } from './error_message_styles';
 
 interface Props {

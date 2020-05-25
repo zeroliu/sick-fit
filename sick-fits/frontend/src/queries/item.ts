@@ -1,5 +1,12 @@
 import gql from 'graphql-tag';
 import {
+  useQuery,
+  QueryHookOptions,
+  MutationHookOptions,
+  useMutation,
+} from '@apollo/react-hooks';
+
+import {
   Mutation,
   Query,
   QueryItemsArgs,
@@ -8,12 +15,6 @@ import {
   MutationUpdateItemArgs,
   MutationDeleteItemArgs,
 } from 'src/generated/graphql';
-import {
-  useQuery,
-  QueryHookOptions,
-  MutationHookOptions,
-  useMutation,
-} from '@apollo/react-hooks';
 
 export interface Item {
   id: string;

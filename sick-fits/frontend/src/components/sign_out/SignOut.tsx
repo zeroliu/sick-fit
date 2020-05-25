@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useSignOutMutation, ME_QUERY } from 'src/queries/user';
 
 export const SignOut: React.FC = () => {

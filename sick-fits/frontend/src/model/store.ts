@@ -1,5 +1,6 @@
 import { StoreEnhancer, createStore, combineReducers, AnyAction } from 'redux';
 import { MakeStore, createWrapper, HYDRATE } from 'next-redux-wrapper';
+
 import { cartReducer } from './cart';
 import { chainReducers } from './utils';
 

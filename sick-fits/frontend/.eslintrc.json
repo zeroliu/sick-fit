@@ -31,7 +31,24 @@
     "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/prop-types": "off",
-    "import/order": 2,
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["builtin", "external"],
+          ["internal", "sibling"]
+        ],
+        "newlines-between": "always"
+      }
+    ],
     "import/no-relative-parent-imports": 2
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["src", "./src"]],
+        "extensions": [".ts", ".tsx"]
+      }
+    }
   }
 }
