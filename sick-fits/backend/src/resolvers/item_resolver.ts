@@ -16,6 +16,7 @@ import { Item } from 'src/entity/item';
 import { Context } from 'src/types';
 import { User, UserPermission } from 'src/entity/user';
 import { hasPermission, getUserById } from 'src/utils';
+import { Like } from 'typeorm';
 
 @InputType()
 export class CreateItemInput {
@@ -62,11 +63,31 @@ export class PaginationInput {
   skip?: number;
 }
 
+@ArgsType()
+export class ItemsInput extends PaginationInput {
+  @Field({ nullable: true })
+  searchTerm?: string;
+}
+
 @Resolver()
 export class ItemResolver {
   @Query(() => [Item])
-  async items(@Args() { take, skip }: PaginationInput): Promise<Item[]> {
-    return Item.find({ take, skip, order: { title: 'ASC' } });
+  async items(
+    @Args() { take, skip, searchTerm = '' }: ItemsInput,
+  ): Promise<Item[]> {
+    return Item.find({
+      take,
+      skip,
+      order: { title: 'ASC' },
+      where: [
+        {
+          title: Like(`%${searchTerm}%`),
+        },
+        {
+          description: Like(`%${searchTerm}%`),
+        },
+      ],
+    });
   }
 
   @Query(() => Item, { nullable: true })

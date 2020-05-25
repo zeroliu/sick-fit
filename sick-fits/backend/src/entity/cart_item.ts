@@ -22,11 +22,14 @@ export class CartItem extends BaseEntity {
   quantity!: number;
 
   @Field(() => Item)
-  @ManyToOne(() => Item, { eager: true })
+  @ManyToOne(() => Item, { eager: true, onDelete: 'CASCADE' })
   @JoinColumn()
   item!: Item;
 
   @Field(() => User)
-  @ManyToOne(() => User, (user) => user.cartItems, { eager: true })
+  @ManyToOne(() => User, (user) => user.cartItems, {
+    eager: true,
+    onDelete: 'CASCADE',
+  })
   user!: User;
 }
