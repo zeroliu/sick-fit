@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyledCart } from './cart_styles';
 import { CloseButton } from 'src/components/styles/CloseButton';
 import { Supreme } from 'src/components/styles/Supreme';
 import { SickButton } from 'src/components/styles/SickButton';
@@ -9,6 +8,7 @@ import { useMeQuery } from 'src/queries/user';
 import { CartItem } from 'src/components/cart_item/CartItem';
 import { formatMoney } from 'src/lib/format_money';
 import { calcTotalPrice } from 'src/lib/cart';
+import { StyledCart } from './cart_styles';
 
 export const Cart: React.FC = () => {
   const cartOpen = useSelector(cartOpenSelector);

@@ -1,7 +1,7 @@
 import React from 'react';
-import { BigButton } from './remove_from_cart';
 import { useRemoveFromCartMutation } from 'src/queries/cart';
 import { MeQueryData, ME_QUERY } from 'src/queries/user';
+import { BigButton } from './remove_from_cart';
 
 interface Props {
   id: string;

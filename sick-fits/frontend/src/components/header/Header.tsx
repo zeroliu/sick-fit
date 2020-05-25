@@ -1,9 +1,9 @@
 import React from 'react';
 import { Nav } from 'src/components/nav/Nav';
 import Link from 'next/link';
-import { StyledHeader, Logo } from './header_styles';
 import { Cart } from 'src/components/cart/Cart';
-import { Search } from '../search/Search';
+import { Search } from 'src/components/search/Search';
+import { StyledHeader, Logo } from './header_styles';
 
 export const Header: React.FC = () => {
   return (

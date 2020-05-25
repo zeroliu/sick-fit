@@ -1,6 +1,6 @@
 import withApollo from 'next-with-apollo';
 import ApolloClient from 'apollo-boost';
-import { endpoint } from '../config';
+import { endpoint } from 'src/config';
 
 export default withApollo(({ headers }) => {
   return new ApolloClient({

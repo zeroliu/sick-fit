@@ -1,7 +1,7 @@
 import React from 'react';
 import { Item } from 'src/queries/item';
-import { StyledSingleItem } from './single_item_styles';
 import Head from 'next/head';
+import { StyledSingleItem } from './single_item_styles';
 
 interface Props {
   data: Item;

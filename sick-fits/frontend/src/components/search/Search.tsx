@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { DropDown, DropDownItem, StyledSearch } from './search_styles';
 import { useSearchItemsQueryBuilder, SearchItem } from 'src/queries/search';
 import debounce from 'lodash.debounce';
+import { DropDown, DropDownItem, StyledSearch } from './search_styles';
 
 export const Search: React.FC = () => {
   const [querySearchItems] = useSearchItemsQueryBuilder();

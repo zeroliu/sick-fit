@@ -4,10 +4,10 @@ import {
   UserWithPermissions,
   useUpdatePermissionsMutation,
 } from 'src/queries/user';
-import { ErrorMessage } from '../error_message/ErrorMessage';
-import { Table } from '../styles/Table';
 import { UserPermission } from 'src/generated/graphql';
-import { SickButton } from '../styles/SickButton';
+import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
+import { Table } from 'src/components/styles/Table';
+import { SickButton } from 'src/components/styles/SickButton';
 
 const UserPermissions: React.FC<{ user: UserWithPermissions }> = ({ user }) => {
   const [permissions, setPermissions] = useState(user.permissions);

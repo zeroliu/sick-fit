@@ -1,10 +1,10 @@
 import React from 'react';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import {
   Dot,
   ANIMATION_DURATION_MS,
   AnimatedCartCount,
 } from './cart_count_styles';
-import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 interface Props {
   count: number;

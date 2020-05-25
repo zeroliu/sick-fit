@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
-import { ErrorMessage } from '../error_message/ErrorMessage';
-import { StyledItemsPagination } from './items_pagination_styles';
 import { perPage } from 'src/config';
 import { useItemsConnectionQuery } from 'src/queries/item';
+import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
+import { StyledItemsPagination } from './items_pagination_styles';
 
 interface Props {
   currentPage: number;

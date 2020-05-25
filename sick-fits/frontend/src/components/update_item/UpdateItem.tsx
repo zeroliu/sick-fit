@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useApolloClient } from '@apollo/react-hooks';
 import { Item, useUpdateItemMutation } from 'src/queries/item';
 import { Form } from 'src/components/styles/Form';
-import { ErrorMessage } from '../error_message/ErrorMessage';
+import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
 
 interface Props {
   data: Item;

@@ -1,12 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { StyledNav } from './nav_styles';
 import { useMeQuery } from 'src/queries/user';
 import { SignOut } from 'src/components/sign_out/SignOut';
 import { useDispatch } from 'react-redux';
 import { cartOpened } from 'src/model/cart';
 import { CartCount } from 'src/components/cart_count/CartCount';
 import { countItems } from 'src/lib/cart';
+import { StyledNav } from './nav_styles';
 
 export const Nav: React.FC = () => {
   const { data } = useMeQuery();

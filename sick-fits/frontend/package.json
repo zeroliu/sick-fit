@@ -6,7 +6,7 @@
   "scripts": {
     "start": "next -p 7777",
     "type": "tsc --watch",
-    "lint": "esw -w --ext .tsx,.ts .",
+    "lint": "esw -w --ext .tsx,.ts . --fix",
     "build": "next build",
     "test": "NODE_ENV=test jest --watch",
     "test-win": "SET NODE_ENV=test&& jest --watch",
@@ -66,6 +66,7 @@
     "casual": "^1.5.19",
     "enzyme-to-json": "^3.3.4",
     "eslint": "^7.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.2",
     "eslint-watch": "^6.0.1",
