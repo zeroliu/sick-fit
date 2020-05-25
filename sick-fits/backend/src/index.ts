@@ -3,10 +3,11 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import { ItemResolver } from './resolvers/item_resolver';
-import { AuthResolver } from './resolvers/auth_resolver';
 import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
+
+import { ItemResolver } from './resolvers/item_resolver';
+import { AuthResolver } from './resolvers/auth_resolver';
 import { jwtDecoder } from './middlewares/jwt_decoder';
 import { PasswordResolver } from './resolvers/password_resolver';
 import { UserResolver } from './resolvers/user_resolver';

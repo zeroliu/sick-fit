@@ -1,8 +1,9 @@
+import { randomBytes } from 'crypto';
+
 import bcrypt from 'bcryptjs';
 import { MoreThan } from 'typeorm';
 import { Resolver, Mutation, InputType, Field, Arg, Ctx } from 'type-graphql';
 import { User } from 'src/entity/user';
-import { randomBytes } from 'crypto';
 import { signToken, addTokenToCookie } from 'src/libs/jwt';
 import { Context } from 'src/types';
 import { sendEmail, decorateEmail } from 'src/libs/email';

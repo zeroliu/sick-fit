@@ -6,7 +6,8 @@
   "extends": [
     "google",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -17,12 +18,20 @@
     "ecmaVersion": 11,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "import"],
   "rules": {
     "object-curly-spacing": "off",
     "require-jsdoc": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "new-cap": "off",
-    "indent": "off"
+    "indent": "off",
+    "import/order": [
+      "error",
+      {
+        "pathGroups": [{ "pattern": "src/**", "group": "internal" }],
+        "newlines-between": "always"
+      }
+    ],
+    "import/no-relative-parent-imports": 2
   }
 }

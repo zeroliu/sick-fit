@@ -5,7 +5,7 @@
   "scripts": {
     "start": "ts-node-dev --respawn --no-notify -r tsconfig-paths/register src/index.ts",
     "type": "tsc --watch",
-    "lint": "esw -w --ext .ts,.tsx .",
+    "lint": "esw -w --ext .ts,.tsx . --fix",
     "test": "jest",
     "style": "npm-run-all --parallel type lint"
   },
@@ -44,6 +44,7 @@
     "@typescript-eslint/parser": "^3.0.1",
     "eslint": "^7.1.0",
     "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-watch": "^6.0.1",
     "ts-node": "^8.9.1",
     "ts-node-dev": "^1.0.0-pre.44",
