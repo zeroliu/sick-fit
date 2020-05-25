@@ -40,7 +40,8 @@
         ],
         "newlines-between": "always"
       }
-    ]
+    ],
+    "no-restricted-imports": ["error", { "patterns": ["../*"] }]
   },
   "settings": {
     "import/resolver": {
