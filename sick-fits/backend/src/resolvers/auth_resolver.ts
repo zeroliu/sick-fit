@@ -1,5 +1,6 @@
 import { Resolver, Mutation, Arg, InputType, Field, Ctx } from 'type-graphql';
 import bcrypt from 'bcryptjs';
+
 import { Context } from 'src/types';
 import { User, UserPermission } from 'src/entity/user';
 import { signToken, addTokenToCookie, clearCookie } from 'src/libs/jwt';

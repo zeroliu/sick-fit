@@ -8,6 +8,7 @@ import {
   Arg,
   ID,
 } from 'type-graphql';
+
 import { User, UserPermission } from 'src/entity/user';
 import { Context } from 'src/types';
 import { hasPermission, getUserById } from 'src/utils';
