@@ -1,4 +1,4 @@
-import { User, UserPermission } from './entity/user';
+import { User, UserPermission } from 'src/entity/user';
 
 export async function getUserById(userId?: number) {
   if (!userId) {

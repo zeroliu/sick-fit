@@ -11,6 +11,7 @@ import { AuthResolver } from './resolvers/auth_resolver';
 import { CartResolver } from './resolvers/cart_resolver';
 import { ItemResolver } from './resolvers/item_resolver';
 import { PasswordResolver } from './resolvers/password_resolver';
+import { PaymentResolver } from './resolvers/payment_resolver';
 import { UserResolver } from './resolvers/user_resolver';
 
 dotenv.config();
@@ -19,6 +20,7 @@ async function main() {
   await createConnection();
   const schema = await buildSchema({
     resolvers: [
+      PaymentResolver,
       ItemResolver,
       AuthResolver,
       PasswordResolver,

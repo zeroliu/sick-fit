@@ -10,8 +10,8 @@ import {
 } from 'type-graphql';
 
 import { User, UserPermission } from 'src/entity/user';
+import { hasPermission, getUserById } from 'src/libs/utils';
 import { Context } from 'src/types';
-import { hasPermission, getUserById } from 'src/utils';
 
 @InputType()
 class UpdatePermissionsInput {

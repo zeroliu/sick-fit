@@ -16,8 +16,8 @@ import { Like } from 'typeorm';
 
 import { Item } from 'src/entity/item';
 import { User, UserPermission } from 'src/entity/user';
+import { hasPermission, getUserById } from 'src/libs/utils';
 import { Context } from 'src/types';
-import { hasPermission, getUserById } from 'src/utils';
 
 @InputType()
 export class CreateItemInput {

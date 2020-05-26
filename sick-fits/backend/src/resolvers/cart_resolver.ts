@@ -11,8 +11,8 @@ import {
 
 import { CartItem } from 'src/entity/cart_item';
 import { Item } from 'src/entity/item';
+import { getUserById } from 'src/libs/utils';
 import { Context } from 'src/types';
-import { getUserById } from 'src/utils';
 
 @InputType()
 export class AddToCartInput {
