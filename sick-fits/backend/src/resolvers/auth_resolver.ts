@@ -1,9 +1,9 @@
-import { Resolver, Mutation, Arg, InputType, Field, Ctx } from 'type-graphql';
 import bcrypt from 'bcryptjs';
+import { Resolver, Mutation, Arg, InputType, Field, Ctx } from 'type-graphql';
 
-import { Context } from 'src/types';
 import { User, UserPermission } from 'src/entity/user';
 import { signToken, addTokenToCookie, clearCookie } from 'src/libs/jwt';
+import { Context } from 'src/types';
 
 @InputType()
 export class RegisterInput {

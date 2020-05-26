@@ -1,3 +1,4 @@
+import { ObjectType, Field, ID, registerEnumType } from 'type-graphql';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -5,7 +6,6 @@ import {
   BaseEntity,
   OneToMany,
 } from 'typeorm';
-import { ObjectType, Field, ID, registerEnumType } from 'type-graphql';
 
 import { CartItem } from './cart_item';
 

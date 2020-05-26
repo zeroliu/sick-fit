@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken';
 import { Response } from 'express';
+import jwt from 'jsonwebtoken';
 
 const TOKEN_COOKIE_KEY = 'token';
 

@@ -10,9 +10,9 @@ import {
 } from 'type-graphql';
 
 import { CartItem } from 'src/entity/cart_item';
+import { Item } from 'src/entity/item';
 import { Context } from 'src/types';
 import { getUserById } from 'src/utils';
-import { Item } from 'src/entity/item';
 
 @InputType()
 export class AddToCartInput {

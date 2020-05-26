@@ -1,12 +1,12 @@
-import { randomBytes } from 'crypto';
 import bcrypt from 'bcryptjs';
-import { MoreThan } from 'typeorm';
+import { randomBytes } from 'crypto';
 import { Resolver, Mutation, InputType, Field, Arg, Ctx } from 'type-graphql';
+import { MoreThan } from 'typeorm';
 
 import { User } from 'src/entity/user';
+import { sendEmail, decorateEmail } from 'src/libs/email';
 import { signToken, addTokenToCookie } from 'src/libs/jwt';
 import { Context } from 'src/types';
-import { sendEmail, decorateEmail } from 'src/libs/email';
 
 // Token last for 1 hour.
 const RESET_TOKEN_DURATION = 1000 * 60 * 60;

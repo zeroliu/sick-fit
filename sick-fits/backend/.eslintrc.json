@@ -32,7 +32,11 @@
           ["builtin", "external"],
           ["internal", "sibling"]
         ],
-        "newlines-between": "always"
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
       }
     ],
     "no-restricted-imports": ["error", { "patterns": ["../*"] }]

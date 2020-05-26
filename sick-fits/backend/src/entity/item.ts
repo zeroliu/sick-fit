@@ -1,3 +1,4 @@
+import { ObjectType, Field, ID } from 'type-graphql';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -7,7 +8,6 @@ import {
   UpdateDateColumn,
   ManyToOne,
 } from 'typeorm';
-import { ObjectType, Field, ID } from 'type-graphql';
 
 import { User } from './user';
 
