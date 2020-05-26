@@ -1,5 +1,5 @@
-import React from 'react';
 import { useRouter } from 'next/router';
+import React from 'react';
 
 import { ResetPassword } from 'src/components/reset_password/ResetPassword';
 

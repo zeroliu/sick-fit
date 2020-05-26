@@ -1,5 +1,5 @@
-import React from 'react';
 import { useApolloClient } from '@apollo/react-hooks';
+import React from 'react';
 
 import { useDeleteItemMutation } from 'src/queries/item';
 

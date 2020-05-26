@@ -1,5 +1,5 @@
-import gql from 'graphql-tag';
 import { MutationHookOptions, useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
 import {
   Mutation,

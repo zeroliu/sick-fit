@@ -1,5 +1,5 @@
-import { InferActionType, createAction } from './utils';
 import { AppState } from './store';
+import { InferActionType, createAction } from './utils';
 
 const CART_OPENED = 'CART_OPENED';
 export function cartOpened() {

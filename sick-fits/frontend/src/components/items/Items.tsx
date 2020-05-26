@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { Center, ItemsList } from './items_styles';
-import { useAllItemsQuery } from 'src/queries/item';
 import { Item } from 'src/components/item/Item';
-import { perPage } from 'src/config';
 import { ItemsPagination } from 'src/components/items_pagination/ItemsPagination';
+import { perPage } from 'src/config';
+import { useAllItemsQuery } from 'src/queries/item';
 
 
 interface Props {

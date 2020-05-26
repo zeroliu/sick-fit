@@ -1,13 +1,13 @@
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
 
 import { Item as StyledItem } from './item_styles';
-import { Item as ItemType } from 'src/queries/item';
-import { Title } from 'src/components/styles/Title';
-import { PriceTag } from 'src/components/styles/PriceTag';
-import { formatMoney } from 'src/lib/format_money';
-import { DeleteItem } from 'src/components/delete_item/DeleteItem';
 import { AddToCart } from 'src/components/add_to_cart/AddToCart';
+import { DeleteItem } from 'src/components/delete_item/DeleteItem';
+import { PriceTag } from 'src/components/styles/PriceTag';
+import { Title } from 'src/components/styles/Title';
+import { formatMoney } from 'src/lib/format_money';
+import { Item as ItemType } from 'src/queries/item';
 
 
 interface Props {

@@ -1,14 +1,14 @@
 import React, { useState, ChangeEvent } from 'react';
 
+import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
+import { SickButton } from 'src/components/styles/SickButton';
+import { Table } from 'src/components/styles/Table';
+import { UserPermission } from 'src/generated/graphql';
 import {
   useUsersQuery,
   UserWithPermissions,
   useUpdatePermissionsMutation,
 } from 'src/queries/user';
-import { UserPermission } from 'src/generated/graphql';
-import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
-import { Table } from 'src/components/styles/Table';
-import { SickButton } from 'src/components/styles/SickButton';
 
 const UserPermissions: React.FC<{ user: UserWithPermissions }> = ({ user }) => {
   const [permissions, setPermissions] = useState(user.permissions);

@@ -1,15 +1,15 @@
+import Router from 'next/router';
+import Nprogress from 'nprogress';
 import React from 'react';
 import styled, {
   ThemeProvider,
   createGlobalStyle,
   DefaultTheme,
 } from 'styled-components';
-import Nprogress from 'nprogress';
-import Router from 'next/router';
 
-import { Meta } from 'src/components/Meta';
-import { Header } from 'src/components/header/Header';
 import { CheckoutForm } from 'src/components/checkout_form/CheckoutForm';
+import { Header } from 'src/components/header/Header';
+import { Meta } from 'src/components/Meta';
 
 Router.events.on('routeChangeStart', () => {
   Nprogress.start();

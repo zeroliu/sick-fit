@@ -1,5 +1,5 @@
-import { InferActionType, createAction } from './utils';
 import { AppState } from './store';
+import { InferActionType, createAction } from './utils';
 
 const CHECKOUT_STARTED = 'CHECKOUT_STARTED';
 export function checkoutStarted() {

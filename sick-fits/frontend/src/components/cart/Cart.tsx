@@ -2,15 +2,15 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { StyledCart } from './cart_styles';
-import { CloseButton } from 'src/components/styles/CloseButton';
-import { Supreme } from 'src/components/styles/Supreme';
-import { SickButton } from 'src/components/styles/SickButton';
-import { cartOpenSelector, cartClosed } from 'src/model/cart';
-import { useMeQuery } from 'src/queries/user';
 import { CartItem } from 'src/components/cart_item/CartItem';
-import { formatMoney } from 'src/lib/format_money';
+import { CloseButton } from 'src/components/styles/CloseButton';
+import { SickButton } from 'src/components/styles/SickButton';
+import { Supreme } from 'src/components/styles/Supreme';
 import { calcTotalPrice } from 'src/lib/cart';
+import { formatMoney } from 'src/lib/format_money';
+import { cartOpenSelector, cartClosed } from 'src/model/cart';
 import { checkoutStarted } from 'src/model/checkout';
+import { useMeQuery } from 'src/queries/user';
 
 export const Cart: React.FC = () => {
   const cartOpen = useSelector(cartOpenSelector);

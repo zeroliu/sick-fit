@@ -1,9 +1,9 @@
-import { StoreEnhancer, createStore, combineReducers, AnyAction } from 'redux';
 import { MakeStore, createWrapper, HYDRATE } from 'next-redux-wrapper';
+import { StoreEnhancer, createStore, combineReducers, AnyAction } from 'redux';
 
 import { cartReducer } from './cart';
-import { chainReducers } from './utils';
 import { checkoutReducer } from './checkout';
+import { chainReducers } from './utils';
 
 function createRootReducer() {
   const reducer = combineReducers({

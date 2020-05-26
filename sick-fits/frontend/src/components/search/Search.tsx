@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
 import { useCombobox, resetIdCounter } from 'downshift';
 import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 
 import { DropDown, DropDownItem, StyledSearch } from './search_styles';
-import { useSearchItemsQueryBuilder, SearchItem } from 'src/queries/search';
 import { useDebounce } from 'src/lib/use_debounce';
+import { useSearchItemsQueryBuilder, SearchItem } from 'src/queries/search';
 
 export const Search: React.FC = () => {
   resetIdCounter();

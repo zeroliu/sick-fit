@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import { Form } from 'src/components/styles/Form';
 import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
-import { ME_QUERY } from 'src/queries/user';
+import { Form } from 'src/components/styles/Form';
 import { useResetPasswordMutation } from 'src/queries/password';
+import { ME_QUERY } from 'src/queries/user';
 
 interface Props {
   resetToken: string;

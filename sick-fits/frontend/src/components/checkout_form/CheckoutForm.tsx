@@ -1,8 +1,7 @@
-import React from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { checkoutStartedSelector, checkoutCancelled } from 'src/model/checkout';
 import {
   StyledCheckoutForm,
   Container,
@@ -12,9 +11,10 @@ import {
   CloseButton,
   Details,
 } from './checkout_form_styles';
-import { useMeQuery } from 'src/queries/user';
 import { countItems, calcTotalPrice } from 'src/lib/cart';
 import { formatMoney } from 'src/lib/format_money';
+import { checkoutStartedSelector, checkoutCancelled } from 'src/model/checkout';
+import { useMeQuery } from 'src/queries/user';
 
 export const CheckoutForm: React.FC = () => {
   const { data, loading } = useMeQuery();

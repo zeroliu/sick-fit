@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useMeQuery } from 'src/queries/user';
 import { SignIn } from 'src/components/sign_in/SignIn';
+import { useMeQuery } from 'src/queries/user';
 
 export const CheckAuth: React.FC = ({ children }) => {
   const { data, loading } = useMeQuery();

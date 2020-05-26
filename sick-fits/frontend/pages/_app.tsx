@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import NextApp, { AppContext } from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
-import { ApolloClient } from 'apollo-boost';
-import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { ApolloClient } from 'apollo-boost';
+import NextApp, { AppContext } from 'next/app';
+import React from 'react';
 
 import { Page } from 'src/components/page/Page';
-import withData from 'src/lib/withData';
 import { stripePublicKey } from 'src/config';
+import withData from 'src/lib/withData';
 import { wrapper } from 'src/model/store';
 
 const stripe = loadStripe(stripePublicKey);

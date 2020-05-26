@@ -1,9 +1,9 @@
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
 
 import { StyledHeader, Logo } from './header_styles';
-import { Nav } from 'src/components/nav/Nav';
 import { Cart } from 'src/components/cart/Cart';
+import { Nav } from 'src/components/nav/Nav';
 import { Search } from 'src/components/search/Search';
 
 

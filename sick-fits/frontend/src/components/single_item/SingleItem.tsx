@@ -1,5 +1,5 @@
-import React from 'react';
 import Head from 'next/head';
+import React from 'react';
 
 import { StyledSingleItem } from './single_item_styles';
 import { Item } from 'src/queries/item';

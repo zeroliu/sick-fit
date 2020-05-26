@@ -1,6 +1,6 @@
-import gql from 'graphql-tag';
-import { QueryOptions, ApolloQueryResult } from 'apollo-boost';
 import { useApolloClient } from '@apollo/react-hooks';
+import { QueryOptions, ApolloQueryResult } from 'apollo-boost';
+import gql from 'graphql-tag';
 import { useState, useCallback } from 'react';
 
 import { Item } from 'src/generated/graphql';

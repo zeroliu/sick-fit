@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
 import { useApolloClient } from '@apollo/react-hooks';
+import React, { useState } from 'react';
 
-import { Item, useUpdateItemMutation } from 'src/queries/item';
-import { Form } from 'src/components/styles/Form';
 import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
+import { Form } from 'src/components/styles/Form';
+import { Item, useUpdateItemMutation } from 'src/queries/item';
 
 interface Props {
   data: Item;

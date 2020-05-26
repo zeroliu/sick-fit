@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { Form } from 'src/components/styles/Form';
 import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
+import { Form } from 'src/components/styles/Form';
 import { useSignInMutation, ME_QUERY } from 'src/queries/user';
 
 const defaultFormData = {
