@@ -6,7 +6,7 @@ import { Permissions } from 'src/components/permissions/Permissions';
 export default function PermissionsPage() {
   return (
     <CheckAuth>
-      <Permissions></Permissions>
+      <Permissions />
     </CheckAuth>
   );
 }

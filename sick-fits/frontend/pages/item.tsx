@@ -14,10 +14,10 @@ export default function Item() {
     return <p>Loading...</p>;
   }
   if (error) {
-    return <ErrorMessage error={error}></ErrorMessage>;
+    return <ErrorMessage error={error} />;
   }
   if (!data?.item) {
     return <p>Item not found for id {router.query.id}</p>;
   }
-  return <SingleItem data={data.item}></SingleItem>;
+  return <SingleItem data={data.item} />;
 }

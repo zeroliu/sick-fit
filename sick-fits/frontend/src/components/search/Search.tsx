@@ -61,14 +61,14 @@ export const Search: React.FC = () => {
         key={item.id}
         highlighted={index === highlightedIndex}
         {...getItemProps({ item, index })}>
-        <img width='50' src={item.image || 'no_img.jpg'} alt={item.title}></img>
+        <img width='50' src={item.image || 'no_img.jpg'} alt={item.title} />
         {item.title}
       </DropDownItem>
     ));
   };
   return (
     <StyledSearch {...getComboboxProps()}>
-      <input placeholder='Search for an item' {...getInputProps()}></input>
+      <input placeholder='Search for an item' {...getInputProps()} />
       <DropDown {...getMenuProps()}>{renderDropdownItems()}</DropDown>
     </StyledSearch>
   );

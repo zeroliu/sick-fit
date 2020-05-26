@@ -32,7 +32,7 @@ class App extends NextApp<{ apollo: ApolloClient<any> }> {
       <Elements stripe={stripe}>
         <ApolloProvider client={apollo}>
           <Page>
-            <Component {...pageProps}></Component>
+            <Component {...pageProps} />
           </Page>
         </ApolloProvider>
       </Elements>

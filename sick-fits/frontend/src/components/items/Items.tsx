@@ -23,13 +23,13 @@ export const Items: React.FC<Props> = ({ currentPage }) => {
   if (!data) return <p>Error: Empty data</p>;
   return (
     <Center>
-      <ItemsPagination currentPage={currentPage}></ItemsPagination>
+      <ItemsPagination currentPage={currentPage} />
       <ItemsList>
         {data.items.map((item) => (
-          <Item key={item.id} data={item}></Item>
+          <Item key={item.id} data={item} />
         ))}
       </ItemsList>
-      <ItemsPagination currentPage={currentPage}></ItemsPagination>
+      <ItemsPagination currentPage={currentPage} />
     </Center>
   );
 };

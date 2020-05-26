@@ -15,7 +15,7 @@ export const CartItem: React.FC<Props> = ({ data }) => {
       <img
         width={100}
         src={data.item.image || 'no_img.jpg'}
-        alt={data.item.title}></img>
+        alt={data.item.title} />
       <div className='cart-item-details'>
         <h3>{data.item.title}</h3>
         <p>
@@ -25,7 +25,7 @@ export const CartItem: React.FC<Props> = ({ data }) => {
           </em>
         </p>
       </div>
-      <RemoveFromCart id={data.id}></RemoveFromCart>
+      <RemoveFromCart id={data.id} />
     </StyledCartItem>
   );
 };

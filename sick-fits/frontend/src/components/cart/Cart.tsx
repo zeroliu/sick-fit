@@ -34,7 +34,7 @@ export const Cart: React.FC = () => {
       </header>
       <ul>
         {me.cartItems.map((cartItem) => (
-          <CartItem key={cartItem.id} data={cartItem}></CartItem>
+          <CartItem key={cartItem.id} data={cartItem} />
         ))}
       </ul>
       <footer>

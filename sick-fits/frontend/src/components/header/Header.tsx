@@ -16,12 +16,12 @@ export const Header: React.FC = () => {
             <a>Sick Fit</a>
           </Link>
         </Logo>
-        <Nav></Nav>
+        <Nav />
       </div>
       <div className='sub-bar'>
-        <Search></Search>
+        <Search />
       </div>
-      <Cart></Cart>
+      <Cart />
     </StyledHeader>
   );
 };

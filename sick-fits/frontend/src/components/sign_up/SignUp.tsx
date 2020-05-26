@@ -31,7 +31,7 @@ export const SignUp: React.FC = () => {
 
   return (
     <Form method='post' onSubmit={submitForm}>
-      {error && <ErrorMessage error={error}></ErrorMessage>}
+      {error && <ErrorMessage error={error} />}
       <fieldset disabled={loading} aria-busy={loading}>
         <h2>Sign Up for An Account</h2>
         <label htmlFor='email'>
@@ -41,7 +41,7 @@ export const SignUp: React.FC = () => {
             name='email'
             placeholder='email'
             value={formData.email}
-            onChange={updateForm}></input>
+            onChange={updateForm} />
         </label>
         <label htmlFor='name'>
           Name
@@ -50,7 +50,7 @@ export const SignUp: React.FC = () => {
             name='name'
             placeholder='name'
             value={formData.name}
-            onChange={updateForm}></input>
+            onChange={updateForm} />
         </label>
         <label htmlFor='password'>
           Password
@@ -59,7 +59,7 @@ export const SignUp: React.FC = () => {
             name='password'
             placeholder='password'
             value={formData.password}
-            onChange={updateForm}></input>
+            onChange={updateForm} />
         </label>
         <button type='submit'>Sign Up</button>
       </fieldset>

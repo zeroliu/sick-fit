@@ -30,7 +30,7 @@ const UserPermissions: React.FC<{ user: UserWithPermissions }> = ({ user }) => {
   };
 
   if (error) {
-    return <ErrorMessage error={error}></ErrorMessage>;
+    return <ErrorMessage error={error} />;
   }
   return (
     <tr>
@@ -44,7 +44,7 @@ const UserPermissions: React.FC<{ user: UserWithPermissions }> = ({ user }) => {
               type='checkbox'
               checked={permissions.includes(permission)}
               value={permission}
-              onChange={handleCheckboxChange}></input>
+              onChange={handleCheckboxChange} />
           </label>
         </td>
       ))}
@@ -60,7 +60,7 @@ const UserPermissions: React.FC<{ user: UserWithPermissions }> = ({ user }) => {
 export const Permissions: React.FC = () => {
   const { data, error, loading } = useUsersQuery();
   if (error) {
-    return <ErrorMessage error={error}></ErrorMessage>;
+    return <ErrorMessage error={error} />;
   }
   if (loading) {
     return <p>Loading...</p>;
@@ -79,7 +79,7 @@ export const Permissions: React.FC = () => {
             {Object.values(UserPermission).map((permission) => (
               <th key={permission}>{permission}</th>
             ))}
-            <th></th>
+            <th />
           </tr>
         </thead>
         <tbody>

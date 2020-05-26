@@ -12,7 +12,7 @@ export const CheckAuth: React.FC = ({ children }) => {
     return (
       <div>
         <p>Please sign in</p>
-        <SignIn></SignIn>
+        <SignIn />
       </div>
     );
   }

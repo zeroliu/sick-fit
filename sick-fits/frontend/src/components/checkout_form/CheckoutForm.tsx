@@ -27,8 +27,9 @@ export const CheckoutForm: React.FC = () => {
   }
   if (!data?.me) {
     alert('You must be signed in');
+    return null;
   }
-  const { email, cartItems } = data!.me;
+  const { email, cartItems } = data.me;
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!stripe || !elements) {
@@ -65,10 +66,8 @@ export const CheckoutForm: React.FC = () => {
     <Container>
       <StyledCheckoutForm onSubmit={handleSubmit}>
         <Header>
-          <ItemImg src={getPreviewImg() || 'no_img.jpg'}></ItemImg>
-          <CloseButton
-            className='flaticon-close'
-            onClick={closeCheckout}></CloseButton>
+          <ItemImg src={getPreviewImg() || 'no_img.jpg'} />
+          <CloseButton className='flaticon-close' onClick={closeCheckout} />
           <Details>
             <div className='description'>
               Order of {countItems(cartItems)} items
@@ -76,7 +75,7 @@ export const CheckoutForm: React.FC = () => {
             <div className='email'>{email}</div>
           </Details>
         </Header>
-        <CardElement className='cardElement'></CardElement>
+        <CardElement className='cardElement' />
         <PayButton type='submit' disabled={!stripe}>
           Pay {formatMoney(calcTotalPrice(cartItems))}
         </PayButton>

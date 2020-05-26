@@ -14,11 +14,11 @@ export default function Update() {
     return <p>Loading...</p>;
   }
   if (error) {
-    return <ErrorMessage error={error}></ErrorMessage>;
+    return <ErrorMessage error={error} />;
   }
   if (!data?.item) {
     return <p>Error: item not found</p>;
   }
 
-  return <UpdateItem data={data.item}></UpdateItem>;
+  return <UpdateItem data={data.item} />;
 }

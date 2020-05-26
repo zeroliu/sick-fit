@@ -74,12 +74,12 @@ const Inner = styled.div`
 
 export const Page: React.FC = ({ children }) => (
   <ThemeProvider theme={theme}>
-    <GlobalStyle></GlobalStyle>
+    <GlobalStyle />
     <StyledPage>
-      <Meta></Meta>
-      <Header></Header>
+      <Meta />
+      <Header />
       <Inner>{children}</Inner>
     </StyledPage>
-    <CheckoutForm></CheckoutForm>
+    <CheckoutForm />
   </ThemeProvider>
 );

@@ -44,7 +44,7 @@ export const UpdateItem: React.FC<Props> = ({ data }) => {
 
   return (
     <Form onSubmit={submitForm}>
-      <ErrorMessage error={error}></ErrorMessage>
+      <ErrorMessage error={error} />
       <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor='title'>
           Title
@@ -54,7 +54,7 @@ export const UpdateItem: React.FC<Props> = ({ data }) => {
             placeholder='title'
             required
             value={formData.title}
-            onChange={updateForm}></input>
+            onChange={updateForm} />
         </label>
         <label htmlFor='price'>
           Price
@@ -64,7 +64,7 @@ export const UpdateItem: React.FC<Props> = ({ data }) => {
             placeholder='price'
             required
             value={formData.price}
-            onChange={updateForm}></input>
+            onChange={updateForm} />
         </label>
         <label htmlFor='description'>
           Description
@@ -74,7 +74,7 @@ export const UpdateItem: React.FC<Props> = ({ data }) => {
             placeholder='description'
             required
             value={formData.description}
-            onChange={updateForm}></input>
+            onChange={updateForm} />
         </label>
         <button type='submit'>Save Changes</button>
       </fieldset>

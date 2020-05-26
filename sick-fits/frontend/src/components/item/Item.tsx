@@ -17,7 +17,7 @@ interface Props {
 export const Item: React.FC<Props> = ({ data }) => {
   return (
     <StyledItem>
-      {data.image && <img src={data.image} alt={data.title}></img>}
+      {data.image && <img src={data.image} alt={data.title} />}
       <Title>
         <Link
           href={{
@@ -37,7 +37,7 @@ export const Item: React.FC<Props> = ({ data }) => {
           }}>
           <a>Edit ✏️</a>
         </Link>
-        <AddToCart id={data.id}></AddToCart>
+        <AddToCart id={data.id} />
         <DeleteItem id={data.id}>Delete</DeleteItem>
       </div>
     </StyledItem>

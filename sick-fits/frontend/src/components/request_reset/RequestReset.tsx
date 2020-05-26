@@ -28,7 +28,7 @@ export const RequestReset: React.FC = () => {
 
   return (
     <Form method='post' onSubmit={submitForm}>
-      {error && <ErrorMessage error={error}></ErrorMessage>}
+      {error && <ErrorMessage error={error} />}
       <fieldset disabled={loading} aria-busy={loading}>
         <h2>Forget My Password</h2>
         {called && <p>Reset email sent!</p>}
@@ -39,7 +39,7 @@ export const RequestReset: React.FC = () => {
             name='email'
             placeholder='email'
             value={formData.email}
-            onChange={updateForm}></input>
+            onChange={updateForm} />
         </label>
         <button type='submit'>Submit</button>
       </fieldset>

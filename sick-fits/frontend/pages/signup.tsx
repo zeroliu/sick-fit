@@ -13,9 +13,9 @@ const Columns = styled.div`
 export default function SignUpPage() {
   return (
     <Columns>
-      <SignUp></SignUp>
-      <SignIn></SignIn>
-      <RequestReset></RequestReset>
+      <SignUp />
+      <SignIn />
+      <RequestReset />
     </Columns>
   );
 }

@@ -14,7 +14,7 @@ export const SingleItem: React.FC<Props> = ({ data }) => {
       <Head>
         <title>Sick Fits | {data.title}</title>
       </Head>
-      <img src={data.largeImage} alt={data.title}></img>
+      <img src={data.largeImage} alt={data.title} />
       <div className='details'>
         <h2>Viewing {data.title}</h2>
         <p>{data.description}</p>

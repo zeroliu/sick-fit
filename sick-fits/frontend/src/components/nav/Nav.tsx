@@ -29,10 +29,10 @@ export const Nav: React.FC = () => {
           <Link href='/me'>
             <a>Account</a>
           </Link>
-          <SignOut></SignOut>
+          <SignOut />
           <button onClick={() => dispatch(cartOpened())}>
             My Cart
-            <CartCount count={countItems(data.me.cartItems)}></CartCount>
+            <CartCount count={countItems(data.me.cartItems)} />
           </button>
         </>
       ) : (

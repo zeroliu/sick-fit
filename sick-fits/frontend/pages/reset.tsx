@@ -12,7 +12,7 @@ const Reset: React.FC = () => {
   if (Array.isArray(resetToken)) {
     return <p>Please only provide one reset token.</p>;
   }
-  return <ResetPassword resetToken={resetToken}></ResetPassword>;
+  return <ResetPassword resetToken={resetToken} />;
 };
 
 export default Reset;

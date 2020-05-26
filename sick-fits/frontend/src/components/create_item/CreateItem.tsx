@@ -71,7 +71,7 @@ export const CreateItem: React.FC = () => {
 
   return (
     <Form onSubmit={submitForm}>
-      <ErrorMessage error={error}></ErrorMessage>
+      <ErrorMessage error={error} />
       <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor='title'>
           Image
@@ -79,9 +79,9 @@ export const CreateItem: React.FC = () => {
             type='file'
             name='file'
             placeholder='file'
-            onChange={uploadFile}></input>
+            onChange={uploadFile} />
           {formData.image && (
-            <img width='200px' src={formData.image} alt='Upload preview'></img>
+            <img width='200px' src={formData.image} alt='Upload preview' />
           )}
         </label>
         <label htmlFor='title'>
@@ -92,7 +92,7 @@ export const CreateItem: React.FC = () => {
             placeholder='title'
             required
             value={formData.title}
-            onChange={updateForm}></input>
+            onChange={updateForm} />
         </label>
         <label htmlFor='price'>
           Price
@@ -102,7 +102,7 @@ export const CreateItem: React.FC = () => {
             placeholder='price'
             required
             value={formData.price}
-            onChange={updateForm}></input>
+            onChange={updateForm} />
         </label>
         <label htmlFor='description'>
           Description
@@ -112,7 +112,7 @@ export const CreateItem: React.FC = () => {
             placeholder='description'
             required
             value={formData.description}
-            onChange={updateForm}></input>
+            onChange={updateForm} />
         </label>
         <button type='submit'>Submit</button>
       </fieldset>

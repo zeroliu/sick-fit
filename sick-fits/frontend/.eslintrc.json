@@ -45,7 +45,13 @@
         }
       }
     ],
-    "no-restricted-imports": ["error", { "patterns": ["../*"] }]
+    "no-restricted-imports": ["error", { "patterns": ["../*"] }],
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true
+      }
+    ]
   },
   "settings": {
     "import/resolver": {

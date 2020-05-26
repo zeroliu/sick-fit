@@ -35,7 +35,7 @@ export const ResetPassword: React.FC<Props> = ({ resetToken }) => {
 
   return (
     <Form method='post' onSubmit={submitForm}>
-      {error && <ErrorMessage error={error}></ErrorMessage>}
+      {error && <ErrorMessage error={error} />}
       <fieldset disabled={loading} aria-busy={loading}>
         <h2>Reset Your Password</h2>
         <label htmlFor='password'>
@@ -45,7 +45,7 @@ export const ResetPassword: React.FC<Props> = ({ resetToken }) => {
             name='password'
             placeholder='password'
             value={formData.password}
-            onChange={updateForm}></input>
+            onChange={updateForm} />
         </label>
         <label htmlFor='confirmPassword'>
           Confirm password
@@ -54,7 +54,7 @@ export const ResetPassword: React.FC<Props> = ({ resetToken }) => {
             name='confirmPassword'
             placeholder='confirmPassword'
             value={formData.confirmPassword}
-            onChange={updateForm}></input>
+            onChange={updateForm} />
         </label>
         <button type='submit'>Reset Password</button>
       </fieldset>

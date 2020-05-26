@@ -18,7 +18,7 @@ export const ItemsPagination: React.FC<Props> = ({ currentPage }) => {
     return <p>loading...</p>;
   }
   if (error) {
-    return <ErrorMessage error={error}></ErrorMessage>;
+    return <ErrorMessage error={error} />;
   }
   if (!data) {
     return <p>Error loading items pagination.</p>;
