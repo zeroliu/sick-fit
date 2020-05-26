@@ -10,7 +10,7 @@ import { useMeQuery } from 'src/queries/user';
 import { CartItem } from 'src/components/cart_item/CartItem';
 import { formatMoney } from 'src/lib/format_money';
 import { calcTotalPrice } from 'src/lib/cart';
-
+import { checkoutStarted } from 'src/model/checkout';
 
 export const Cart: React.FC = () => {
   const cartOpen = useSelector(cartOpenSelector);
@@ -19,6 +19,9 @@ export const Cart: React.FC = () => {
   if (!data?.me) {
     return null;
   }
+  const handleCheckout = () => {
+    dispatch(checkoutStarted());
+  };
   const { me } = data;
   return (
     <StyledCart open={cartOpen}>
@@ -36,7 +39,7 @@ export const Cart: React.FC = () => {
       </ul>
       <footer>
         <p>{formatMoney(calcTotalPrice(me.cartItems))}</p>
-        <SickButton>Checkout</SickButton>
+        <SickButton onClick={handleCheckout}>Checkout</SickButton>
       </footer>
     </StyledCart>
   );

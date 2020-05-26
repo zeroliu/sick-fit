@@ -21,11 +21,14 @@ export interface CartState {
   open: boolean;
 }
 
-const initState = {
+const initState: CartState = {
   open: false,
 };
 
-export function cartReducer(state: CartState = initState, action: CartAction) {
+export function cartReducer(
+  state: CartState = initState,
+  action: CartAction,
+): CartState {
   switch (action.type) {
     case CART_OPENED:
       return { ...state, open: true };

@@ -3,10 +3,12 @@ import { MakeStore, createWrapper, HYDRATE } from 'next-redux-wrapper';
 
 import { cartReducer } from './cart';
 import { chainReducers } from './utils';
+import { checkoutReducer } from './checkout';
 
 function createRootReducer() {
   const reducer = combineReducers({
     cart: cartReducer,
+    checkout: checkoutReducer,
   });
   const initState = reducer(undefined, { type: '@@INIT' } as AnyAction);
 

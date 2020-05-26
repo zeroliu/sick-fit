@@ -9,6 +9,7 @@ import Router from 'next/router';
 
 import { Meta } from 'src/components/Meta';
 import { Header } from 'src/components/header/Header';
+import { CheckoutForm } from 'src/components/checkout_form/CheckoutForm';
 
 Router.events.on('routeChangeStart', () => {
   Nprogress.start();
@@ -79,5 +80,6 @@ export const Page: React.FC = ({ children }) => (
       <Header></Header>
       <Inner>{children}</Inner>
     </StyledPage>
+    <CheckoutForm></CheckoutForm>
   </ThemeProvider>
 );
