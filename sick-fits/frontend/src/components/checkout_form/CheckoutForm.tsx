@@ -1,5 +1,6 @@
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { StripeError } from '@stripe/stripe-js';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -16,10 +17,11 @@ import {
 import { countItems, calcTotalPrice } from 'src/lib/cart';
 import { formatMoney } from 'src/lib/format_money';
 import { checkoutStartedSelector, checkoutCancelled } from 'src/model/checkout';
-import { usePayMutation } from 'src/queries/pay';
-import { useMeQuery } from 'src/queries/user';
+import { usePayMutation } from 'src/queries/order';
+import { useMeQuery, ME_QUERY } from 'src/queries/user';
 
 export const CheckoutForm: React.FC = () => {
+  const router = useRouter();
   const { data, loading } = useMeQuery();
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState<StripeError | Error | null>(null);
@@ -68,11 +70,23 @@ export const CheckoutForm: React.FC = () => {
       return;
     }
     try {
-      await pay({ variables: { data: { paymentMethodId: paymentMethod.id } } });
+      const { data } = await pay({
+        variables: { data: { paymentMethodId: paymentMethod.id } },
+        refetchQueries: [{ query: ME_QUERY }],
+      });
+      if (!data) {
+        setError(new Error('Failed to create the order'));
+        return;
+      }
+      setProcessing(false);
+      dispatch(checkoutCancelled());
+      router.push({
+        pathname: '/order',
+        query: { id: data.pay.id },
+      });
     } catch (e) {
       setError(e);
     }
-    setProcessing(false);
   };
 
   const getPreviewImg = () => {

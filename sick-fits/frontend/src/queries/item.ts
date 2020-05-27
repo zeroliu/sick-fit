@@ -7,6 +7,7 @@ import {
 import gql from 'graphql-tag';
 
 import {
+  Item as GeneratedItem,
   Mutation,
   Query,
   QueryItemsArgs,
@@ -16,14 +17,10 @@ import {
   MutationDeleteItemArgs,
 } from 'src/generated/graphql';
 
-export interface Item {
-  id: string;
-  title: string;
-  price: number;
-  description: string;
-  image?: string;
-  largeImage?: string;
-}
+export type Item = Pick<
+  GeneratedItem,
+  'id' | 'title' | 'price' | 'description' | 'image' | 'largeImage'
+>;
 
 const ALL_ITEMS_QUERY = gql`
   query($skip: Int, $take: Int) {

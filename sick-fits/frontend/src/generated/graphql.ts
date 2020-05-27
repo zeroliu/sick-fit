@@ -6,6 +6,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
+  DateTime: string;
 };
 
 export type AddToCartInput = {
@@ -41,8 +43,8 @@ export type Item = {
   image?: Maybe<Scalars['String']>;
   largeImage?: Maybe<Scalars['String']>;
   price: Scalars['Float'];
-  createdAt: Scalars['String'];
-  updatedAt: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
   user: User;
 };
 
@@ -56,63 +58,52 @@ export type Mutation = {
   createItem: Item;
   updateItem?: Maybe<Scalars['ID']>;
   deleteItem?: Maybe<Scalars['ID']>;
+  pay: Order;
   requestReset: Scalars['Boolean'];
   resetPassword: User;
-  pay: Order;
   updatePermissions: Scalars['Boolean'];
 };
-
 
 export type MutationRegisterArgs = {
   data: RegisterInput;
 };
 
-
 export type MutationSignInArgs = {
   data: SignInInput;
 };
-
 
 export type MutationAddToCartArgs = {
   data: AddToCartInput;
 };
 
-
 export type MutationRemoveFromCartArgs = {
   data: RemoveFromCartInput;
 };
 
-
 export type MutationCreateItemArgs = {
   data: CreateItemInput;
 };
-
 
 export type MutationUpdateItemArgs = {
   data: UpdateItemInput;
   id: Scalars['ID'];
 };
 
-
 export type MutationDeleteItemArgs = {
   id: Scalars['ID'];
 };
-
-
-export type MutationRequestResetArgs = {
-  data: RequestResetInput;
-};
-
-
-export type MutationResetPasswordArgs = {
-  data: ResetPasswordInput;
-};
-
 
 export type MutationPayArgs = {
   data: PayInput;
 };
 
+export type MutationRequestResetArgs = {
+  data: RequestResetInput;
+};
+
+export type MutationResetPasswordArgs = {
+  data: ResetPasswordInput;
+};
 
 export type MutationUpdatePermissionsArgs = {
   data: UpdatePermissionsInput;
@@ -125,6 +116,7 @@ export type Order = {
   user: User;
   total: Scalars['Int'];
   paymentIntent: Scalars['String'];
+  createdAt: Scalars['DateTime'];
 };
 
 export type OrderItem = {
@@ -149,10 +141,10 @@ export type Query = {
   items: Array<Item>;
   item?: Maybe<Item>;
   itemsConnection: Connection;
+  order?: Maybe<Order>;
   me?: Maybe<User>;
   users: Array<User>;
 };
-
 
 export type QueryItemsArgs = {
   take?: Maybe<Scalars['Int']>;
@@ -160,9 +152,12 @@ export type QueryItemsArgs = {
   searchTerm?: Maybe<Scalars['String']>;
 };
 
-
 export type QueryItemArgs = {
   id: Scalars['ID'];
+};
+
+export type QueryOrderArgs = {
+  orderId: Scalars['ID'];
 };
 
 export type RegisterInput = {
@@ -217,5 +212,5 @@ export enum UserPermission {
   ItemCreate = 'ITEM_CREATE',
   ItemUpdate = 'ITEM_UPDATE',
   ItemDelete = 'ITEM_DELETE',
-  PermissionUpdate = 'PERMISSION_UPDATE'
+  PermissionUpdate = 'PERMISSION_UPDATE',
 }
