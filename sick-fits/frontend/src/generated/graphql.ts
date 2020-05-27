@@ -58,7 +58,7 @@ export type Mutation = {
   deleteItem?: Maybe<Scalars['ID']>;
   requestReset: Scalars['Boolean'];
   resetPassword: User;
-  pay: Scalars['Boolean'];
+  pay: Order;
   updatePermissions: Scalars['Boolean'];
 };
 
@@ -116,6 +116,27 @@ export type MutationPayArgs = {
 
 export type MutationUpdatePermissionsArgs = {
   data: UpdatePermissionsInput;
+};
+
+export type Order = {
+  __typename?: 'Order';
+  id: Scalars['ID'];
+  items: Array<OrderItem>;
+  user: User;
+  total: Scalars['Int'];
+  paymentIntent: Scalars['String'];
+};
+
+export type OrderItem = {
+  __typename?: 'OrderItem';
+  id: Scalars['ID'];
+  title: Scalars['String'];
+  description: Scalars['String'];
+  image?: Maybe<Scalars['String']>;
+  largeImage?: Maybe<Scalars['String']>;
+  price: Scalars['Int'];
+  quantity: Scalars['Int'];
+  user: User;
 };
 
 export type PayInput = {
