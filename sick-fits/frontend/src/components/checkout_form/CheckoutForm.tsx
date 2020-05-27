@@ -1,5 +1,6 @@
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import React from 'react';
+import { StripeError } from '@stripe/stripe-js';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
@@ -10,28 +11,39 @@ import {
   ItemImg,
   CloseButton,
   Details,
+  Spinner,
 } from './checkout_form_styles';
 import { countItems, calcTotalPrice } from 'src/lib/cart';
 import { formatMoney } from 'src/lib/format_money';
 import { checkoutStartedSelector, checkoutCancelled } from 'src/model/checkout';
+import { usePayMutation } from 'src/queries/pay';
 import { useMeQuery } from 'src/queries/user';
 
 export const CheckoutForm: React.FC = () => {
   const { data, loading } = useMeQuery();
+  const [processing, setProcessing] = useState(false);
+  const [error, setError] = useState<StripeError | Error | null>(null);
   const started = useSelector(checkoutStartedSelector);
   const stripe = useStripe();
   const elements = useElements();
   const dispatch = useDispatch();
+  const [pay] = usePayMutation();
   if (!started || loading) {
     return null;
   }
+  if (error) {
+    alert(error.message);
+    setProcessing(false);
+    setError(null);
+  }
   if (!data?.me) {
-    alert('You must be signed in');
+    setError(new Error('You must be signed in'));
     return null;
   }
-  const { email, cartItems } = data.me;
+  const { email, cartItems, name } = data.me;
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setProcessing(true);
     if (!stripe || !elements) {
       return;
     }
@@ -43,12 +55,24 @@ export const CheckoutForm: React.FC = () => {
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: cardElement,
+      billing_details: {
+        name,
+      },
     });
     if (error) {
-      console.log('[error]', error);
-    } else {
-      console.log('[PaymentMethod]', paymentMethod);
+      setError(error);
+      return;
     }
+    if (!paymentMethod) {
+      setError(new Error('Failed to create the payment id'));
+      return;
+    }
+    try {
+      await pay({ variables: { data: { paymentMethodId: paymentMethod.id } } });
+    } catch (e) {
+      setError(e);
+    }
+    setProcessing(false);
   };
 
   const getPreviewImg = () => {
@@ -76,8 +100,12 @@ export const CheckoutForm: React.FC = () => {
           </Details>
         </Header>
         <CardElement className='cardElement' />
-        <PayButton type='submit' disabled={!stripe}>
-          Pay {formatMoney(calcTotalPrice(cartItems))}
+        <PayButton type='submit' disabled={!stripe || processing}>
+          {processing ? (
+            <Spinner />
+          ) : (
+            `Pay ${formatMoney(calcTotalPrice(cartItems))}`
+          )}
         </PayButton>
       </StyledCheckoutForm>
     </Container>

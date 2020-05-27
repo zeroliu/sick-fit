@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-export const Container = styled.form`
+export const Container = styled.div`
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 0;
@@ -44,7 +44,7 @@ export const Details = styled.div`
   padding: 5px;
 `;
 
-export const StyledCheckoutForm = styled.div`
+export const StyledCheckoutForm = styled.form`
   width: 30vw;
   min-width: 300px;
   box-shadow: ${(props) => props.theme.bs};
@@ -68,4 +68,31 @@ export const PayButton = styled.button`
   margin: 0;
   height: 40px;
   border-radius: 0 0 4px 4px;
+  display: flex;
+  justify-content: center;
+  outline: none;
+`;
+
+const load = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Spinner = styled.div`
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  border-left: 2px solid #ffffff;
+  transform: translateZ(0);
+  animation: ${load} 1.1s infinite linear;
 `;

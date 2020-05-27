@@ -13,7 +13,7 @@ export type AddToCartInput = {
 };
 
 export type CartItem = {
-   __typename?: 'CartItem';
+  __typename?: 'CartItem';
   id: Scalars['ID'];
   quantity: Scalars['Int'];
   item: Item;
@@ -21,7 +21,7 @@ export type CartItem = {
 };
 
 export type Connection = {
-   __typename?: 'Connection';
+  __typename?: 'Connection';
   totalCount: Scalars['Int'];
 };
 
@@ -34,7 +34,7 @@ export type CreateItemInput = {
 };
 
 export type Item = {
-   __typename?: 'Item';
+  __typename?: 'Item';
   id: Scalars['ID'];
   title: Scalars['String'];
   description: Scalars['String'];
@@ -47,18 +47,39 @@ export type Item = {
 };
 
 export type Mutation = {
-   __typename?: 'Mutation';
-  createItem: Item;
-  updateItem?: Maybe<Scalars['ID']>;
-  deleteItem?: Maybe<Scalars['ID']>;
+  __typename?: 'Mutation';
   register: User;
   signIn?: Maybe<User>;
   signOut: Scalars['Boolean'];
-  requestReset: Scalars['Boolean'];
-  resetPassword: User;
-  updatePermissions: Scalars['Boolean'];
   addToCart: Scalars['Boolean'];
   removeFromCart: Scalars['Boolean'];
+  createItem: Item;
+  updateItem?: Maybe<Scalars['ID']>;
+  deleteItem?: Maybe<Scalars['ID']>;
+  requestReset: Scalars['Boolean'];
+  resetPassword: User;
+  pay: Scalars['Boolean'];
+  updatePermissions: Scalars['Boolean'];
+};
+
+
+export type MutationRegisterArgs = {
+  data: RegisterInput;
+};
+
+
+export type MutationSignInArgs = {
+  data: SignInInput;
+};
+
+
+export type MutationAddToCartArgs = {
+  data: AddToCartInput;
+};
+
+
+export type MutationRemoveFromCartArgs = {
+  data: RemoveFromCartInput;
 };
 
 
@@ -78,16 +99,6 @@ export type MutationDeleteItemArgs = {
 };
 
 
-export type MutationRegisterArgs = {
-  data: RegisterInput;
-};
-
-
-export type MutationSignInArgs = {
-  data: SignInInput;
-};
-
-
 export type MutationRequestResetArgs = {
   data: RequestResetInput;
 };
@@ -98,34 +109,34 @@ export type MutationResetPasswordArgs = {
 };
 
 
+export type MutationPayArgs = {
+  data: PayInput;
+};
+
+
 export type MutationUpdatePermissionsArgs = {
   data: UpdatePermissionsInput;
 };
 
-
-export type MutationAddToCartArgs = {
-  data: AddToCartInput;
-};
-
-
-export type MutationRemoveFromCartArgs = {
-  data: RemoveFromCartInput;
+export type PayInput = {
+  paymentMethodId: Scalars['String'];
 };
 
 export type Query = {
-   __typename?: 'Query';
+  __typename?: 'Query';
+  cartItems: Array<CartItem>;
   items: Array<Item>;
   item?: Maybe<Item>;
   itemsConnection: Connection;
   me?: Maybe<User>;
   users: Array<User>;
-  cartItems: Array<CartItem>;
 };
 
 
 export type QueryItemsArgs = {
   take?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
+  searchTerm?: Maybe<Scalars['String']>;
 };
 
 
@@ -171,7 +182,7 @@ export type UpdatePermissionsInput = {
 };
 
 export type User = {
-   __typename?: 'User';
+  __typename?: 'User';
   id: Scalars['ID'];
   name: Scalars['String'];
   email: Scalars['String'];
