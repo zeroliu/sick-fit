@@ -1,10 +1,20 @@
-import { Resolver, Mutation, Ctx, InputType, Field, Arg } from 'type-graphql';
+import {
+  Resolver,
+  Mutation,
+  Ctx,
+  InputType,
+  Field,
+  Arg,
+  Query,
+  ID,
+} from 'type-graphql';
 
 import { CartItem } from 'src/entity/cart_item';
 import { Order } from 'src/entity/order';
 import { OrderItem } from 'src/entity/order_item';
+import { UserPermission } from 'src/entity/user';
 import { getStripe } from 'src/libs/stripe';
-import { getUserById } from 'src/libs/utils';
+import { getUserById, hasPermission } from 'src/libs/utils';
 import { Context } from 'src/types';
 
 @InputType()
@@ -15,6 +25,23 @@ class PayInput {
 
 @Resolver()
 export class PaymentResolver {
+  @Query(() => Order, { nullable: true })
+  async order(
+    @Arg('orderId', () => ID) orderId: number,
+    @Ctx() ctx: Context,
+  ): Promise<Order | undefined> {
+    const user = await getUserById(ctx.req.userId);
+    const order = await Order.findOne(orderId);
+    if (!order) {
+      throw new Error('Order does not exist.');
+    }
+    const ownsOrder = order.user.id === ctx.req.userId;
+    if (!hasPermission(user, [UserPermission.ADMIN]) && !ownsOrder) {
+      throw new Error('No sufficient permission to view the order');
+    }
+    return order;
+  }
+
   @Mutation(() => Order)
   async pay(@Arg('data') data: PayInput, @Ctx() ctx: Context): Promise<Order> {
     const user = await getUserById(ctx.req.userId);

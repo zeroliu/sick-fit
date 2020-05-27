@@ -19,12 +19,13 @@ export class Order extends BaseEntity {
   id!: number;
 
   @Field(() => [OrderItem])
-  @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.order, { eager: true })
   items!: OrderItem[];
 
   @Field(() => User)
   @ManyToOne(() => User, {
     onDelete: 'CASCADE',
+    eager: true,
   })
   user!: User;
 

@@ -40,11 +40,11 @@ export class Item extends BaseEntity {
 
   @Field()
   @CreateDateColumn()
-  createdAt!: string;
+  createdAt!: Date;
 
   @Field()
   @UpdateDateColumn()
-  updatedAt!: string;
+  updatedAt!: Date;
 
   @Field(() => User)
   @ManyToOne(() => User, { eager: true })
