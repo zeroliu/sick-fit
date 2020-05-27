@@ -5,7 +5,6 @@ import {
   Column,
   PrimaryGeneratedColumn,
   ManyToOne,
-  CreateDateColumn,
 } from 'typeorm';
 
 import { Order } from './order';
@@ -41,10 +40,6 @@ export class OrderItem extends BaseEntity {
   @Field(() => Int)
   @Column()
   quantity!: number;
-
-  @Field()
-  @CreateDateColumn()
-  createdAt!: Date;
 
   @Field(() => User)
   @ManyToOne(() => User, {

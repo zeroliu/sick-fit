@@ -6,6 +6,7 @@ import {
   OneToMany,
   ManyToOne,
   Column,
+  CreateDateColumn,
 } from 'typeorm';
 
 import { OrderItem } from './order_item';
@@ -36,4 +37,8 @@ export class Order extends BaseEntity {
   @Field()
   @Column()
   paymentIntent!: string;
+
+  @Field()
+  @CreateDateColumn()
+  createdAt!: Date;
 }
