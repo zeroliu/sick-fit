@@ -5,7 +5,9 @@ import { Mutation, MutationPayArgs } from 'src/generated/graphql';
 
 const PAY_MUTATION = gql`
   mutation($data: PayInput!) {
-    pay(data: $data)
+    pay(data: $data) {
+      id
+    }
   }
 `;
 interface PayMutationData {
