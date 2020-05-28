@@ -22,7 +22,7 @@ export type Item = Pick<
   'id' | 'title' | 'price' | 'description' | 'image' | 'largeImage'
 >;
 
-const ALL_ITEMS_QUERY = gql`
+export const ALL_ITEMS_QUERY = gql`
   query($skip: Int, $take: Int) {
     items(skip: $skip, take: $take) {
       id
@@ -64,7 +64,7 @@ export function useItemQuery(
   return useQuery(ITEM_QUERY, options);
 }
 
-const ITEMS_CONNECTION_QUERY = gql`
+export const ITEMS_CONNECTION_QUERY = gql`
   query {
     itemsConnection {
       totalCount

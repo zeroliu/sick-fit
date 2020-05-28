@@ -6,7 +6,6 @@ import { ItemsPagination } from 'src/components/items_pagination/ItemsPagination
 import { perPage } from 'src/config';
 import { useAllItemsQuery } from 'src/queries/item';
 
-
 interface Props {
   currentPage: number;
 }

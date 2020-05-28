@@ -1,0 +1,350 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Items /> renders final state correctly 1`] = `
+<Items
+  currentPage={1}
+>
+  <items_styles__Center>
+    <div
+      className="items_styles__Center-sc-1jzjd2i-0 eFCBDz"
+    >
+      <ItemsPagination
+        currentPage={1}
+      >
+        <items_pagination_styles__StyledItemsPagination>
+          <div
+            className="items_pagination_styles__StyledItemsPagination-sc-1do2rc3-0 kTuLOm"
+          >
+            <Head>
+              <Component
+                handleStateChange={null}
+                inAmpMode={false}
+                reduceComponentsToState={[Function]}
+              />
+            </Head>
+            <Link
+              href={
+                Object {
+                  "pathname": "items",
+                  "query": Object {
+                    "page": 0,
+                  },
+                }
+              }
+            >
+              <a
+                aria-disabled={true}
+                href="items?page=0"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Prev
+              </a>
+            </Link>
+            <p>
+              Page 
+              1
+               of 
+              2
+            </p>
+            <Link
+              href={
+                Object {
+                  "pathname": "items",
+                  "query": Object {
+                    "page": 2,
+                  },
+                }
+              }
+            >
+              <a
+                aria-disabled={false}
+                href="items?page=2"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Next
+              </a>
+            </Link>
+          </div>
+        </items_pagination_styles__StyledItemsPagination>
+      </ItemsPagination>
+      <items_styles__ItemsList>
+        <div
+          className="items_styles__ItemsList-sc-1jzjd2i-1 gyVOSp"
+        >
+          <Item
+            data={
+              Object {
+                "__typename": "Item",
+                "description": "Est omnis porro porro quos.",
+                "id": "123",
+                "image": "foo.jpg",
+                "largeImage": "large_foo.jpg",
+                "price": [Function],
+                "title": "Quo quis molestiae",
+              }
+            }
+            key="123"
+          >
+            <item_styles__Item>
+              <div
+                className="item_styles__Item-sc-1wrkfgx-0 aVlSA"
+              >
+                <img
+                  alt="Quo quis molestiae"
+                  src="foo.jpg"
+                />
+                <Title>
+                  <h3
+                    className="Title-sc-1002kw6-0 eBuTHz"
+                  >
+                    <Link
+                      href={
+                        Object {
+                          "pathname": "/item",
+                          "query": Object {
+                            "id": "123",
+                          },
+                        }
+                      }
+                    >
+                      <a
+                        href="/item?id=123"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                      >
+                        Quo quis molestiae
+                      </a>
+                    </Link>
+                  </h3>
+                </Title>
+                <PriceTag>
+                  <span
+                    className="PriceTag-sc-145cui2-0 cUpSNy"
+                  >
+                    $NaN
+                  </span>
+                </PriceTag>
+                <p>
+                  Est omnis porro porro quos.
+                </p>
+                <div
+                  className="buttonList"
+                >
+                  <Link
+                    href={
+                      Object {
+                        "pathname": "/update",
+                        "query": Object {
+                          "id": "123",
+                        },
+                      }
+                    }
+                  >
+                    <a
+                      href="/update?id=123"
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                    >
+                      Edit ✏️
+                    </a>
+                  </Link>
+                  <AddToCart
+                    id="123"
+                  >
+                    <button
+                      onClick={[Function]}
+                    >
+                      Add To Cart
+                    </button>
+                  </AddToCart>
+                  <DeleteItem
+                    id="123"
+                  >
+                    <button
+                      onClick={[Function]}
+                    >
+                      Delete
+                    </button>
+                  </DeleteItem>
+                </div>
+              </div>
+            </item_styles__Item>
+          </Item>
+          <Item
+            data={
+              Object {
+                "__typename": "Item",
+                "description": "Nobis culpa deleniti qui reprehenderit in.",
+                "id": "456",
+                "image": "foo.jpg",
+                "largeImage": "large_foo.jpg",
+                "price": [Function],
+                "title": "Omnis reiciendis",
+              }
+            }
+            key="456"
+          >
+            <item_styles__Item>
+              <div
+                className="item_styles__Item-sc-1wrkfgx-0 aVlSA"
+              >
+                <img
+                  alt="Omnis reiciendis"
+                  src="foo.jpg"
+                />
+                <Title>
+                  <h3
+                    className="Title-sc-1002kw6-0 eBuTHz"
+                  >
+                    <Link
+                      href={
+                        Object {
+                          "pathname": "/item",
+                          "query": Object {
+                            "id": "456",
+                          },
+                        }
+                      }
+                    >
+                      <a
+                        href="/item?id=456"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                      >
+                        Omnis reiciendis
+                      </a>
+                    </Link>
+                  </h3>
+                </Title>
+                <PriceTag>
+                  <span
+                    className="PriceTag-sc-145cui2-0 cUpSNy"
+                  >
+                    $NaN
+                  </span>
+                </PriceTag>
+                <p>
+                  Nobis culpa deleniti qui reprehenderit in.
+                </p>
+                <div
+                  className="buttonList"
+                >
+                  <Link
+                    href={
+                      Object {
+                        "pathname": "/update",
+                        "query": Object {
+                          "id": "456",
+                        },
+                      }
+                    }
+                  >
+                    <a
+                      href="/update?id=456"
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                    >
+                      Edit ✏️
+                    </a>
+                  </Link>
+                  <AddToCart
+                    id="456"
+                  >
+                    <button
+                      onClick={[Function]}
+                    >
+                      Add To Cart
+                    </button>
+                  </AddToCart>
+                  <DeleteItem
+                    id="456"
+                  >
+                    <button
+                      onClick={[Function]}
+                    >
+                      Delete
+                    </button>
+                  </DeleteItem>
+                </div>
+              </div>
+            </item_styles__Item>
+          </Item>
+        </div>
+      </items_styles__ItemsList>
+      <ItemsPagination
+        currentPage={1}
+      >
+        <items_pagination_styles__StyledItemsPagination>
+          <div
+            className="items_pagination_styles__StyledItemsPagination-sc-1do2rc3-0 kTuLOm"
+          >
+            <Head>
+              <Component
+                handleStateChange={null}
+                inAmpMode={false}
+                reduceComponentsToState={[Function]}
+              />
+            </Head>
+            <Link
+              href={
+                Object {
+                  "pathname": "items",
+                  "query": Object {
+                    "page": 0,
+                  },
+                }
+              }
+            >
+              <a
+                aria-disabled={true}
+                href="items?page=0"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Prev
+              </a>
+            </Link>
+            <p>
+              Page 
+              1
+               of 
+              2
+            </p>
+            <Link
+              href={
+                Object {
+                  "pathname": "items",
+                  "query": Object {
+                    "page": 2,
+                  },
+                }
+              }
+            >
+              <a
+                aria-disabled={false}
+                href="items?page=2"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Next
+              </a>
+            </Link>
+          </div>
+        </items_pagination_styles__StyledItemsPagination>
+      </ItemsPagination>
+    </div>
+  </items_styles__Center>
+</Items>
+`;
+
+exports[`<Items /> renders loading state correctly 1`] = `
+<Items
+  currentPage={1}
+>
+  <p>
+    Loading...
+  </p>
+</Items>
+`;

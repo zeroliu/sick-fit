@@ -1,7 +1,7 @@
 module.exports = {
   preset: 'ts-jest',
-  testEnvironment: 'node',
-  roots: ['src'],
+  testEnvironment: 'jsdom',
+  roots: ['<rootDir>'],
   moduleNameMapper: {
     '^src/(.*)': '<rootDir>/src/$1',
   },

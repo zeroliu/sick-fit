@@ -7,7 +7,6 @@ import { ErrorMessage } from 'src/components/error_message/ErrorMessage';
 import { perPage } from 'src/config';
 import { useItemsConnectionQuery } from 'src/queries/item';
 
-
 interface Props {
   currentPage: number;
 }
