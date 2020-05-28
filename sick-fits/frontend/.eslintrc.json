@@ -56,7 +56,12 @@
   "settings": {
     "import/resolver": {
       "alias": {
-        "map": [["src", "./src"]],
+        "map": [
+          ["src", "./src"],
+          // enzyme is not compatible with eslint-import-resolver-alias
+          // https://github.com/johvin/eslint-import-resolver-alias/issues/18
+          ["enzyme", "foo"]
+        ],
         "extensions": [".ts", ".tsx"]
       }
     }
