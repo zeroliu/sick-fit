@@ -1,58 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Item /> matches the snapshot 1`] = `
-<item_styles__Item>
-  <img
-    alt="fake item"
-    src="foo.jpg"
-  />
-  <Title>
-    <Link
-      href={
-        Object {
-          "pathname": "/item",
-          "query": Object {
-            "id": "1",
-          },
-        }
-      }
+<div>
+  <div
+    class="item_styles__Item-sc-1wrkfgx-0 aVlSA"
+  >
+    <img
+      alt="fake item"
+      src="foo.jpg"
+    />
+    <h3
+      class="Title-sc-1002kw6-0 eBuTHz"
     >
-      <a>
+      <a
+        href="/item?id=1"
+      >
         fake item
       </a>
-    </Link>
-  </Title>
-  <PriceTag>
-    $12.34
-  </PriceTag>
-  <p>
-    this is a fake item
-  </p>
-  <div
-    className="buttonList"
-  >
-    <Link
-      href={
-        Object {
-          "pathname": "/update",
-          "query": Object {
-            "id": "1",
-          },
-        }
-      }
+    </h3>
+    <span
+      class="PriceTag-sc-145cui2-0 cUpSNy"
     >
-      <a>
+      $12.34
+    </span>
+    <p>
+      this is a fake item
+    </p>
+    <div
+      class="buttonList"
+    >
+      <a
+        href="/update?id=1"
+      >
         Edit ✏️
       </a>
-    </Link>
-    <AddToCart
-      id="1"
-    />
-    <DeleteItem
-      id="1"
-    >
-      Delete
-    </DeleteItem>
+      <button>
+        Add To Cart
+      </button>
+      <button>
+        Delete
+      </button>
+    </div>
   </div>
-</item_styles__Item>
+</div>
 `;

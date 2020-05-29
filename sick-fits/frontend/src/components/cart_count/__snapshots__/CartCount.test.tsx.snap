@@ -1,58 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CartCount /> matches the snapshot 1`] = `
-<cart_count_styles__AnimatedCartCount>
-  <SwitchTransition
-    mode="out-in"
+<div>
+  <span
+    class="cart_count_styles__AnimatedCartCount-sc-18ipxui-1 iyarbG"
   >
-    <CSSTransition
-      className="count"
-      classNames="count"
-      key="10"
-      timeout={200}
+    <div
+      class="cart_count_styles__Dot-sc-18ipxui-0 gbmwty count"
     >
-      <cart_count_styles__Dot>
-        10
-      </cart_count_styles__Dot>
-    </CSSTransition>
-  </SwitchTransition>
-</cart_count_styles__AnimatedCartCount>
-`;
-
-exports[`<CartCount /> updates via props 1`] = `
-<cart_count_styles__AnimatedCartCount>
-  <SwitchTransition
-    mode="out-in"
-  >
-    <CSSTransition
-      className="count"
-      classNames="count"
-      key="10"
-      timeout={200}
-    >
-      <cart_count_styles__Dot>
-        10
-      </cart_count_styles__Dot>
-    </CSSTransition>
-  </SwitchTransition>
-</cart_count_styles__AnimatedCartCount>
-`;
-
-exports[`<CartCount /> updates via props 2`] = `
-<cart_count_styles__AnimatedCartCount>
-  <SwitchTransition
-    mode="out-in"
-  >
-    <CSSTransition
-      className="count"
-      classNames="count"
-      key="20"
-      timeout={200}
-    >
-      <cart_count_styles__Dot>
-        20
-      </cart_count_styles__Dot>
-    </CSSTransition>
-  </SwitchTransition>
-</cart_count_styles__AnimatedCartCount>
+      10
+    </div>
+  </span>
+</div>
 `;

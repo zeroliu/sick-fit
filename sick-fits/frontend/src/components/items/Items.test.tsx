@@ -1,6 +1,6 @@
 import { MockedProvider, MockedResponse } from '@apollo/react-testing';
+import { render } from '@testing-library/react';
 import casual from 'casual';
-import { mount } from 'enzyme';
 import React from 'react';
 
 import { Items } from './Items';
@@ -35,7 +35,7 @@ const mocks: MockedResponse[] = [
             __typename: 'Item',
             id: '123',
             title: casual.title,
-            price: casual.integer,
+            price: 123,
             description: casual.sentence,
             image: 'foo.jpg',
             largeImage: 'large_foo.jpg',
@@ -44,7 +44,7 @@ const mocks: MockedResponse[] = [
             __typename: 'Item',
             id: '456',
             title: casual.title,
-            price: casual.integer,
+            price: 456,
             description: casual.sentence,
             image: 'foo.jpg',
             largeImage: 'large_foo.jpg',
@@ -57,23 +57,22 @@ const mocks: MockedResponse[] = [
 
 describe('<Items />', () => {
   it('renders loading state correctly', async () => {
-    const wrapper = mount(
+    const { container } = render(
       <MockedProvider mocks={mocks}>
         <Items currentPage={1} />
       </MockedProvider>,
     );
-    expect(wrapper.find(Items)).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
     await actAfterRender();
   });
 
   it('renders final state correctly', async () => {
-    const wrapper = mount(
+    const { container } = render(
       <MockedProvider mocks={mocks}>
         <Items currentPage={1} />
       </MockedProvider>,
     );
     await actAfterRender();
-    wrapper.update();
-    expect(wrapper.find(Items)).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

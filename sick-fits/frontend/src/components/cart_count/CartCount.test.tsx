@@ -1,18 +1,11 @@
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import React from 'react';
 
 import { CartCount } from './CartCount';
 
 describe('<CartCount />', () => {
   it('matches the snapshot', () => {
-    const wrapper = shallow(<CartCount count={10} />);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('updates via props', () => {
-    const wrapper = shallow(<CartCount count={10} />);
-    expect(wrapper).toMatchSnapshot();
-    wrapper.setProps({ count: 20 });
-    expect(wrapper).toMatchSnapshot();
+    const { container } = render(<CartCount count={10} />);
+    expect(container).toMatchSnapshot();
   });
 });

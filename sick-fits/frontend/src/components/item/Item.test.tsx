@@ -1,4 +1,5 @@
-import { shallow } from 'enzyme';
+import { MockedProvider } from '@apollo/react-testing';
+import { render } from '@testing-library/react';
 import React from 'react';
 
 import { Item } from './Item';
@@ -15,7 +16,11 @@ const fakeItem: ItemType = {
 
 describe('<Item />', () => {
   it('matches the snapshot', () => {
-    const wrapper = shallow(<Item data={fakeItem} />);
-    expect(wrapper).toMatchSnapshot();
+    const { container } = render(
+      <MockedProvider>
+        <Item data={fakeItem} />
+      </MockedProvider>,
+    );
+    expect(container).toMatchSnapshot();
   });
 });
