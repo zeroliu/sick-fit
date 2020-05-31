@@ -18,6 +18,7 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "dotenv-flow": "^3.1.0",
     "express": "^4.17.1",
     "graphql": "^14.1.1",
     "jsonwebtoken": "^8.5.1",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/cookie-parser": "^1.4.2",
+    "@types/dotenv-flow": "^3.0.0",
     "@types/jsonwebtoken": "^8.3.9",
     "@types/node": "^13.13.4",
     "@types/nodemailer": "^6.4.0",
