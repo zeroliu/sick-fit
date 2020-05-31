@@ -4,7 +4,7 @@
   "description": "Sick Fits! An example React, GraphQL, Next and Apollo",
   "main": "index.js",
   "scripts": {
-    "start": "next start $PORT",
+    "start": "next start -p $PORT",
     "dev": "next -p 7777",
     "type": "tsc --watch",
     "lint": "esw -w --ext .tsx,.ts . --fix",
