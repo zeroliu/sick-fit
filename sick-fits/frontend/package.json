@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "next start $PORT",
-    "build": "next build",
     "dev": "next -p 7777",
     "type": "tsc --watch",
     "lint": "esw -w --ext .tsx,.ts . --fix",
     "test": "NODE_ENV=test jest --watch",
+    "heroku-postbuild": "next build",
     "gen": "graphql-codegen --config codegen.yml",
     "style": "npm-run-all --parallel type lint"
   },
