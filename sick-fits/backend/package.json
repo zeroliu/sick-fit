@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "the backend of sick fits",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "NODE_PATH=./dist NODE_ENV=production node ./dist/src/index.js",
     "dev": "ts-node-dev --trace-warnings --respawn --no-notify -r tsconfig-paths/register src/index.ts",
     "type": "tsc --watch",
     "lint": "esw -w --ext .ts,.tsx . --fix",

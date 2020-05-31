@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server-express';
 import cookieParser from 'cookie-parser';
-import dotenv from 'dotenv';
+import dotenv from 'dotenv-flow';
 import express from 'express';
 import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
