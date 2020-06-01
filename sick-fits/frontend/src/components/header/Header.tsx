@@ -6,7 +6,6 @@ import { Cart } from 'src/components/cart/Cart';
 import { Nav } from 'src/components/nav/Nav';
 import { Search } from 'src/components/search/Search';
 
-
 export const Header: React.FC = () => {
   return (
     <StyledHeader>

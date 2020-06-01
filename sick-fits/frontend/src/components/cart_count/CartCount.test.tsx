@@ -1,11 +1,3 @@
-import { render } from '@testing-library/react';
-import React from 'react';
+import { initStoryshots } from 'src/lib/test_utils';
 
-import { CartCount } from './CartCount';
-
-describe('<CartCount />', () => {
-  it('matches the snapshot', () => {
-    const { container } = render(<CartCount count={10} />);
-    expect(container).toMatchSnapshot();
-  });
-});
+initStoryshots();

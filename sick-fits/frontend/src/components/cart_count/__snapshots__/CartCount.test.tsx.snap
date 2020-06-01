@@ -1,15 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CartCount /> matches the snapshot 1`] = `
-<div>
-  <span
-    class="cart_count_styles__AnimatedCartCount-sc-18ipxui-1 iyarbG"
+exports[`Storyshots CartCount Count 5 1`] = `
+<span
+  class="cart_count_styles__AnimatedCartCount-sc-18ipxui-1 iyarbG"
+>
+  <div
+    class="cart_count_styles__Dot-sc-18ipxui-0 fPUWhS count"
   >
-    <div
-      class="cart_count_styles__Dot-sc-18ipxui-0 gbmwty count"
-    >
-      10
-    </div>
-  </span>
-</div>
+    5
+  </div>
+</span>
+`;
+
+exports[`Storyshots CartCount Count 10 1`] = `
+<span
+  class="cart_count_styles__AnimatedCartCount-sc-18ipxui-1 iyarbG"
+>
+  <div
+    class="cart_count_styles__Dot-sc-18ipxui-0 fPUWhS count"
+  >
+    10
+  </div>
+</span>
 `;

@@ -13,6 +13,8 @@ export const Dot = styled.div`
   font-weight: 100;
   font-feature-settings: 'tnum';
   font-variant-numeric: tabular-nums;
+  width: fit-content;
+  text-align: center;
 `;
 
 export const AnimatedCartCount = styled.span`
