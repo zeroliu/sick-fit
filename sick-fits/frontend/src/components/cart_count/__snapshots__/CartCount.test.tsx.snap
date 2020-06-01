@@ -1,6 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots CartCount Count 5 1`] = `
+exports[`Storyshots <AddToCart> Base 1`] = `
+<button
+  data-testid="button"
+>
+  Add To Cart
+</button>
+`;
+
+exports[`Storyshots <CartCount> Count 5 1`] = `
 <span
   class="cart_count_styles__AnimatedCartCount-sc-18ipxui-1 iyarbG"
 >
@@ -12,7 +20,7 @@ exports[`Storyshots CartCount Count 5 1`] = `
 </span>
 `;
 
-exports[`Storyshots CartCount Count 10 1`] = `
+exports[`Storyshots <CartCount> Count 10 1`] = `
 <span
   class="cart_count_styles__AnimatedCartCount-sc-18ipxui-1 iyarbG"
 >

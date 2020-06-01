@@ -7,7 +7,7 @@ import {
   MutationRemoveFromCartArgs,
 } from 'src/generated/graphql';
 
-const ADD_TO_CART_MUTATION = gql`
+export const ADD_TO_CART_MUTATION = gql`
   mutation($data: AddToCartInput!) {
     addToCart(data: $data)
   }
@@ -21,7 +21,7 @@ export function useAddToCartMutation(
   return useMutation(ADD_TO_CART_MUTATION, options);
 }
 
-const REMOVE_FROM_CART_MUTATION = gql`
+export const REMOVE_FROM_CART_MUTATION = gql`
   mutation($data: RemoveFromCartInput!) {
     removeFromCart(data: $data)
   }

@@ -16,8 +16,14 @@ export const AddToCart: React.FC<Props> = ({ id: itemId }) => {
     refetchQueries: [{ query: ME_QUERY }],
   });
   if (error) {
-    alert(error.message);
+    window.alert(error.message);
   }
 
-  return <button onClick={() => addToCart()}>Add To Cart</button>;
+  return (
+    <button
+      data-testid='button'
+      onClick={() => addToCart().catch((e) => console.log(e))}>
+      Add To Cart
+    </button>
+  );
 };

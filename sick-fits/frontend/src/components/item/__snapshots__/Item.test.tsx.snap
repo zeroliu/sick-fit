@@ -34,7 +34,9 @@ exports[`<Item /> matches the snapshot 1`] = `
       >
         Edit ✏️
       </a>
-      <button>
+      <button
+        data-testid="button"
+      >
         Add To Cart
       </button>
       <button>

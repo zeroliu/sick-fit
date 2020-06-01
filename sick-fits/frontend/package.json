@@ -12,7 +12,7 @@
     "heroku-postbuild": "next build",
     "gen": "graphql-codegen --config codegen.yml",
     "style": "npm-run-all --parallel type lint",
-    "storybook": "start-storybook -s ./public"
+    "storybook": "NODE_PATH=. start-storybook -s ./public"
   },
   "author": "",
   "license": "ISC",
